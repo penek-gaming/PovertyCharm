@@ -1,0 +1,19 @@
+[
+  {
+    "modid": "povertycharm",
+    "name": "PovertyCharm",
+    "description": "Mod inspired by post-Soviet decorations",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://penek-gaming.ru",
+    "updateUrl": "",
+    "authorList": [
+      "WGOS",
+      "Shootlife"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

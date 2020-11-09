@@ -1,0 +1,104 @@
+package ru.penekgaming.mc.povertycharm;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
+import ru.penekgaming.mc.povertycharm.block.PovertyBlockVariative;
+import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
+import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
+
+import java.util.Objects;
+
+@Mod.EventBusSubscriber
+public class PovertyRegistry {
+    @SubscribeEvent
+    public static void addBlocks(RegistryEvent.Register<Block> event) {
+        PovertyCharm.LOGGER.info("Registering blocks");
+        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()){
+            event.getRegistry().register(block);
+            ForgeRegistries.ITEMS.register(block.item);
+        }
+        PovertyCharm.LOGGER.info("{} blocks should be registered", PovertyBlocks.BLOCKS.size());
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void registerModels(ModelRegistryEvent event) {
+        PovertyCharm.LOGGER.info("Registering models");
+        for(PovertyBlock block : PovertyBlocks.BLOCKS.values()){
+            if(!(block instanceof IBlockVariative && block instanceof PovertyBlockVariative))
+                continue;
+
+            IBlockVariative blockVariative = (IBlockVariative) block;
+            for(int i = 0; i < blockVariative.getVariationCount(); i++) {
+                ModelLoader.setCustomModelResourceLocation(block.item, i,
+                        new ModelResourceLocation(
+                            String.format("%s_%s",
+                                    Objects.requireNonNull(block.getRegistryName()).toString(),
+                                    blockVariative.getVariationName(i)
+                            ),
+                            "inventory"
+                        )
+                );
+            }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerRenderers() {
+        PovertyCharm.LOGGER.info("Registering item block renderers");
+
+        for(PovertyBlock block : PovertyBlocks.BLOCKS.values()){
+            if (!(block instanceof IBlockVariative) || !(block instanceof PovertyBlockVariative)) {
+                registerBlockRenderer(block);
+            } else {
+                registerVariativeBlockRenderers(block);
+            }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void registerBlockRenderer(PovertyBlock block) {
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                .register(
+                        block.item,
+                        0,
+                        new ModelResourceLocation(Objects.requireNonNull(block.getRegistryName()), "inventory")
+                );
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void registerVariativeBlockRenderers(PovertyBlock block) {
+        IBlockVariative blockVariative = (IBlockVariative) block;
+
+        for(int i = 0; i < blockVariative.getVariationCount(); i++) {
+            PovertyCharm.LOGGER.debug(String.format("MODEL: (%d) %s_%s", i,
+                    Objects.requireNonNull(block.getRegistryName()).toString(),
+                    blockVariative.getVariationName(i)
+            ));
+
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                    .register(
+                            block.item,
+                            i,
+                            new ModelResourceLocation(
+                                    String.format("%s_%s",
+                                            Objects.requireNonNull(block.getRegistryName()).toString(),
+                                            blockVariative.getVariationName(i)
+                                    ),
+                                    "inventory"
+                            )
+                    );
+        }
+    }
+}
