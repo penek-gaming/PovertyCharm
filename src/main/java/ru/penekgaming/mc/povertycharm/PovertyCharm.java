@@ -1,26 +1,18 @@
 package ru.penekgaming.mc.povertycharm;
 
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ru.penekgaming.mc.povertycharm.block.ConcreteBlock;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
-import ru.penekgaming.mc.povertycharm.block.variant.ConcreteVariants;
 import ru.penekgaming.mc.povertycharm.proxy.CommonProxy;
-
-import java.util.ArrayList;
 
 @Mod(
         modid = PovertyCharm.MOD_ID,
@@ -37,7 +29,7 @@ public class PovertyCharm {
         public ItemStack createIcon() {
             NonNullList<ItemStack> stacks = NonNullList.create();
             PovertyBlocks.CONCRETE.getSubBlocks(this, stacks);
-            return stacks.get(ConcreteVariants.WHITE_CRACKED.getMetadata());
+            return stacks.get(ConcreteBlock.Variants.WHITE_CRACKED.getMetadata());
         }
     };
     @SidedProxy(

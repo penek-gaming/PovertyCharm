@@ -9,4 +9,5 @@ public class PovertyBlocks {
 
     public static final PovertyBlock ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
     public static final ConcreteBlock CONCRETE = new ConcreteBlock();
+    public static final BricksBlock BRICKS = new BricksBlock();
 }

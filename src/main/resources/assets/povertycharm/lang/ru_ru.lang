@@ -1,7 +1,13 @@
 itemGroup.povertycharm.main=Блоки бедности
+
+tile.povertycharm.asphalt.name=Асфальт
+
+tile.povertycharm.bricks.name=Советский кирпич
+tile.povertycharm.bricks_white.name=Белый советский кирпич
+
 tile.povertycharm.concrete_gray.name=Серый бетон
 tile.povertycharm.concrete_gray_cracked.name=Серый бетон с трещинами
 tile.povertycharm.concrete_white.name=Белый бетон
 tile.povertycharm.concrete_white_cracked.name=Белый бетон с трещинами
 tile.povertycharm.concrete_green.name=Зелёный бетон
-tile.povertycharm.concrete_green_cracked.name=Зелёный с трещинами
+tile.povertycharm.concrete_green_cracked.name=Зелёный бетон с трещинами
