@@ -6,7 +6,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import ru.penekgaming.mc.povertycharm.PovertyCharm;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.item.PovertyItemBlockVariative;
 
@@ -29,14 +28,12 @@ public abstract class PovertyBlockVariative<T extends Enum<T> & IBlockVariants> 
     @Override
     public int damageDropped(IBlockState state)
     {
-        PovertyCharm.LOGGER.debug("Damage dropped {}", state.getValue(variantProperty).getMetadata());
         return state.getValue(variantProperty).getMetadata();
     }
 
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         for(T v : variantEnum.getEnumConstants()) {
-            PovertyCharm.LOGGER.debug("Adding meta {}", v.getMetadata());
             items.add(new ItemStack(this, 1, v.getMetadata()));
         }
     }
@@ -44,14 +41,12 @@ public abstract class PovertyBlockVariative<T extends Enum<T> & IBlockVariants> 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        PovertyCharm.LOGGER.debug("Resolve 1 meta {}", meta);
         return this.getDefaultState().withProperty(variantProperty, variantEnum.getEnumConstants()[meta]);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        PovertyCharm.LOGGER.debug("Resolve 2 meta {}", state.getValue(variantProperty).getMetadata());
         return state.getValue(variantProperty).getMetadata();
     }
 
