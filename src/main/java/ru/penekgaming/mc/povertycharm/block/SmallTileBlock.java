@@ -6,14 +6,11 @@ import net.minecraft.block.state.BlockStateContainer;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
-import java.util.HashMap;
+public class SmallTileBlock extends PovertyBlockVariative<SmallTileBlock.Variants> implements IBlockVariative {
+    private static final PropertyEnum<Variants> VARIANT = PropertyEnum.create("variant", Variants.class);
 
-public class ConcreteBlock extends PovertyBlockVariative<ConcreteBlock.Variants> implements IBlockVariative {
-    private static final PropertyEnum<Variants> VARIANT
-            = PropertyEnum.create("variant", Variants.class);
-
-    protected ConcreteBlock() {
-        super("concrete", Material.ROCK, VARIANT);
+    protected SmallTileBlock() {
+        super("small_tile", Material.CLAY, VARIANT);
     }
 
     @Override
@@ -22,14 +19,11 @@ public class ConcreteBlock extends PovertyBlockVariative<ConcreteBlock.Variants>
     }
 
     public enum Variants implements IBlockVariants {
-        GRAY(0, "gray"),
-        GRAY_CRACKED(1, "gray_cracked"),
-
-        WHITE(2, "white"),
-        WHITE_CRACKED(3, "white_cracked"),
-
-        GREEN(4, "green"),
-        GREEN_CRACKED(5, "green_cracked");
+        DEFAULT(0, "default"),
+        BLUE(1, "blue"),
+        GREEN(2, "green"),
+        RED(3, "red"),
+        ;
 
         private final int meta;
         private final String name;
@@ -40,13 +34,13 @@ public class ConcreteBlock extends PovertyBlockVariative<ConcreteBlock.Variants>
         }
 
         @Override
-        public String getName() {
-            return name;
+        public int getMetadata() {
+            return meta;
         }
 
         @Override
-        public int getMetadata() {
-            return meta;
+        public String getName() {
+            return name;
         }
     }
 }

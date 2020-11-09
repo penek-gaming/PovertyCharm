@@ -11,4 +11,5 @@ public class PovertyBlocks {
     public static final ConcreteBlock CONCRETE = new ConcreteBlock();
     public static final BricksBlock BRICKS = new BricksBlock();
     public static final TileBlock TILE = new TileBlock();
+    public static final SmallTileBlock SMALL_TILE = new SmallTileBlock();
 }

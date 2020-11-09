@@ -11,3 +11,15 @@ tile.povertycharm.concrete_white.name=Белый бетон
 tile.povertycharm.concrete_white_cracked.name=Белый бетон с трещинами
 tile.povertycharm.concrete_green.name=Зелёный бетон
 tile.povertycharm.concrete_green_cracked.name=Зелёный бетон с трещинами
+
+tile.povertycharm.tile_default.name=Плитка
+tile.povertycharm.tile_default_cracked.name=Разбитая плитка
+tile.povertycharm.tile_white.name=Белая плитка
+tile.povertycharm.tile_white_cracked.name=Разбитая белая плитка
+tile.povertycharm.tile_green.name=Зелёная плитка
+tile.povertycharm.tile_green_cracked.name=Разбитая зелёная плитка
+
+tile.povertycharm.small_tile_default.name=Облицовка
+tile.povertycharm.small_tile_blue.name=Синяя облицовка
+tile.povertycharm.small_tile_green.name=Зелёная облицовка
+tile.povertycharm.small_tile_red.name=Красная облицовка

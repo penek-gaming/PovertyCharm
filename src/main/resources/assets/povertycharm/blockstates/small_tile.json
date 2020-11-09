@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "variant=default": {
+            "model": "povertycharm:small_tile_default"
+        },
+        "variant=blue": {
+            "model": "povertycharm:small_tile_blue"
+        },
+        "variant=green": {
+            "model": "povertycharm:small_tile_green"
+        },
+        "variant=red": {
+            "model": "povertycharm:small_tile_red"
+        }
+    }
+}

@@ -19,3 +19,7 @@ tile.povertycharm.tile_white_cracked.name=White Tile Cracked
 tile.povertycharm.tile_green.name=Green Tile
 tile.povertycharm.tile_green_cracked.name=Green Tile Cracked
 
+tile.povertycharm.small_tile_default.name=Small Tile
+tile.povertycharm.small_tile_blue.name=Blue Small Tile
+tile.povertycharm.small_tile_green.name=Green Small Tile
+tile.povertycharm.small_tile_red.name=Red Small Tile
