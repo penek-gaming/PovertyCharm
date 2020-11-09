@@ -12,3 +12,10 @@ tile.povertycharm.concrete_white_cracked.name=White Concrete Cracked
 tile.povertycharm.concrete_green.name=Green Concrete
 tile.povertycharm.concrete_green_cracked.name=Green Concrete Cracked
 
+tile.povertycharm.tile_default.name=Tile
+tile.povertycharm.tile_default_cracked.name=Tile Cracked
+tile.povertycharm.tile_white.name=White Tile
+tile.povertycharm.tile_white_cracked.name=White Tile Cracked
+tile.povertycharm.tile_green.name=Green Tile
+tile.povertycharm.tile_green_cracked.name=Green Tile Cracked
+

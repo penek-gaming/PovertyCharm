@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "variant=default": {
+            "model": "povertycharm:tile_default"
+        },
+        "variant=default_cracked": {
+            "model": "povertycharm:tile_default_cracked"
+        },
+        "variant=white": {
+            "model": "povertycharm:tile_white"
+        },
+        "variant=white_cracked": {
+            "model": "povertycharm:tile_white_cracked"
+        },
+        "variant=green": {
+            "model": "povertycharm:tile_green"
+        },
+        "variant=green_cracked": {
+            "model": "povertycharm:tile_green_cracked"
+        }
+    }
+}
