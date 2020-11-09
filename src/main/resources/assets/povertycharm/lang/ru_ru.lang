@@ -2,7 +2,7 @@ itemGroup.povertycharm.main=Блоки бедности
 
 tile.povertycharm.asphalt.name=Асфальт
 
-tile.povertycharm.bricks.name=Советский кирпич
+tile.povertycharm.bricks_default.name=Советский кирпич
 tile.povertycharm.bricks_white.name=Белый советский кирпич
 
 tile.povertycharm.concrete_gray.name=Серый бетон

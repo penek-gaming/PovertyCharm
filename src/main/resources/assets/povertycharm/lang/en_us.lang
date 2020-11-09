@@ -2,7 +2,7 @@ itemGroup.povertycharm.main=Poverty Charm
 
 tile.povertycharm.asphalt.name=Asphalt
 
-tile.povertycharm.bricks.name=Soviet Bricks
+tile.povertycharm.bricks_default.name=Soviet Bricks
 tile.povertycharm.bricks_white.name=White Soviet Bricks
 
 tile.povertycharm.concrete_gray.name=Gray Concrete

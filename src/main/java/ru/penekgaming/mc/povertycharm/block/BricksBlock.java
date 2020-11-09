@@ -20,7 +20,7 @@ public class BricksBlock extends PovertyBlockVariative<BricksBlock.Variants> imp
 
     public enum Variants implements IBlockVariants {
         DEFAULT(0, "default"),
-        WHITE(0, "white");
+        WHITE(1, "white");
 
         private final int meta;
         private final String name;
