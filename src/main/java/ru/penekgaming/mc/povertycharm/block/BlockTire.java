@@ -1,6 +1,6 @@
 package ru.penekgaming.mc.povertycharm.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -34,10 +34,10 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
     private static final AxisAlignedBB BB_NS
-            = new AxisAlignedBB(0.0, 0, 5.0/16.0, 1.0,7.5/16.0, 1 - 5.0/16.0);
+            = new AxisAlignedBB(0.0, 0, 5.0 / 16.0, 1.0, 7.5 / 16.0, 1 - 5.0 / 16.0);
 
     private static final AxisAlignedBB BB_EW
-            = new AxisAlignedBB(5.0/16.0, 0, 0.0, 1 - 5.0/16.0,7.5/16.0, 1.0);
+            = new AxisAlignedBB(5.0 / 16.0, 0, 0.0, 1 - 5.0 / 16.0, 7.5 / 16.0, 1.0);
 
     protected BlockTire(String name, Material material) {
         super(name, material, TileEntityTire.class);
@@ -51,10 +51,10 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
         EnumFacing facing = state.getValue(FACING);
         TileEntityTire entity = getTileEntity(source, pos);
 
-        if(entity != null)
+        if (entity != null)
             facing = entity.getFacing();
 
-        switch (facing){
+        switch (facing) {
             case NORTH:
             case SOUTH:
                 return BB_NS;
@@ -74,53 +74,45 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if(playerIn.getHeldItem(hand).getItem() instanceof ItemDye)
+        if (playerIn.getHeldItem(hand).getItem() instanceof ItemDye)
             return recolorBlock(worldIn, pos, facing, EnumDyeColor.byMetadata(playerIn.getHeldItem(hand).getItem().getMetadata(playerIn.getHeldItem(hand)) + 1));
 
         return false;
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-    {
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         return MapColor.getBlockColor(state.getValue(COLOR));
     }
 
     @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-    {
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
     }
 
-    private boolean canBlockStay(World worldIn, BlockPos pos)
-    {
+    private boolean canBlockStay(World worldIn, BlockPos pos) {
         return !worldIn.isAirBlock(pos.down());
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
+    public int damageDropped(IBlockState state) {
         return state.getValue(COLOR).getMetadata();
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
-    {
-        for (int i = 0; i < 16; ++i)
-        {
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+        for (int i = 0; i < 16; ++i) {
             items.add(new ItemStack(this, 1, i));
         }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(COLOR, EnumDyeColor.byMetadata(meta));
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         return state.getValue(COLOR).getMetadata();
     }
 
@@ -135,26 +127,22 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube(IBlockState state)
-    {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
-    {
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.UNDEFINED;
     }
 
     @Override
-    public BlockStateContainer createBlockState()
-    {
+    public BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, COLOR, FACING);
     }
 

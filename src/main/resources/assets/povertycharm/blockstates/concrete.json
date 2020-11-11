@@ -1,22 +1,22 @@
 {
-    "variants": {
-        "variant=gray": {
-            "model": "povertycharm:concrete_gray"
-        },
-        "variant=gray_cracked": {
-            "model": "povertycharm:concrete_gray_cracked"
-        },
-        "variant=white": {
-            "model": "povertycharm:concrete_white"
-        },
-        "variant=white_cracked": {
-            "model": "povertycharm:concrete_white_cracked"
-        },
-        "variant=green": {
-            "model": "povertycharm:concrete_green"
-        },
-        "variant=green_cracked": {
-            "model": "povertycharm:concrete_green_cracked"
-        }
+  "variants": {
+    "variant=gray": {
+      "model": "povertycharm:concrete_gray"
+    },
+    "variant=gray_cracked": {
+      "model": "povertycharm:concrete_gray_cracked"
+    },
+    "variant=white": {
+      "model": "povertycharm:concrete_white"
+    },
+    "variant=white_cracked": {
+      "model": "povertycharm:concrete_white_cracked"
+    },
+    "variant=green": {
+      "model": "povertycharm:concrete_green"
+    },
+    "variant=green_cracked": {
+      "model": "povertycharm:concrete_green_cracked"
     }
+  }
 }
