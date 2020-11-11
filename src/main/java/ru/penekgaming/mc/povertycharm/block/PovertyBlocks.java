@@ -15,4 +15,5 @@ public class PovertyBlocks {
     public static final PovertyBlock PENEK_GAMING = new PovertyBlock("pg", Material.WOOD);
     public static final PipeBlock PIPE = new PipeBlock("pipe", PipeBlock.Part.STRAIGHT);
     public static final PipeBlock PIPE_VALVE = new PipeBlock("pipe_valve", PipeBlock.Part.VALVE);
+    public static final TireBlock TIRE = new TireBlock("tire", Material.CLOTH);
 }

@@ -2,10 +2,12 @@ package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
@@ -59,5 +61,4 @@ public class PovertyBlock extends Block {
         PovertyCharm.LOGGER.warn("[{}:{}] [{}]", facing, facings.get(facing.getOpposite()).getClass(), clazz);
         return facings.size() >= 2 && facings.containsKey(facing.getOpposite()) && facings.get(facing.getOpposite()).getClass().equals(clazz);
     }
-
 }
