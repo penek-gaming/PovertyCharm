@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.penekgaming.mc.povertycharm.block.ConcreteBlock;
+import ru.penekgaming.mc.povertycharm.block.BlockConcrete;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
 import ru.penekgaming.mc.povertycharm.proxy.CommonProxy;
 
@@ -29,7 +29,7 @@ public class PovertyCharm {
         public ItemStack createIcon() {
             NonNullList<ItemStack> stacks = NonNullList.create();
             PovertyBlocks.CONCRETE.getSubBlocks(this, stacks);
-            return stacks.get(ConcreteBlock.Variants.WHITE_CRACKED.getMetadata());
+            return stacks.get(BlockConcrete.Variants.WHITE_CRACKED.getMetadata());
         }
     };
     @SidedProxy(

@@ -7,11 +7,11 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
 @SuppressWarnings({"NullableProblems"})
-public class TileBlock extends PovertyBlockVariative<TileBlock.Variants> implements IBlockVariative {
+public class BlockSmallTile extends PovertyBlockVariative<BlockSmallTile.Variants> implements IBlockVariative {
     private static final PropertyEnum<Variants> VARIANT = PropertyEnum.create("variant", Variants.class);
 
-    protected TileBlock() {
-        super("tile", Material.CLAY, VARIANT);
+    protected BlockSmallTile() {
+        super("small_tile", Material.CLAY, VARIANT);
     }
 
     @Override
@@ -21,11 +21,10 @@ public class TileBlock extends PovertyBlockVariative<TileBlock.Variants> impleme
 
     public enum Variants implements IBlockVariants {
         DEFAULT(0, "default"),
-        DEFAULT_CRACKED(1, "default_cracked"),
+        BLUE(1, "blue"),
         GREEN(2, "green"),
-        GREEN_CRACKED(3, "green_cracked"),
-        WHITE(4, "white"),
-        WHITE_CRACKED(5, "white_cracked");
+        RED(3, "red"),
+        ;
 
         private final int meta;
         private final String name;

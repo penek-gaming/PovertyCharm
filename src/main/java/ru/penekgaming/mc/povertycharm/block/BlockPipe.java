@@ -17,19 +17,18 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
-public class PipeBlock extends PovertyBlock {
+public class BlockPipe extends PovertyBlock {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, 4.5 / 16d, 0, 1D, 10.5 / 16d, 1);
-    private static final PropertyEnum<Part> PART = PropertyEnum.create("part", PipeBlock.Part.class);
+    private static final PropertyEnum<Part> PART = PropertyEnum.create("part", BlockPipe.Part.class);
 
-    protected PipeBlock(String name, Part defPart) {
+    protected BlockPipe(String name, Part defPart) {
         super(name, Material.IRON);
 
         setDefaultState(
@@ -86,25 +85,25 @@ public class PipeBlock extends PovertyBlock {
         return actualFacing;
     }
 
-    private EnumFacing getFacing(PipeBlock.Part part, HashMap<EnumFacing, Block> facings, IBlockState state) {
+    private EnumFacing getFacing(BlockPipe.Part part, HashMap<EnumFacing, Block> facings, IBlockState state) {
         switch (part) {
             case VALVE:
             case STRAIGHT:
-                if ((facings.containsKey(EnumFacing.NORTH) && facings.get(EnumFacing.NORTH) instanceof PipeBlock)
-                        || (facings.containsKey(EnumFacing.SOUTH) && facings.get(EnumFacing.SOUTH) instanceof PipeBlock))
-                    return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.EAST) : EnumFacing.EAST;
-                else if ((facings.containsKey(EnumFacing.EAST) && facings.get(EnumFacing.EAST) instanceof PipeBlock)
-                        || (facings.containsKey(EnumFacing.WEST) && facings.get(EnumFacing.WEST) instanceof PipeBlock))
-                    return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.NORTH) : EnumFacing.NORTH;
+                if ((facings.containsKey(EnumFacing.NORTH) && facings.get(EnumFacing.NORTH) instanceof BlockPipe)
+                        || (facings.containsKey(EnumFacing.SOUTH) && facings.get(EnumFacing.SOUTH) instanceof BlockPipe))
+                    return part == BlockPipe.Part.VALVE ? processValveFacing(state, EnumFacing.EAST) : EnumFacing.EAST;
+                else if ((facings.containsKey(EnumFacing.EAST) && facings.get(EnumFacing.EAST) instanceof BlockPipe)
+                        || (facings.containsKey(EnumFacing.WEST) && facings.get(EnumFacing.WEST) instanceof BlockPipe))
+                    return part == BlockPipe.Part.VALVE ? processValveFacing(state, EnumFacing.NORTH) : EnumFacing.NORTH;
                 else if (facings.containsKey(EnumFacing.NORTH) || facings.containsKey(EnumFacing.SOUTH))
-                    return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.EAST) : EnumFacing.EAST;
+                    return part == BlockPipe.Part.VALVE ? processValveFacing(state, EnumFacing.EAST) : EnumFacing.EAST;
                 else if (facings.containsKey(EnumFacing.EAST) || facings.containsKey(EnumFacing.WEST))
-                    return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.NORTH) : EnumFacing.NORTH;
+                    return part == BlockPipe.Part.VALVE ? processValveFacing(state, EnumFacing.NORTH) : EnumFacing.NORTH;
                 break;
 
             case TURN:
                 HashMap<EnumFacing, Block> facingMap = new HashMap<>();
-                facings.keySet().stream().filter(facing -> facings.get(facing) instanceof PipeBlock)
+                facings.keySet().stream().filter(facing -> facings.get(facing) instanceof BlockPipe)
                         .forEach(facing -> facingMap.put(facing, facings.get(facing)));
 
                 if (facingMap.containsKey(EnumFacing.NORTH) && facingMap.containsKey(EnumFacing.EAST))
@@ -127,7 +126,7 @@ public class PipeBlock extends PovertyBlock {
 
             case TRIO:
                 Optional<EnumFacing> noTubeFacing = Arrays.stream(EnumFacing.HORIZONTALS)
-                        .filter(eFacing -> !facings.containsKey(eFacing) || !(facings.get(eFacing) instanceof PipeBlock)).findFirst();
+                        .filter(eFacing -> !facings.containsKey(eFacing) || !(facings.get(eFacing) instanceof BlockPipe)).findFirst();
 
                 if (!noTubeFacing.isPresent())
                     break;
@@ -160,7 +159,7 @@ public class PipeBlock extends PovertyBlock {
 
             case 3:
             case 4:
-                long pipeCnt = facings.values().stream().filter(block -> block instanceof PipeBlock).count();
+                long pipeCnt = facings.values().stream().filter(block -> block instanceof BlockPipe).count();
                 boolean b = !(oppositeBocksAreEqual(EnumFacing.NORTH, facings) || oppositeBocksAreEqual(EnumFacing.EAST, facings));
                 return pipeCnt == 2 && b;
         }
@@ -169,11 +168,11 @@ public class PipeBlock extends PovertyBlock {
     }
 
     private static boolean isTrio(HashMap<EnumFacing, Block> facings) {
-        return facings.values().stream().filter(block -> block instanceof PipeBlock).count() == 3;
+        return facings.values().stream().filter(block -> block instanceof BlockPipe).count() == 3;
     }
 
     private static boolean isQuad(HashMap<EnumFacing, Block> facings) {
-        return facings.values().stream().filter(block -> block instanceof PipeBlock).count() == 4;
+        return facings.values().stream().filter(block -> block instanceof BlockPipe).count() == 4;
     }
 
     @Override

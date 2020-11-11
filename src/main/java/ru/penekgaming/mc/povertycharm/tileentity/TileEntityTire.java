@@ -1,20 +1,17 @@
 package ru.penekgaming.mc.povertycharm.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import ru.penekgaming.mc.povertycharm.PovertyCharm;
-import ru.penekgaming.mc.povertycharm.block.TireBlock;
+import ru.penekgaming.mc.povertycharm.block.BlockTire;
 
 @SuppressWarnings("NullableProblems")
-public class TireTileEntity extends TileEntity {
+public class TileEntityTire extends TileEntity {
     private EnumFacing facing;
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
-        tagCompound.setInteger(TireBlock.FACING.getName(), facing.getIndex());
+        tagCompound.setInteger(BlockTire.FACING.getName(), facing.getIndex());
 
         return super.writeToNBT(tagCompound);
     }
@@ -22,7 +19,7 @@ public class TireTileEntity extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
-        facing = EnumFacing.byIndex(tagCompound.getInteger(TireBlock.FACING.getName()));
+        facing = EnumFacing.byIndex(tagCompound.getInteger(BlockTire.FACING.getName()));
     }
 
     @Override

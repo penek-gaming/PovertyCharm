@@ -22,14 +22,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
-import ru.penekgaming.mc.povertycharm.item.PovertyItemBlockVariative;
+import ru.penekgaming.mc.povertycharm.item.ItemBlockVariative;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
-import ru.penekgaming.mc.povertycharm.tileentity.TireTileEntity;
+import ru.penekgaming.mc.povertycharm.tileentity.TileEntityTire;
 
 import java.util.Objects;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
-public class TireBlock extends TileEntityBlock<TireTileEntity> implements IBlockVariative {
+public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlockVariative {
     public static final PropertyEnum<EnumDyeColor> COLOR = PropertyEnum.create("color", EnumDyeColor.class);
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
@@ -39,17 +39,17 @@ public class TireBlock extends TileEntityBlock<TireTileEntity> implements IBlock
     private static final AxisAlignedBB BB_EW
             = new AxisAlignedBB(5.0/16.0, 0, 0.0, 1 - 5.0/16.0,7.5/16.0, 1.0);
 
-    protected TireBlock(String name, Material material) {
-        super(name, material, TireTileEntity.class);
+    protected BlockTire(String name, Material material) {
+        super(name, material, TileEntityTire.class);
 
         setDefaultState(blockState.getBaseState().withProperty(COLOR, EnumDyeColor.WHITE).withProperty(FACING, EnumFacing.NORTH));
-        item = new PovertyItemBlockVariative(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
+        item = new ItemBlockVariative(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         EnumFacing facing = state.getValue(FACING);
-        TireTileEntity entity = getTileEntity(source, pos);
+        TileEntityTire entity = getTileEntity(source, pos);
 
         if(entity != null)
             facing = entity.getFacing();
@@ -169,8 +169,8 @@ public class TireBlock extends TileEntityBlock<TireTileEntity> implements IBlock
     }
 
     @Override
-    public TireTileEntity createTileEntity(World world, IBlockState blockState) {
-        TireTileEntity entity = new TireTileEntity();
+    public TileEntityTire createTileEntity(World world, IBlockState blockState) {
+        TileEntityTire entity = new TileEntityTire();
         entity.setFacing(blockState.getValue(FACING));
         return entity;
     }

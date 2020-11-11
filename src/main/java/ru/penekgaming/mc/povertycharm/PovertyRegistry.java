@@ -1,32 +1,23 @@
 package ru.penekgaming.mc.povertycharm;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
-import ru.penekgaming.mc.povertycharm.block.PovertyBlockVariative;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
-import ru.penekgaming.mc.povertycharm.tileentity.TireTileEntity;
 
 import java.util.Objects;
 

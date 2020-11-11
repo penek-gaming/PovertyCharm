@@ -7,11 +7,12 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
 @SuppressWarnings({"NullableProblems"})
-public class BricksBlock extends PovertyBlockVariative<BricksBlock.Variants> implements IBlockVariative {
-    private static final PropertyEnum<Variants> VARIANT = PropertyEnum.create("variant", Variants.class);
+public class BlockConcrete extends PovertyBlockVariative<BlockConcrete.Variants> implements IBlockVariative {
+    private static final PropertyEnum<Variants> VARIANT
+            = PropertyEnum.create("variant", Variants.class);
 
-    protected BricksBlock() {
-        super("bricks", Material.ROCK, VARIANT);
+    protected BlockConcrete() {
+        super("concrete", Material.ROCK, VARIANT);
     }
 
     @Override
@@ -20,8 +21,14 @@ public class BricksBlock extends PovertyBlockVariative<BricksBlock.Variants> imp
     }
 
     public enum Variants implements IBlockVariants {
-        DEFAULT(0, "default"),
-        WHITE(1, "white");
+        GRAY(0, "gray"),
+        GRAY_CRACKED(1, "gray_cracked"),
+
+        WHITE(2, "white"),
+        WHITE_CRACKED(3, "white_cracked"),
+
+        GREEN(4, "green"),
+        GREEN_CRACKED(5, "green_cracked");
 
         private final int meta;
         private final String name;
@@ -32,13 +39,13 @@ public class BricksBlock extends PovertyBlockVariative<BricksBlock.Variants> imp
         }
 
         @Override
-        public int getMetadata() {
-            return meta;
+        public String getName() {
+            return name;
         }
 
         @Override
-        public String getName() {
-            return name;
+        public int getMetadata() {
+            return meta;
         }
     }
 }

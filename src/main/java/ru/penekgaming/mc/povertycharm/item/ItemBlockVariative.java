@@ -6,8 +6,8 @@ import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
 @SuppressWarnings({"NullableProblems"})
-public class PovertyItemBlockVariative extends ItemBlock {
-    public PovertyItemBlockVariative(PovertyBlock block) {
+public class ItemBlockVariative extends ItemBlock {
+    public ItemBlockVariative(PovertyBlock block) {
         super(block);
         setHasSubtypes(true);
         setMaxDamage(0);

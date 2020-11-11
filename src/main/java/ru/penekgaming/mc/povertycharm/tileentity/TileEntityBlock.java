@@ -32,7 +32,6 @@ public abstract class TileEntityBlock<T extends TileEntity> extends PovertyBlock
 
     @Override
     public boolean hasTileEntity(IBlockState blockState) {
-
         return true;
     }
 

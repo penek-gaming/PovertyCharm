@@ -7,7 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
-import ru.penekgaming.mc.povertycharm.item.PovertyItemBlockVariative;
+import ru.penekgaming.mc.povertycharm.item.ItemBlockVariative;
 
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ public abstract class PovertyBlockVariative<T extends Enum<T> & IBlockVariants> 
         this.variantProperty = variantProperty;
 
         setDefaultState(getBlockState().getBaseState().withProperty(variantProperty, variantEnum.getEnumConstants()[0]));
-        item = new PovertyItemBlockVariative(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
+        item = new ItemBlockVariative(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
     }
 
     @Override

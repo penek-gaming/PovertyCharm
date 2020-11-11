@@ -8,12 +8,12 @@ public class PovertyBlocks {
     public static final HashMap<String, PovertyBlock> BLOCKS = new HashMap<>();
 
     public static final PovertyBlock ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
-    public static final ConcreteBlock CONCRETE = new ConcreteBlock();
-    public static final BricksBlock BRICKS = new BricksBlock();
-    public static final TileBlock TILE = new TileBlock();
-    public static final SmallTileBlock SMALL_TILE = new SmallTileBlock();
+    public static final BlockConcrete CONCRETE = new BlockConcrete();
+    public static final BlockBricks BRICKS = new BlockBricks();
+    public static final BlockTile TILE = new BlockTile();
+    public static final BlockSmallTile SMALL_TILE = new BlockSmallTile();
     public static final PovertyBlock PENEK_GAMING = new PovertyBlock("pg", Material.WOOD);
-    public static final PipeBlock PIPE = new PipeBlock("pipe", PipeBlock.Part.STRAIGHT);
-    public static final PipeBlock PIPE_VALVE = new PipeBlock("pipe_valve", PipeBlock.Part.VALVE);
-    public static final TireBlock TIRE = new TireBlock("tire", Material.CLOTH);
+    public static final BlockPipe PIPE = new BlockPipe("pipe", BlockPipe.Part.STRAIGHT);
+    public static final BlockPipe PIPE_VALVE = new BlockPipe("pipe_valve", BlockPipe.Part.VALVE);
+    public static final BlockTire TIRE = new BlockTire("tire", Material.CLOTH);
 }
