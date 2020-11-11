@@ -2,6 +2,7 @@ package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -36,7 +37,7 @@ public class PovertyBlock extends Block {
             PovertyBlocks.BLOCKS.put(name, this);
     }
 
-    public static HashMap<EnumFacing, Block> getFacingBlocks(IBlockAccess world, BlockPos pos) {
+    public static HashMap<EnumFacing, Block> getFacingBlocksHorizontal(IBlockAccess world, BlockPos pos) {
         HashMap<EnumFacing, Block> facings = new HashMap<>();
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             BlockPos other = pos.offset(facing);
@@ -46,6 +47,16 @@ public class PovertyBlock extends Block {
         }
 
         return facings;
+    }
+
+    public static HashMap<EnumFacing, IBlockState> getFacingBlocks(IBlockAccess world, BlockPos pos) {
+        HashMap<EnumFacing, IBlockState> facingBlocks = new HashMap<>();
+        for (EnumFacing facing : EnumFacing.VALUES) {
+            BlockPos other = pos.offset(facing);
+            facingBlocks.put(facing, world.getBlockState(other));
+        }
+
+        return facingBlocks;
     }
 
     public static boolean oppositeBocksAreEqual(EnumFacing facing, HashMap<EnumFacing, Block> facings) {

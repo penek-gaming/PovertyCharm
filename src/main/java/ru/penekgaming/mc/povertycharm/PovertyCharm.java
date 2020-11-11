@@ -29,7 +29,7 @@ public class PovertyCharm {
         public ItemStack createIcon() {
             NonNullList<ItemStack> stacks = NonNullList.create();
             PovertyBlocks.CONCRETE.getSubBlocks(this, stacks);
-            return stacks.get(BlockConcrete.Variants.WHITE_CRACKED.getMetadata());
+            return stacks.get(BlockConcrete.Variant.WHITE_CRACKED.getMetadata());
         }
     };
     @SidedProxy(

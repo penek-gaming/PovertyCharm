@@ -7,12 +7,12 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
 @SuppressWarnings({"NullableProblems"})
-public class BlockConcrete extends PovertyBlockVariative<BlockConcrete.Variants> implements IBlockVariative {
-    private static final PropertyEnum<Variants> VARIANT
-            = PropertyEnum.create("variant", Variants.class);
+public class BlockConcrete extends PovertyBlockVariative<BlockConcrete.Variant> implements IBlockVariative {
+    public static final PropertyEnum<Variant> VARIANT
+            = PropertyEnum.create("variant", Variant.class);
 
-    protected BlockConcrete() {
-        super("concrete", Material.ROCK, VARIANT);
+    protected BlockConcrete(String name) {
+        super(name, Material.ROCK, VARIANT);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class BlockConcrete extends PovertyBlockVariative<BlockConcrete.Variants>
         return new BlockStateContainer(this, VARIANT);
     }
 
-    public enum Variants implements IBlockVariants {
+    public enum Variant implements IBlockVariants {
         GRAY(0, "gray"),
         GRAY_CRACKED(1, "gray_cracked"),
 
@@ -33,7 +33,7 @@ public class BlockConcrete extends PovertyBlockVariative<BlockConcrete.Variants>
         private final int meta;
         private final String name;
 
-        Variants(int meta, String name) {
+        Variant(int meta, String name) {
             this.meta = meta;
             this.name = name;
         }

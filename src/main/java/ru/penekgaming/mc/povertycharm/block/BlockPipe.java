@@ -1,6 +1,7 @@
 package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -177,7 +178,7 @@ public class BlockPipe extends PovertyBlock {
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        HashMap<EnumFacing, Block> facings = getFacingBlocks(worldIn, pos);
+        HashMap<EnumFacing, Block> facings = getFacingBlocksHorizontal(worldIn, pos);
         Part part = getPart(facings);
 
         return state.withProperty(PART, part)
