@@ -14,7 +14,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.PovertyCharm;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 
 import javax.annotation.Nullable;
@@ -23,9 +22,10 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
 
+@SuppressWarnings({"deprecation", "NullableProblems"})
 public class PipeBlock extends PovertyBlock {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, 4.5/16d, 0, 1D, 10.5/16d, 1);
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, 4.5 / 16d, 0, 1D, 10.5 / 16d, 1);
     private static final PropertyEnum<Part> PART = PropertyEnum.create("part", PipeBlock.Part.class);
 
     protected PipeBlock(String name, Part defPart) {
@@ -33,20 +33,18 @@ public class PipeBlock extends PovertyBlock {
 
         setDefaultState(
                 getBlockState().getBaseState()
-                .withProperty(FACING, EnumFacing.NORTH)
-                .withProperty(PART, defPart)
+                        .withProperty(FACING, EnumFacing.NORTH)
+                        .withProperty(PART, defPart)
         );
 
         item = new ItemBlock(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta) {
         EnumFacing facing = EnumFacing.byIndex(meta);
 
-        if (facing.getAxis() == EnumFacing.Axis.Y)
-        {
+        if (facing.getAxis() == EnumFacing.Axis.Y) {
             facing = EnumFacing.NORTH;
         }
 
@@ -54,35 +52,31 @@ public class PipeBlock extends PovertyBlock {
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getIndex();
     }
 
     @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
     }
 
     private EnumFacing processValveFacing(IBlockState state, EnumFacing resultFacing) {
         EnumFacing actualFacing = state.getValue(FACING);
 
-        PovertyCharm.LOGGER.warn("{}", actualFacing);
-
         switch (resultFacing) {
             case EAST:
-                if(actualFacing == EnumFacing.SOUTH)
+                if (actualFacing == EnumFacing.SOUTH)
                     return EnumFacing.WEST;
-                else if(actualFacing == EnumFacing.NORTH)
+                else if (actualFacing == EnumFacing.NORTH)
                     return EnumFacing.EAST;
 
                 break;
 
             case NORTH:
-                if(actualFacing == EnumFacing.WEST)
+                if (actualFacing == EnumFacing.WEST)
                     return EnumFacing.SOUTH;
-                else if(actualFacing == EnumFacing.EAST)
+                else if (actualFacing == EnumFacing.EAST)
                     return EnumFacing.NORTH;
 
                 break;
@@ -95,48 +89,46 @@ public class PipeBlock extends PovertyBlock {
         switch (part) {
             case VALVE:
             case STRAIGHT:
-                if((facings.containsKey(EnumFacing.NORTH) && facings.get(EnumFacing.NORTH) instanceof PipeBlock)
+                if ((facings.containsKey(EnumFacing.NORTH) && facings.get(EnumFacing.NORTH) instanceof PipeBlock)
                         || (facings.containsKey(EnumFacing.SOUTH) && facings.get(EnumFacing.SOUTH) instanceof PipeBlock))
                     return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.EAST) : EnumFacing.EAST;
-                else if((facings.containsKey(EnumFacing.EAST) && facings.get(EnumFacing.EAST) instanceof PipeBlock)
+                else if ((facings.containsKey(EnumFacing.EAST) && facings.get(EnumFacing.EAST) instanceof PipeBlock)
                         || (facings.containsKey(EnumFacing.WEST) && facings.get(EnumFacing.WEST) instanceof PipeBlock))
                     return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.NORTH) : EnumFacing.NORTH;
-                else if(facings.containsKey(EnumFacing.NORTH) || facings.containsKey(EnumFacing.SOUTH))
+                else if (facings.containsKey(EnumFacing.NORTH) || facings.containsKey(EnumFacing.SOUTH))
                     return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.EAST) : EnumFacing.EAST;
-                else if(facings.containsKey(EnumFacing.EAST) || facings.containsKey(EnumFacing.WEST))
+                else if (facings.containsKey(EnumFacing.EAST) || facings.containsKey(EnumFacing.WEST))
                     return part == PipeBlock.Part.VALVE ? processValveFacing(state, EnumFacing.NORTH) : EnumFacing.NORTH;
                 break;
 
             case TURN:
                 HashMap<EnumFacing, Block> facingMap = new HashMap<>();
                 facings.keySet().stream().filter(facing -> facings.get(facing) instanceof PipeBlock)
-                        .forEach(facing -> {
-                            facingMap.put(facing, facings.get(facing));
-                        });
+                        .forEach(facing -> facingMap.put(facing, facings.get(facing)));
 
-                if(facingMap.containsKey(EnumFacing.NORTH) && facingMap.containsKey(EnumFacing.EAST))
+                if (facingMap.containsKey(EnumFacing.NORTH) && facingMap.containsKey(EnumFacing.EAST))
                     return EnumFacing.EAST;
-                else if(facingMap.containsKey(EnumFacing.NORTH) && facingMap.containsKey(EnumFacing.WEST))
+                else if (facingMap.containsKey(EnumFacing.NORTH) && facingMap.containsKey(EnumFacing.WEST))
                     return EnumFacing.NORTH;
-                else if(facingMap.containsKey(EnumFacing.SOUTH) && facingMap.containsKey(EnumFacing.EAST))
+                else if (facingMap.containsKey(EnumFacing.SOUTH) && facingMap.containsKey(EnumFacing.EAST))
                     return EnumFacing.SOUTH;
-                else if(facingMap.containsKey(EnumFacing.SOUTH) && facingMap.containsKey(EnumFacing.WEST))
+                else if (facingMap.containsKey(EnumFacing.SOUTH) && facingMap.containsKey(EnumFacing.WEST))
                     return EnumFacing.WEST;
-                else if(facings.containsKey(EnumFacing.NORTH) && facings.containsKey(EnumFacing.EAST))
+                else if (facings.containsKey(EnumFacing.NORTH) && facings.containsKey(EnumFacing.EAST))
                     return EnumFacing.EAST;
-                else if(facings.containsKey(EnumFacing.NORTH) && facings.containsKey(EnumFacing.WEST))
+                else if (facings.containsKey(EnumFacing.NORTH) && facings.containsKey(EnumFacing.WEST))
                     return EnumFacing.NORTH;
-                else if(facings.containsKey(EnumFacing.SOUTH) && facings.containsKey(EnumFacing.EAST))
+                else if (facings.containsKey(EnumFacing.SOUTH) && facings.containsKey(EnumFacing.EAST))
                     return EnumFacing.SOUTH;
-                else if(facings.containsKey(EnumFacing.SOUTH) && facings.containsKey(EnumFacing.WEST))
+                else if (facings.containsKey(EnumFacing.SOUTH) && facings.containsKey(EnumFacing.WEST))
                     return EnumFacing.WEST;
                 break;
 
             case TRIO:
-                Optional<EnumFacing> noTubeFacing  = Arrays.stream(EnumFacing.HORIZONTALS)
+                Optional<EnumFacing> noTubeFacing = Arrays.stream(EnumFacing.HORIZONTALS)
                         .filter(eFacing -> !facings.containsKey(eFacing) || !(facings.get(eFacing) instanceof PipeBlock)).findFirst();
 
-                if(!noTubeFacing.isPresent())
+                if (!noTubeFacing.isPresent())
                     break;
 
                 return noTubeFacing.get().rotateY().getOpposite();
@@ -146,22 +138,21 @@ public class PipeBlock extends PovertyBlock {
     }
 
     private Part getPart(HashMap<EnumFacing, Block> facings) {
-        if(getDefaultState().getValue(PART) == Part.VALVE)
+        if (getDefaultState().getValue(PART) == Part.VALVE)
             return Part.VALVE;
 
-        if(isTurning(facings))
+        if (isTurning(facings))
             return Part.TURN;
-        else if(isTrio(facings))
+        else if (isTrio(facings))
             return Part.TRIO;
-        else if(isQuad(facings))
+        else if (isQuad(facings))
             return Part.QUAD;
 
         return Part.STRAIGHT;
     }
 
     private static boolean isTurning(HashMap<EnumFacing, Block> facings) {
-        switch (facings.size())
-        {
+        switch (facings.size()) {
             case 2:
                 return !(facings.containsKey(EnumFacing.NORTH) && facings.containsKey(EnumFacing.SOUTH)
                         || facings.containsKey(EnumFacing.EAST) && facings.containsKey(EnumFacing.WEST));
@@ -185,8 +176,7 @@ public class PipeBlock extends PovertyBlock {
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-    {
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         HashMap<EnumFacing, Block> facings = getFacingBlocks(worldIn, pos);
         Part part = getPart(facings);
 
@@ -211,20 +201,17 @@ public class PipeBlock extends PovertyBlock {
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube(IBlockState state)
-    {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-    {
+    public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return false;
     }
 
@@ -233,8 +220,7 @@ public class PipeBlock extends PovertyBlock {
         TURN(1, "turn"),
         TRIO(2, "trio"),
         QUAD(3, "quad"),
-        VALVE(4, "valve")
-        ;
+        VALVE(4, "valve");
 
         private final int meta;
         private final String name;

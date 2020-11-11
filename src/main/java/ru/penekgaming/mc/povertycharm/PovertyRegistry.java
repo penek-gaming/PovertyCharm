@@ -3,8 +3,6 @@ package ru.penekgaming.mc.povertycharm;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.IStateMapper;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -26,7 +24,7 @@ public class PovertyRegistry {
     @SubscribeEvent
     public static void addBlocks(RegistryEvent.Register<Block> event) {
         PovertyCharm.LOGGER.info("Registering blocks");
-        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()){
+        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
             event.getRegistry().register(block);
             ForgeRegistries.ITEMS.register(block.item);
         }
@@ -34,7 +32,7 @@ public class PovertyRegistry {
     }
 
     @SubscribeEvent
-    public static void addItems(RegistryEvent.Register<Item> event){
+    public static void addItems(RegistryEvent.Register<Item> event) {
 
     }
 
@@ -42,19 +40,19 @@ public class PovertyRegistry {
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
         PovertyCharm.LOGGER.info("Registering models");
-        for(PovertyBlock block : PovertyBlocks.BLOCKS.values()){
-            if(!(block instanceof IBlockVariative && block instanceof PovertyBlockVariative))
+        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
+            if (!(block instanceof IBlockVariative && block instanceof PovertyBlockVariative))
                 continue;
 
             IBlockVariative blockVariative = (IBlockVariative) block;
-            for(int i = 0; i < blockVariative.getVariationCount(); i++) {
+            for (int i = 0; i < blockVariative.getVariationCount(); i++) {
                 ModelLoader.setCustomModelResourceLocation(block.item, i,
                         new ModelResourceLocation(
-                            String.format("%s_%s",
-                                    Objects.requireNonNull(block.getRegistryName()).toString(),
-                                    blockVariative.getVariationName(i)
-                            ),
-                            "inventory"
+                                String.format("%s_%s",
+                                        Objects.requireNonNull(block.getRegistryName()).toString(),
+                                        blockVariative.getVariationName(i)
+                                ),
+                                "inventory"
                         )
                 );
             }
@@ -65,7 +63,7 @@ public class PovertyRegistry {
     public static void registerRenderers() {
         PovertyCharm.LOGGER.info("Registering item block renderers");
 
-        for(PovertyBlock block : PovertyBlocks.BLOCKS.values()){
+        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
             if (!(block instanceof IBlockVariative) || !(block instanceof PovertyBlockVariative)) {
                 registerBlockRenderer(block);
             } else {
@@ -88,7 +86,7 @@ public class PovertyRegistry {
     private static void registerVariativeBlockRenderers(PovertyBlock block) {
         IBlockVariative blockVariative = (IBlockVariative) block;
 
-        for(int i = 0; i < blockVariative.getVariationCount(); i++) {
+        for (int i = 0; i < blockVariative.getVariationCount(); i++) {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                     .register(
                             block.item,

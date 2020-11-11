@@ -6,8 +6,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
-import java.util.HashMap;
-
+@SuppressWarnings({"NullableProblems"})
 public class ConcreteBlock extends PovertyBlockVariative<ConcreteBlock.Variants> implements IBlockVariative {
     private static final PropertyEnum<Variants> VARIANT
             = PropertyEnum.create("variant", Variants.class);

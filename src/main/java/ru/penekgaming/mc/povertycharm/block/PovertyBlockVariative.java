@@ -11,6 +11,7 @@ import ru.penekgaming.mc.povertycharm.item.PovertyItemBlockVariative;
 
 import java.util.Objects;
 
+@SuppressWarnings({"deprecation", "NullableProblems"})
 public abstract class PovertyBlockVariative<T extends Enum<T> & IBlockVariants> extends PovertyBlock {
     private final PropertyEnum<T> variantProperty;
     private final Class<T> variantEnum;
@@ -26,27 +27,24 @@ public abstract class PovertyBlockVariative<T extends Enum<T> & IBlockVariants> 
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
+    public int damageDropped(IBlockState state) {
         return state.getValue(variantProperty).getMetadata();
     }
 
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for(T v : variantEnum.getEnumConstants()) {
+        for (T v : variantEnum.getEnumConstants()) {
             items.add(new ItemStack(this, 1, v.getMetadata()));
         }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(variantProperty, variantEnum.getEnumConstants()[meta]);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         return state.getValue(variantProperty).getMetadata();
     }
 
@@ -54,8 +52,7 @@ public abstract class PovertyBlockVariative<T extends Enum<T> & IBlockVariants> 
         return variantEnum.getEnumConstants()[meta].getName();
     }
 
-    public int getVariationCount()
-    {
+    public int getVariationCount() {
         return variantEnum.getEnumConstants().length;
     }
 }

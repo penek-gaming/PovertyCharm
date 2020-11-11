@@ -3,9 +3,9 @@ package ru.penekgaming.mc.povertycharm.item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
-import ru.penekgaming.mc.povertycharm.block.PovertyBlockVariative;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
+@SuppressWarnings({"NullableProblems"})
 public class PovertyItemBlockVariative extends ItemBlock {
     public PovertyItemBlockVariative(PovertyBlock block) {
         super(block);
@@ -19,7 +19,7 @@ public class PovertyItemBlockVariative extends ItemBlock {
     }
 
     @Override
-    public int getMetadata(int damage){
+    public int getMetadata(int damage) {
         return damage;
     }
 }

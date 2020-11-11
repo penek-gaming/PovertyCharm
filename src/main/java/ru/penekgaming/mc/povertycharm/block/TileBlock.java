@@ -6,6 +6,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
+@SuppressWarnings({"NullableProblems"})
 public class TileBlock extends PovertyBlockVariative<TileBlock.Variants> implements IBlockVariative {
     private static final PropertyEnum<Variants> VARIANT = PropertyEnum.create("variant", Variants.class);
 
@@ -24,8 +25,7 @@ public class TileBlock extends PovertyBlockVariative<TileBlock.Variants> impleme
         GREEN(2, "green"),
         GREEN_CRACKED(3, "green_cracked"),
         WHITE(4, "white"),
-        WHITE_CRACKED(5, "white_cracked")
-        ;
+        WHITE_CRACKED(5, "white_cracked");
 
         private final int meta;
         private final String name;

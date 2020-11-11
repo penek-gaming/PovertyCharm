@@ -1,7 +1,6 @@
 package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -11,7 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -29,21 +27,21 @@ public class PovertyBlock extends Block {
     }
 
     private void SetupBlock(String name, boolean autoRegister) {
-        setRegistryName(PovertyCharm.MOD_ID,name);
+        setRegistryName(PovertyCharm.MOD_ID, name);
         setTranslationKey(String.format("%s.%s", PovertyCharm.MOD_ID, name));
         setCreativeTab(PovertyCharm.CREATIVE_TAB);
         item = new ItemBlock(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
 
-        if(autoRegister)
+        if (autoRegister)
             PovertyBlocks.BLOCKS.put(name, this);
     }
 
     public static HashMap<EnumFacing, Block> getFacingBlocks(IBlockAccess world, BlockPos pos) {
         HashMap<EnumFacing, Block> facings = new HashMap<>();
-        for(EnumFacing facing : EnumFacing.HORIZONTALS) {
+        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             BlockPos other = pos.offset(facing);
             Block block = world.getBlockState(other).getBlock();
-            if(block != Blocks.AIR)
+            if (block != Blocks.AIR)
                 facings.put(facing, block);
         }
 
