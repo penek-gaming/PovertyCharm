@@ -1,7 +1,5 @@
 {
-  "variants": {
-    "normal": {
-      "model": "povertycharm:asphalt"
+    "variants": {
+        "normal": { "model": "povertycharm:asphalt" }
     }
-  }
 }

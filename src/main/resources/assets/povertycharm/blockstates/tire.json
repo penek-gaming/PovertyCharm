@@ -1,116 +1,125 @@
 {
   "forge_marker": 1,
-  "defaults": {
+  "defaults":
+  {
     "model": "povertycharm:tire"
   },
-  "variants": {
-    "color": {
+  "variants":
+  {
+    "color":
+    {
       "white": {
-        "textures": {
+        "textures":
+        {
           "0": "povertycharm:blocks/tire_white",
           "particle": "povertycharm:blocks/tire_white"
         }
       },
       "orange": {
-        "textures": {
+        "textures":
+        {
           "0": "povertycharm:blocks/tire_orange",
           "particle": "povertycharm:blocks/tire_orange"
         }
       },
       "magenta": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_magenta",
           "particle": "povertycharm:blocks/tire_magenta"
         }
       },
       "light_blue": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_light_blue",
           "particle": "povertycharm:blocks/tire_light_blue"
         }
       },
       "yellow": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_yellow",
           "particle": "povertycharm:blocks/tire_yellow"
         }
       },
       "lime": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_lime",
           "particle": "povertycharm:blocks/tire_lime"
         }
       },
       "pink": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_pink",
           "particle": "povertycharm:blocks/tire_pink"
         }
       },
       "gray": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_gray",
           "particle": "povertycharm:blocks/tire_gray"
         }
       },
       "silver": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_silver",
           "particle": "povertycharm:blocks/tire_silver"
         }
       },
       "cyan": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_cyan",
           "particle": "povertycharm:blocks/tire_cyan"
         }
       },
       "purple": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_purple",
           "particle": "povertycharm:blocks/tire_purple"
         }
       },
       "blue": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_blue",
           "particle": "povertycharm:blocks/tire_blue"
         }
       },
       "brown": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_brown",
           "particle": "povertycharm:blocks/tire_brown"
         }
       },
-      "green": {
+      "green":{
         "textures": {
           "0": "povertycharm:blocks/tire_green",
           "particle": "povertycharm:blocks/tire_green"
         }
       },
       "red": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_red",
           "particle": "povertycharm:blocks/tire_red"
         }
       },
       "black": {
-        "textures": {
+        "textures":{
           "0": "povertycharm:blocks/tire_black",
           "particle": "povertycharm:blocks/tire_black"
         }
       }
     },
-    "facing": {
+    "facing":
+    {
       "north": {},
-      "east": {
+      "east":
+      {
         "y": 90
       },
-      "south": {
+      "south":
+      {
         "y": 180
       },
-      "west": {
+      "west":
+      {
         "y": 270
       }
     }

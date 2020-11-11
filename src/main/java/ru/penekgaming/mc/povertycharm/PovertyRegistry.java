@@ -29,7 +29,7 @@ public class PovertyRegistry {
         for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
             event.getRegistry().register(block);
             ForgeRegistries.ITEMS.register(block.item);
-            if (block instanceof TileEntityBlock)
+            if(block instanceof TileEntityBlock)
                 GameRegistry.registerTileEntity(
                         ((TileEntityBlock<?>) block).getTileEntityClass(),
                         Objects.requireNonNull(block.getRegistryName())

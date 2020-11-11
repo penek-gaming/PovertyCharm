@@ -23,13 +23,15 @@ public class TileEntityTire extends TileEntity {
     }
 
     @Override
-    public NBTTagCompound getUpdateTag() {
+    public NBTTagCompound getUpdateTag()
+    {
         NBTTagCompound compound = new NBTTagCompound();
         return writeToNBT(compound);
     }
 
     @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
+    public void handleUpdateTag(NBTTagCompound tag)
+    {
         this.readFromNBT(tag);
     }
 

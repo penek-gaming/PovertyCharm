@@ -1,6 +1,7 @@
 {
   "parent": "povertycharm:block/tire",
-  "textures": {
+  "textures":
+  {
     "0": "povertycharm:blocks/tire_blue",
     "particle": "povertycharm:blocks/tire_blue"
   }

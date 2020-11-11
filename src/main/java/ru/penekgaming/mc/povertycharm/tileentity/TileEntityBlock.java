@@ -1,5 +1,7 @@
 package ru.penekgaming.mc.povertycharm.tileentity;
 
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -7,6 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
+
+import javax.annotation.Nullable;
 
 @SuppressWarnings({"NullableProblems"})
 public abstract class TileEntityBlock<T extends TileEntity> extends PovertyBlock {
