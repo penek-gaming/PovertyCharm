@@ -30,10 +30,6 @@ public class PovertyRegistry {
             event.getRegistry().register(block);
             ForgeRegistries.ITEMS.register(block.item);
         }
-        
-        // Manual blocks registration
-//        event.getRegistry().register(PovertyBlocks.PIPE);
-//        ForgeRegistries.ITEMS.register(PovertyBlocks.PIPE.item);
         PovertyCharm.LOGGER.info("{} blocks should be registered automatically", PovertyBlocks.BLOCKS.size());
     }
 

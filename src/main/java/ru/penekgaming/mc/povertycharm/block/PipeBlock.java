@@ -191,9 +191,7 @@ public class PipeBlock extends PovertyBlock {
         Part part = getPart(facings);
 
         return state.withProperty(PART, part)
-                .withProperty(FACING, getFacing(part, facings, state))
-                //.withProperty(VALVE, hasValve)
-                ;
+                .withProperty(FACING, getFacing(part, facings, state));
     }
 
     @Override

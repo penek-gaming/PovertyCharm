@@ -1,25 +1,22 @@
 itemGroup.povertycharm.main=Poverty Charm
-
 tile.povertycharm.asphalt.name=Asphalt
-
 tile.povertycharm.bricks_default.name=Soviet Bricks
 tile.povertycharm.bricks_white.name=White Soviet Bricks
-
 tile.povertycharm.concrete_gray.name=Gray Concrete
 tile.povertycharm.concrete_gray_cracked.name=Gray Concrete Cracked
 tile.povertycharm.concrete_white.name=White Concrete
 tile.povertycharm.concrete_white_cracked.name=White Concrete Cracked
 tile.povertycharm.concrete_green.name=Green Concrete
 tile.povertycharm.concrete_green_cracked.name=Green Concrete Cracked
-
 tile.povertycharm.tile_default.name=Tile
 tile.povertycharm.tile_default_cracked.name=Tile Cracked
 tile.povertycharm.tile_white.name=White Tile
 tile.povertycharm.tile_white_cracked.name=White Tile Cracked
 tile.povertycharm.tile_green.name=Green Tile
 tile.povertycharm.tile_green_cracked.name=Green Tile Cracked
-
 tile.povertycharm.small_tile_default.name=Small Tile
 tile.povertycharm.small_tile_blue.name=Blue Small Tile
 tile.povertycharm.small_tile_green.name=Green Small Tile
 tile.povertycharm.small_tile_red.name=Red Small Tile
+tile.povertycharm.pipe.name=Pipes
+tile.povertycharm.pipe_valve.name=Pipes with valve
