@@ -1,0 +1,48 @@
+{
+  "forge_marker": 1,
+  "defaults":
+  {
+    "model": "povertycharm:pipe_valve"
+  },
+  "variants":
+  {
+    "part":
+    {
+      "valve":
+      {
+        "model": "povertycharm:pipe_valve"
+      },
+      "straight":
+      {
+        "model": "povertycharm:pipe_straight"
+      },
+      "turn":
+      {
+        "model": "povertycharm:pipe_turn"
+      },
+      "trio":
+      {
+        "model": "povertycharm:pipe_trio"
+      },
+      "quad":
+      {
+        "model": "povertycharm:pipe_quad"
+      }
+    },
+    "facing":
+    {
+      "north": {
+        "y": 0
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    }
+  }
+}

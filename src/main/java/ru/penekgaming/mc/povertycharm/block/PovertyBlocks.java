@@ -12,4 +12,7 @@ public class PovertyBlocks {
     public static final BricksBlock BRICKS = new BricksBlock();
     public static final TileBlock TILE = new TileBlock();
     public static final SmallTileBlock SMALL_TILE = new SmallTileBlock();
+    public static final PovertyBlock PENEK_GAMING = new PovertyBlock("pg", Material.WOOD);
+    public static final PipeBlock PIPE = new PipeBlock("pipe", PipeBlock.Part.STRAIGHT);
+    public static final PipeBlock PIPE_VALVE = new PipeBlock("pipe_valve", PipeBlock.Part.VALVE);
 }

@@ -2,12 +2,12 @@ package ru.penekgaming.mc.povertycharm.item;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import ru.penekgaming.mc.povertycharm.PovertyCharm;
+import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlockVariative;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
 public class PovertyItemBlockVariative extends ItemBlock {
-    public PovertyItemBlockVariative(PovertyBlockVariative block) {
+    public PovertyItemBlockVariative(PovertyBlock block) {
         super(block);
         setHasSubtypes(true);
         setMaxDamage(0);
@@ -20,7 +20,6 @@ public class PovertyItemBlockVariative extends ItemBlock {
 
     @Override
     public int getMetadata(int damage){
-        PovertyCharm.LOGGER.debug("Item metadata {}", damage);
         return damage;
     }
 }

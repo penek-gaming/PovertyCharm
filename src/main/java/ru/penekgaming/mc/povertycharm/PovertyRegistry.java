@@ -3,6 +3,9 @@ package ru.penekgaming.mc.povertycharm;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,7 +30,16 @@ public class PovertyRegistry {
             event.getRegistry().register(block);
             ForgeRegistries.ITEMS.register(block.item);
         }
-        PovertyCharm.LOGGER.info("{} blocks should be registered", PovertyBlocks.BLOCKS.size());
+        
+        // Manual blocks registration
+//        event.getRegistry().register(PovertyBlocks.PIPE);
+//        ForgeRegistries.ITEMS.register(PovertyBlocks.PIPE.item);
+        PovertyCharm.LOGGER.info("{} blocks should be registered automatically", PovertyBlocks.BLOCKS.size());
+    }
+
+    @SubscribeEvent
+    public static void addItems(RegistryEvent.Register<Item> event){
+
     }
 
     @SubscribeEvent
@@ -81,11 +93,6 @@ public class PovertyRegistry {
         IBlockVariative blockVariative = (IBlockVariative) block;
 
         for(int i = 0; i < blockVariative.getVariationCount(); i++) {
-            PovertyCharm.LOGGER.debug(String.format("MODEL: (%d) %s_%s", i,
-                    Objects.requireNonNull(block.getRegistryName()).toString(),
-                    blockVariative.getVariationName(i)
-            ));
-
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
                     .register(
                             block.item,

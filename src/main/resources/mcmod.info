@@ -2,7 +2,7 @@
   {
     "modid": "povertycharm",
     "name": "PovertyCharm",
-    "description": "Mod inspired by post-Soviet decorations",
+    "description": "Mod inspired by post-Soviet authentic buildings and architecture",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "https://penek-gaming.ru",
@@ -11,8 +11,8 @@
       "WGOS",
       "Shootlife"
     ],
-    "credits": "",
-    "logoFile": "",
+    "credits": "LegendGamer - original idea and inspiration, Shootlife, Kak_pospal - game assets",
+    "logoFile": "assets/povertycharm/textures/logo.png",
     "screenshots": [],
     "dependencies": []
   }
