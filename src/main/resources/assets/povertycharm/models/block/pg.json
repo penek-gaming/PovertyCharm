@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "povertycharm:blocks/pg"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "povertycharm:blocks/pg"
+  }
 }

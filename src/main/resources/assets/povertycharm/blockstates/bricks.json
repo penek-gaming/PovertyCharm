@@ -1,10 +1,10 @@
 {
-    "variants": {
-        "variant=default": {
-            "model": "povertycharm:bricks_default"
-        },
-        "variant=white": {
-            "model": "povertycharm:bricks_white"
-        }
+  "variants": {
+    "variant=default": {
+      "model": "povertycharm:bricks_default"
+    },
+    "variant=white": {
+      "model": "povertycharm:bricks_white"
     }
+  }
 }
