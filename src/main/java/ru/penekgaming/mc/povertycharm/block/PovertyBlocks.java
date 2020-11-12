@@ -9,6 +9,7 @@ public class PovertyBlocks {
 
     public static final PovertyBlock ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
     public static final BlockConcrete CONCRETE = new BlockConcrete("concrete");
+    public static final BlockConcreteBroken CONCRETE_BROKEN = new BlockConcreteBroken();
     public static final BlockBricks BRICKS = new BlockBricks();
     public static final BlockTile TILE = new BlockTile();
     public static final BlockSmallTile SMALL_TILE = new BlockSmallTile();
@@ -16,5 +17,4 @@ public class PovertyBlocks {
     public static final BlockPipe PIPE = new BlockPipe("pipe", BlockPipe.Part.STRAIGHT);
     public static final BlockPipe PIPE_VALVE = new BlockPipe("pipe_valve", BlockPipe.Part.VALVE);
     public static final BlockTire TIRE = new BlockTire("tire", Material.CLOTH);
-    public static final BlockConcreteBroken CONCRETE_BROKEN = new BlockConcreteBroken();
 }
