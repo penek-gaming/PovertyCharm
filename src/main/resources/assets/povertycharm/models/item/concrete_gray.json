@@ -1,3 +1,6 @@
 {
-  "parent": "povertycharm:block/concrete_gray"
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "povertycharm:blocks/concrete_gray"
+  }
 }

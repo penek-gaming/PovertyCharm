@@ -1,16 +1,30 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
   "variants": {
-    "variant=default": {
-      "model": "povertycharm:small_tile_default"
-    },
-    "variant=blue": {
-      "model": "povertycharm:small_tile_blue"
-    },
-    "variant=green": {
-      "model": "povertycharm:small_tile_green"
-    },
-    "variant=red": {
-      "model": "povertycharm:small_tile_red"
+    "variant": {
+      "default": {
+        "textures": {
+          "all": "povertycharm:blocks/small_tile_default"
+        }
+      },
+      "blue": {
+        "textures": {
+          "all": "povertycharm:blocks/small_tile_blue"
+        }
+      },
+      "green": {
+        "textures": {
+          "all": "povertycharm:blocks/small_tile_green"
+        }
+      },
+      "red": {
+        "textures": {
+          "all": "povertycharm:blocks/small_tile_red"
+        }
+      }
     }
   }
 }

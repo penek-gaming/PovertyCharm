@@ -1,78 +1,62 @@
 {
   "forge_marker": 1,
-  "defaults":
-  {
+  "defaults": {
     "model": "povertycharm:concrete_broken"
   },
-  "variants":
-  {
-    "variant":
-    {
-      "gray":
-      {
-        "textures":
-        {
+  "variants": {
+    "variant": {
+      "gray": {
+        "textures": {
           "texture": "povertycharm:blocks/concrete_gray"
         }
       },
-      "gray_cracked":
-      {
+      "gray_cracked": {
         "textures": {
           "texture": "povertycharm:blocks/concrete_gray_cracked"
         }
       },
-      "white":
-      {
+      "white": {
         "textures": {
           "texture": "povertycharm:blocks/concrete_white"
         }
       },
-      "white_cracked":
-      {
+      "white_cracked": {
         "textures": {
           "texture": "povertycharm:blocks/concrete_white_cracked"
         }
       },
-      "green":
-      {
+      "green": {
         "textures": {
           "texture": "povertycharm:blocks/concrete_green"
         }
       },
-      "green_cracked":
-      {
+      "green_cracked": {
         "textures": {
           "texture": "povertycharm:blocks/concrete_green_cracked"
         }
       }
     },
-    "facing":
-    {
+    "facing": {
       "up": {},
-      "down":
-      {
+      "down": {
         "x": 180,
         "uvlock": true
       },
-      "north":
-      {
+      "north": {
         "x": 90,
         "uvlock": true
       },
-      "east":
-      {
+      "east": {
         "x": 90,
         "y": 90,
         "uvlock": true
       },
-      "south":
-      {
+      "south": {
         "x": 90,
         "y": 180,
         "uvlock": true
       },
-      "west":
-      {
+      "west": {
         "x": 90,
         "y": 270,
         "uvlock": true

@@ -1,10 +1,20 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
   "variants": {
-    "variant=default": {
-      "model": "povertycharm:bricks_default"
-    },
-    "variant=white": {
-      "model": "povertycharm:bricks_white"
+    "variant": {
+      "default": {
+        "textures": {
+          "all": "povertycharm:blocks/bricks_default"
+        }
+      },
+      "white": {
+        "textures": {
+          "all": "povertycharm:blocks/bricks_white"
+        }
+      }
     }
   }
 }

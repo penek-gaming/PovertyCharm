@@ -1,3 +1,6 @@
 {
-  "parent": "povertycharm:block/tile_green"
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "povertycharm:blocks/tile_green"
+  }
 }

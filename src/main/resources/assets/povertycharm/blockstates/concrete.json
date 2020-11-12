@@ -1,22 +1,40 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
   "variants": {
-    "variant=gray": {
-      "model": "povertycharm:concrete_gray"
-    },
-    "variant=gray_cracked": {
-      "model": "povertycharm:concrete_gray_cracked"
-    },
-    "variant=white": {
-      "model": "povertycharm:concrete_white"
-    },
-    "variant=white_cracked": {
-      "model": "povertycharm:concrete_white_cracked"
-    },
-    "variant=green": {
-      "model": "povertycharm:concrete_green"
-    },
-    "variant=green_cracked": {
-      "model": "povertycharm:concrete_green_cracked"
+    "variant": {
+      "gray": {
+        "textures": {
+          "all": "povertycharm:blocks/concrete_gray"
+        }
+      },
+      "gray_cracked": {
+        "textures": {
+          "all": "povertycharm:blocks/concrete_gray_cracked"
+        }
+      },
+      "white": {
+        "textures": {
+          "all": "povertycharm:blocks/concrete_white"
+        }
+      },
+      "white_cracked": {
+        "textures": {
+          "all": "povertycharm:blocks/concrete_white_cracked"
+        }
+      },
+      "green": {
+        "textures": {
+          "all": "povertycharm:blocks/concrete_green"
+        }
+      },
+      "green_cracked": {
+        "textures": {
+          "all": "povertycharm:blocks/concrete_green_cracked"
+        }
+      }
     }
   }
 }

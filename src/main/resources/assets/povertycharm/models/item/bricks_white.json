@@ -1,3 +1,6 @@
 {
-  "parent": "povertycharm:block/bricks_white"
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "povertycharm:blocks/bricks_white"
+  }
 }
