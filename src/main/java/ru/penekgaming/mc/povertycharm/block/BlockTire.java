@@ -25,6 +25,7 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 import ru.penekgaming.mc.povertycharm.item.ItemBlockVariative;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityTire;
+import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
 import java.util.Objects;
 
@@ -33,11 +34,10 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
     public static final PropertyEnum<EnumDyeColor> COLOR = PropertyEnum.create("color", EnumDyeColor.class);
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    private static final AxisAlignedBB BB_NS
-            = new AxisAlignedBB(0.0, 0, 5.0 / 16.0, 1.0, 7.5 / 16.0, 1 - 5.0 / 16.0);
-
-    private static final AxisAlignedBB BB_EW
-            = new AxisAlignedBB(5.0 / 16.0, 0, 0.0, 1 - 5.0 / 16.0, 7.5 / 16.0, 1.0);
+    private static final AxisAlignedBBContainer BBC = AxisAlignedBBContainer.builder()
+            .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0, 5.0 / 16.0, 1.0, 7.5 / 16.0, 1 - 5.0 / 16.0))
+            .set(EnumFacing.EAST, new AxisAlignedBB(5.0 / 16.0, 0, 0.0, 1 - 5.0 / 16.0, 7.5 / 16.0, 1.0))
+            .build();
 
     protected BlockTire(String name, Material material) {
         super(name, material, TileEntityTire.class);
@@ -57,11 +57,11 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
         switch (facing) {
             case NORTH:
             case SOUTH:
-                return BB_NS;
+                return BBC.get(EnumFacing.NORTH);
 
             case EAST:
             case WEST:
-                return BB_EW;
+                return BBC.get(EnumFacing.EAST);
         }
 
         return FULL_BLOCK_AABB;

@@ -17,6 +17,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -27,31 +28,28 @@ public class BlockHandholds extends PovertyBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool TURN = PropertyBool.create("turn");
 
-    private static final AxisAlignedBB[] BB = {
-            // SOUTH
-            new AxisAlignedBB(
-                    0.0, 0.0, 1 - 3 / 16.0,
-                    1.0, 1.0, 1.0
-            ),
-
-            // WEST
-            new AxisAlignedBB(
-                    0.0, 0.0, 0.0,
-                    3 / 16.0, 1.0, 1.0
-            ),
-
-            // NORTH
-            new AxisAlignedBB(
-                    0.0, 0.0, 0.0,
-                    1.0, 1.0, 3 / 16.0
-            ),
-
-            // EAST
-            new AxisAlignedBB(
-                    1 - 3 / 16.0, 0.0, 0.0,
-                    1.0, 1.0, 1.0
-            )
-    };
+    private static final AxisAlignedBBContainer BBS
+            = AxisAlignedBBContainer.builder()
+            .set(EnumFacing.SOUTH,
+                    new AxisAlignedBB(
+                            0.0, 0.0, 1 - 3 / 16.0,
+                            1.0, 1.0, 1.0)
+            ).set(EnumFacing.WEST,
+                    new AxisAlignedBB(
+                            0.0, 0.0, 0.0,
+                            3 / 16.0, 1.0, 1.0
+                    )
+            ).set(EnumFacing.NORTH,
+                    new AxisAlignedBB(
+                            0.0, 0.0, 0.0,
+                            1.0, 1.0, 3 / 16.0
+                    )
+            ).set(EnumFacing.EAST,
+                    new AxisAlignedBB(
+                            1 - 3 / 16.0, 0.0, 0.0,
+                            1.0, 1.0, 1.0
+                    )
+            ).build();
 
     protected BlockHandholds() {
         super("handholds", Material.IRON);
@@ -83,7 +81,7 @@ public class BlockHandholds extends PovertyBlock {
         if (state.getValue(TURN))
             return FULL_BLOCK_AABB;
 
-        return BB[state.getValue(FACING).getHorizontalIndex()];
+        return BBS.get(state.getValue(FACING));
     }
 
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
@@ -96,9 +94,9 @@ public class BlockHandholds extends PovertyBlock {
         List<AxisAlignedBB> list = new ArrayList<>();
         EnumFacing facing = state.getValue(FACING);
 
-        list.add(BB[facing.getHorizontalIndex()]);
+        list.add(BBS.get(facing));
         if (state.getValue(TURN))
-            list.add(BB[facing.rotateY().getHorizontalIndex()]);
+            list.add(BBS.get(facing.rotateY()));
 
         return list;
     }
@@ -106,9 +104,9 @@ public class BlockHandholds extends PovertyBlock {
     @Override
     public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end) {
         EnumFacing facing = blockState.getValue(FACING);
-        RayTraceResult result = rayTrace(pos, start, end, BB[facing.getHorizontalIndex()]);
+        RayTraceResult result = rayTrace(pos, start, end, BBS.get(facing));
         if (result == null && blockState.getValue(TURN))
-            result = rayTrace(pos, start, end, BB[facing.rotateY().getHorizontalIndex()]);
+            result = rayTrace(pos, start, end, BBS.get(facing.rotateY()));
 
         return result;
     }
