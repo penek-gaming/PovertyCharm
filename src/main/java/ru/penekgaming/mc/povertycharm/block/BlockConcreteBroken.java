@@ -1,7 +1,5 @@
 package ru.penekgaming.mc.povertycharm.block;
 
-import net.minecraft.block.BlockAir;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -14,7 +12,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.PovertyCharm;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -58,13 +55,13 @@ public class BlockConcreteBroken extends PovertyBlock {
         BlockConcrete.Variant variant = BlockConcrete.Variant.GRAY;
         IBlockState facingState = neighborBlocks.get(facing);
 
-        if(facingState != null && facingState.getBlock() instanceof BlockConcrete)
+        if (facingState != null && facingState.getBlock() instanceof BlockConcrete)
             variant = neighborBlocks.get(facing).getValue(BlockConcrete.VARIANT);
         else {
             Optional<EnumFacing> optFacing
                     = neighborBlocks.keySet().stream().filter(f -> neighborBlocks.get(f).getBlock() instanceof BlockConcrete).findFirst();
 
-            if(optFacing.isPresent())
+            if (optFacing.isPresent())
                 variant = neighborBlocks.get(optFacing.get()).getValue(VARIANT);
         }
 
@@ -73,6 +70,16 @@ public class BlockConcreteBroken extends PovertyBlock {
 
     @Override
     public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullBlock(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
