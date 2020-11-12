@@ -2,7 +2,6 @@ package ru.penekgaming.mc.povertycharm;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -10,7 +9,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.penekgaming.mc.povertycharm.block.BlockConcrete;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
 import ru.penekgaming.mc.povertycharm.proxy.CommonProxy;
 
@@ -27,9 +25,7 @@ public class PovertyCharm {
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID + ".main") {
         @Override
         public ItemStack createIcon() {
-            NonNullList<ItemStack> stacks = NonNullList.create();
-            PovertyBlocks.CONCRETE.getSubBlocks(this, stacks);
-            return stacks.get(BlockConcrete.Variant.WHITE_CRACKED.getMetadata());
+            return new ItemStack(PovertyBlocks.PIPE_VALVE);
         }
     };
     @SidedProxy(
