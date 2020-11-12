@@ -17,4 +17,5 @@ public class PovertyBlocks {
     public static final BlockPipe PIPE = new BlockPipe("pipe", BlockPipe.Part.STRAIGHT);
     public static final BlockPipe PIPE_VALVE = new BlockPipe("pipe_valve", BlockPipe.Part.VALVE);
     public static final BlockTire TIRE = new BlockTire("tire", Material.CLOTH);
+    public static final BlockHandholds HANDHOLDS = new BlockHandholds();
 }
