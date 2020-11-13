@@ -1,5 +1,6 @@
 {
   "credit": "Made with Blockbench",
+  "parent": "block/cube_all",
   "textures": {
     "1": "povertycharm:blocks/pipe_legacy",
     "particle": "povertycharm:blocks/pipe_legacy"
