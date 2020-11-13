@@ -3,6 +3,7 @@ package ru.penekgaming.mc.povertycharm.block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
@@ -21,6 +22,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ru.penekgaming.mc.povertycharm.PovertyCharm;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 import ru.penekgaming.mc.povertycharm.item.ItemBlockVariative;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
@@ -74,10 +76,12 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (playerIn.getHeldItem(hand).getItem() instanceof ItemDye)
-            return recolorBlock(worldIn, pos, facing, EnumDyeColor.byMetadata(playerIn.getHeldItem(hand).getItem().getMetadata(playerIn.getHeldItem(hand)) + 1));
+        if (!(playerIn.getHeldItem(hand).getItem() instanceof ItemDye))
+            return false;
 
-        return false;
+        ItemStack heldStack = playerIn.getHeldItem(hand);
+
+        return recolorBlock(worldIn, pos, facing, EnumDyeColor.byDyeDamage(heldStack.getItem().getDamage(heldStack)));
     }
 
     @Override
@@ -123,7 +127,7 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return state.withProperty(FACING, EnumFacing.byIndex(Math.max(2, getTileEntity(worldIn, pos).getFacing().getIndex())));
+        return state.withProperty(FACING, getTileEntity(worldIn, pos).getFacing());
     }
 
     @Override

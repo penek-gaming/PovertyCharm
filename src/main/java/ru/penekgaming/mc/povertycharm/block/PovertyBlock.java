@@ -2,6 +2,7 @@ package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
 
 import java.util.HashMap;
@@ -35,6 +37,27 @@ public class PovertyBlock extends Block {
 
         if (autoRegister)
             PovertyBlocks.BLOCKS.put(name, this);
+    }
+
+    @Override
+    @SuppressWarnings({"unchecked", "rawtypes", "NullableProblems"})
+    public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, net.minecraft.item.EnumDyeColor color)
+    {
+        IBlockState state = world.getBlockState(pos).getActualState(world, pos);
+
+        for (IProperty prop : state.getProperties().keySet())
+        {
+            if (prop.getName().equals("color") && prop.getValueClass() == net.minecraft.item.EnumDyeColor.class)
+            {
+                net.minecraft.item.EnumDyeColor current = (net.minecraft.item.EnumDyeColor)state.getValue(prop);
+                if (current != color && prop.getAllowedValues().contains(color))
+                {
+                    world.setBlockState(pos, state.withProperty(prop, color));
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static HashMap<EnumFacing, Block> getFacingBlocksHorizontal(IBlockAccess world, BlockPos pos) {
