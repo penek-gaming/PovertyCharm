@@ -17,11 +17,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ru.penekgaming.mc.povertycharm.item.ItemHandholds;
 import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
 public class BlockHandholds extends PovertyBlock {
@@ -57,6 +59,8 @@ public class BlockHandholds extends PovertyBlock {
         setDefaultState(getBlockState().getBaseState()
                 .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(TURN, false));
+
+        item = new ItemHandholds(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
     }
 
     @Override
@@ -134,11 +138,6 @@ public class BlockHandholds extends PovertyBlock {
     @Override
     public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
         return 0;
-    }
-
-    @Override
-    public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
-        return !worldIn.getBlockState(pos).getValue(TURN);
     }
 
     @Override
