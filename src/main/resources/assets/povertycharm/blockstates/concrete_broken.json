@@ -7,32 +7,38 @@
     "variant": {
       "gray": {
         "textures": {
-          "texture": "povertycharm:blocks/concrete_gray"
+          "texture": "povertycharm:blocks/concrete_gray",
+          "particle": "povertycharm:blocks/concrete_gray"
         }
       },
       "gray_cracked": {
         "textures": {
-          "texture": "povertycharm:blocks/concrete_gray_cracked"
+          "texture": "povertycharm:blocks/concrete_gray_cracked",
+          "particle": "povertycharm:blocks/concrete_gray_cracked"
         }
       },
       "white": {
         "textures": {
-          "texture": "povertycharm:blocks/concrete_white"
+          "texture": "povertycharm:blocks/concrete_white",
+          "particle": "povertycharm:blocks/concrete_white"
         }
       },
       "white_cracked": {
         "textures": {
-          "texture": "povertycharm:blocks/concrete_white_cracked"
+          "texture": "povertycharm:blocks/concrete_white_cracked",
+          "particle": "povertycharm:blocks/concrete_white_cracked"
         }
       },
       "green": {
         "textures": {
-          "texture": "povertycharm:blocks/concrete_green"
+          "texture": "povertycharm:blocks/concrete_green",
+          "particle": "povertycharm:blocks/concrete_green"
         }
       },
       "green_cracked": {
         "textures": {
-          "texture": "povertycharm:blocks/concrete_green_cracked"
+          "texture": "povertycharm:blocks/concrete_green_cracked",
+          "particle": "povertycharm:blocks/concrete_green_cracked"
         }
       }
     },
