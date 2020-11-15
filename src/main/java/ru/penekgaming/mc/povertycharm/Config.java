@@ -18,6 +18,11 @@ public class Config {
     public static TrashCan trashCan = new TrashCan();
 
     public static class TrashCan {
+        @Name("XP Drop Chance")
+        @Comment("If set to 0, items will never drop")
+        @RangeDouble(min = 0.0, max = 1.0)
+        public double expDropChance = 1.0;
+
         @Name("Min XP Drop")
         @RangeInt(min = 0)
         public int minExpDrop = 1;
@@ -38,7 +43,7 @@ public class Config {
                 "Second value is weight (not chance) from 0.0(0)1 to 0.9(9)"})
         public HashMap<String, Double> itemSetsDropChances = new HashMap<String, Double>() {{
             put("shit", 0.75);
-            put("rich", 0.0005);
+            put("rich", 0.005);
         }};
 
         @Name("Item Sets")

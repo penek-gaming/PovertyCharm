@@ -49,7 +49,7 @@ public class BlockTrashCan extends PovertyBlock {
         if(!worldIn.isRemote) {
             worldIn.setBlockState(pos, state.withProperty(FILL, 0));
 
-            if(Config.trashCan.maxExpDrop > 0)
+            if(Config.trashCan.expDropChance > 0 && Config.trashCan.maxExpDrop > 0 && RANDOM.nextDouble() <= Config.trashCan.expDropChance)
                 dropXpOnBlockBreak(worldIn, pos, Config.trashCan.minExpDrop + RANDOM.nextInt(Config.trashCan.maxExpDrop - Config.trashCan.minExpDrop));
 
             tryDropItem(worldIn, pos);
