@@ -41,17 +41,13 @@ public class PovertyBlock extends Block {
 
     @Override
     @SuppressWarnings({"unchecked", "rawtypes", "NullableProblems"})
-    public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, net.minecraft.item.EnumDyeColor color)
-    {
+    public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, net.minecraft.item.EnumDyeColor color) {
         IBlockState state = world.getBlockState(pos).getActualState(world, pos);
 
-        for (IProperty prop : state.getProperties().keySet())
-        {
-            if (prop.getName().equals("color") && prop.getValueClass() == net.minecraft.item.EnumDyeColor.class)
-            {
-                net.minecraft.item.EnumDyeColor current = (net.minecraft.item.EnumDyeColor)state.getValue(prop);
-                if (current != color && prop.getAllowedValues().contains(color))
-                {
+        for (IProperty prop : state.getProperties().keySet()) {
+            if (prop.getName().equals("color") && prop.getValueClass() == net.minecraft.item.EnumDyeColor.class) {
+                net.minecraft.item.EnumDyeColor current = (net.minecraft.item.EnumDyeColor) state.getValue(prop);
+                if (current != color && prop.getAllowedValues().contains(color)) {
                     world.setBlockState(pos, state.withProperty(prop, color));
                     return true;
                 }

@@ -1,0 +1,7 @@
+{
+  "parent": "povertycharm:block/concrete_damaged",
+  "textures": {
+    "0": "povertycharm:blocks/concrete_white_cracked",
+    "particle": "povertycharm:blocks/concrete_white_cracked"
+  }
+}

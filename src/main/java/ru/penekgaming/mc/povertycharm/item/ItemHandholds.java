@@ -31,25 +31,21 @@ public class ItemHandholds extends ItemBlock {
     }
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         IBlockState state = worldIn.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (!block.isReplaceable(worldIn, pos) || block instanceof BlockHandholds && state.getValue(BlockHandholds.TURN))
-        {
+        if (!block.isReplaceable(worldIn, pos) || block instanceof BlockHandholds && state.getValue(BlockHandholds.TURN)) {
             pos = pos.offset(facing);
         }
 
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && mayPlace(worldIn, this.block, pos, facing, player))
-        {
+        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && mayPlace(worldIn, this.block, pos, facing, player)) {
             int i = this.getMetadata(itemstack.getMetadata());
             IBlockState placementState = this.block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand);
 
-            if (placeBlockAt(itemstack, player, worldIn, pos, facing, hitX, hitY, hitZ, placementState))
-            {
+            if (placeBlockAt(itemstack, player, worldIn, pos, facing, hitX, hitY, hitZ, placementState)) {
                 placementState = worldIn.getBlockState(pos);
                 SoundType soundtype = placementState.getBlock().getSoundType(placementState, worldIn, pos, player);
                 worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
@@ -57,34 +53,27 @@ public class ItemHandholds extends ItemBlock {
             }
 
             return EnumActionResult.SUCCESS;
-        }
-        else
-        {
+        } else {
             return EnumActionResult.FAIL;
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
-    {
+    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack) {
         IBlockState state = worldIn.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (block == Blocks.SNOW_LAYER && block.isReplaceable(worldIn, pos))
-        {
+        if (block == Blocks.SNOW_LAYER && block.isReplaceable(worldIn, pos)) {
             side = EnumFacing.UP;
-        }
-        else if (!block.isReplaceable(worldIn, pos) || block instanceof BlockHandholds && state.getValue(BlockHandholds.TURN))
-        {
+        } else if (!block.isReplaceable(worldIn, pos) || block instanceof BlockHandholds && state.getValue(BlockHandholds.TURN)) {
             pos = pos.offset(side);
         }
 
         return mayPlace(worldIn, this.block, pos, side, player);
     }
 
-    private static boolean mayPlace(World world, Block blockIn, BlockPos pos, EnumFacing sidePlacedOn, @Nullable Entity placer)
-    {
+    private static boolean mayPlace(World world, Block blockIn, BlockPos pos, EnumFacing sidePlacedOn, @Nullable Entity placer) {
         IBlockState state = world.getBlockState(pos);
 
         if (!((placer instanceof EntityPlayer)

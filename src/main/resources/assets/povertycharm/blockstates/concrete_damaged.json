@@ -1,0 +1,78 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "povertycharm:concrete_damaged",
+    "uvlock": true
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "variant": {
+      "gray": {
+        "textures": {
+          "2": "povertycharm:blocks/concrete_gray",
+          "particle": "povertycharm:blocks/concrete_gray"
+        }
+      },
+      "gray_cracked": {
+        "textures": {
+          "2": "povertycharm:blocks/concrete_gray_cracked",
+          "particle": "povertycharm:blocks/concrete_gray_cracked"
+        }
+      },
+      "white": {
+        "textures": {
+          "2": "povertycharm:blocks/concrete_white",
+          "particle": "povertycharm:blocks/concrete_white"
+        }
+      },
+      "white_cracked": {
+        "textures": {
+          "2": "povertycharm:blocks/concrete_white_cracked",
+          "particle": "povertycharm:blocks/concrete_white_cracked"
+        }
+      },
+      "green": {
+        "textures": {
+          "2": "povertycharm:blocks/concrete_green",
+          "particle": "povertycharm:blocks/concrete_green"
+        }
+      },
+      "green_cracked": {
+        "textures": {
+          "2": "povertycharm:blocks/concrete_green_cracked",
+          "particle": "povertycharm:blocks/concrete_green_cracked"
+        }
+      }
+    },
+    "part": {
+      "default": {},
+      "down": {
+        "model": "povertycharm:concrete_damaged_outer"
+      },
+      "inner_1": {
+        "model": "povertycharm:concrete_damaged_inner_1"
+      },
+      "inner_2": {
+        "model": "povertycharm:concrete_damaged_inner_2"
+      },
+      "inner_3": {
+        "model": "povertycharm:concrete_damaged_inner_3"
+      },
+      "up": {
+        "model": "povertycharm:concrete_damaged_outer",
+        "x": 180
+      }
+    }
+  }
+}

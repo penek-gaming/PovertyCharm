@@ -10,6 +10,7 @@ public class AxisAlignedBBContainer {
     private AxisAlignedBBContainer(AxisAlignedBB[] bbs) {
         BBS = bbs;
     }
+
     public AxisAlignedBB get(EnumFacing facing) {
         AxisAlignedBB bb = BBS[facing.getIndex()];
         return bb == null ? Block.FULL_BLOCK_AABB : bb;
@@ -23,7 +24,7 @@ public class AxisAlignedBBContainer {
         private final AxisAlignedBB[] BBS;
 
         private Builder() {
-             BBS = new AxisAlignedBB[EnumFacing.VALUES.length];
+            BBS = new AxisAlignedBB[EnumFacing.VALUES.length];
         }
 
         public Builder set(EnumFacing facing, AxisAlignedBB bb) {
