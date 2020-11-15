@@ -139,6 +139,11 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
     }
 
     @Override
+    public boolean isFullBlock(IBlockState state) {
+        return false;
+    }
+
+    @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.UNDEFINED;
     }
