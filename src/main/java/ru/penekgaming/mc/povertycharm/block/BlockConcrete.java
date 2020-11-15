@@ -44,6 +44,11 @@ public class BlockConcrete extends PovertyBlockVariative<BlockConcrete.Variant> 
         }
 
         @Override
+        public String toString() {
+            return name;
+        }
+
+        @Override
         public int getMetadata() {
             return meta;
         }
