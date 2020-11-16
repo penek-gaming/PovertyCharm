@@ -9,38 +9,50 @@ import java.util.HashMap;
 
 import static net.minecraftforge.common.config.Config.*;
 
-@net.minecraftforge.common.config.Config(modid = PovertyCharm.MOD_ID)
+@net.minecraftforge.common.config.Config(
+        modid = PovertyCharm.MOD_ID,
+        name = PovertyCharm.MOD_ID + "/general"
+)
 public class Config {
-    @RequiresMcRestart
-    public static TrashCan trashCan = new TrashCan();
+    public static boolean testing;
 
+    @net.minecraftforge.common.config.Config(
+            modid = PovertyCharm.MOD_ID,
+            category = "trashcan",
+            name = PovertyCharm.MOD_ID + "/trashcan"
+    )
     public static class TrashCan {
-        @Name("XP Drop Chance")
-        @Comment("If set to 0, items will never drop")
+        @Name("Update Chance")
+        @Comment("Chance of updating on random tick")
         @RangeDouble(min = 0.0, max = 1.0)
-        public double expDropChance = 0.5;
+        public static double updateChance = 0.5;
+
+        @Name("XP Drop Chance")
+        @Comment("If set to 0, XP will never drop")
+        @RangeDouble(min = 0.0, max = 1.0)
+        public static double expDropChance = 0.5;
 
         @Name("Min XP Drop")
         @RangeInt(min = 0)
-        public int minExpDrop = 1;
+        public static int minExpDrop = 1;
 
         @Name("Max XP Drop")
         @Comment("If set to 0, XP will never drop")
         @RangeInt(min = 0)
-        public int maxExpDrop = 10;
+        public static int maxExpDrop = 10;
 
         @Name("Item Drop Chance")
         @Comment("If set to 0, items will never drop")
         @RangeDouble(min = 0.0, max = 1.0)
-        public double dropChance = 0.85;
+        public static double dropChance = 0.85;
 
         @Name("Item Sets Chances")
         @Comment({"Set chance of dropping item set",
                 "First value is an ID of set",
                 "Second value is weight (not chance) from 0.0(0)1 to 0.9(9)"})
-        public HashMap<String, Double> itemSetsDropChances = new HashMap<String, Double>() {{
-            put("shit", 0.75);
-            put("rich", 0.005);
+        public static HashMap<String, Double> itemSetsDropChances = new HashMap<String, Double>() {{
+            put("dirt", 0.75);
+            put("rich", 0.05);
         }};
 
         @Name("Item Sets")
@@ -49,12 +61,12 @@ public class Config {
                 "Second is the list of items that will be dropped",
                 "Format is: \"item_registry_name_1, max_drop_count_1; item_registry_name_2, max_drop_count_2;\"",
                 "If drop count not provided, 1 will be dropped"})
-        public HashMap<String, String> itemSets = new HashMap<String, String>() {{
-            put("shit", "minecraft:dirt, 3; minecraft:sand, 3");
+        public static HashMap<String, String> itemSets = new HashMap<String, String>() {{
+            put("dirt", "minecraft:dirt, 3; minecraft:sand, 3");
             put("rich", "minecraft:diamond");
         }};
 
-        public RandomCollection<HashMap<Item, Integer>> getItemRandomCollection() {
+        public static RandomCollection<HashMap<Item, Integer>> getItemRandomCollection() {
             RandomCollection<HashMap<Item, Integer>> itemRandomCollection = new RandomCollection<>();
 
             itemSetsDropChances.forEach((setId, weight) -> {

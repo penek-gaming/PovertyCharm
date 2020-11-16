@@ -51,8 +51,8 @@ public class BlockTrashCan extends PovertyBlock {
         if (!worldIn.isRemote) {
             worldIn.setBlockState(pos, state.withProperty(FILL, 0));
 
-            if (Config.trashCan.expDropChance > 0 && Config.trashCan.maxExpDrop > 0 && RANDOM.nextDouble() <= Config.trashCan.expDropChance)
-                dropXpOnBlockBreak(worldIn, pos, Config.trashCan.minExpDrop + RANDOM.nextInt(Config.trashCan.maxExpDrop - Config.trashCan.minExpDrop));
+            if (Config.TrashCan.expDropChance > 0 && Config.TrashCan.maxExpDrop > 0 && RANDOM.nextDouble() <= Config.TrashCan.expDropChance)
+                dropXpOnBlockBreak(worldIn, pos, Config.TrashCan.minExpDrop + RANDOM.nextInt(Config.TrashCan.maxExpDrop - Config.TrashCan.minExpDrop));
 
             tryDropItem(worldIn, pos);
         }
@@ -61,11 +61,11 @@ public class BlockTrashCan extends PovertyBlock {
     }
 
     private void tryDropItem(World world, BlockPos pos) {
-        if (Config.trashCan.dropChance <= 0 && RANDOM.nextDouble() > Config.trashCan.dropChance)
+        if (Config.TrashCan.dropChance <= 0 || RANDOM.nextDouble() > Config.TrashCan.dropChance)
             return;
 
         AtomicBoolean dropped = new AtomicBoolean(false);
-        HashMap<Item, Integer> items = Config.trashCan.getItemRandomCollection().next();
+        HashMap<Item, Integer> items = Config.TrashCan.getItemRandomCollection().next();
 
         items.forEach(
                 (item, maxCount) -> {
@@ -91,11 +91,13 @@ public class BlockTrashCan extends PovertyBlock {
 
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (state.getValue(FILL) >= MAX_FILL)
+        if (Config.TrashCan.updateChance <= 0
+                || rand.nextDouble() > Config.TrashCan.updateChance
+                || state.getValue(FILL) >= MAX_FILL
+                || worldIn.isRemote)
             return;
 
-        if (rand.nextBoolean())
-            worldIn.setBlockState(pos, state.withProperty(FILL, state.getValue(FILL) + 1));
+        worldIn.setBlockState(pos, state.withProperty(FILL, state.getValue(FILL) + 1));
     }
 
     @Override
