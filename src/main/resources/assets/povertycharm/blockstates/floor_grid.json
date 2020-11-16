@@ -1,0 +1,38 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "povertycharm:floor_grid_base",
+    "uvlock": true
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "left": {
+      "false": {
+        "submodel": "povertycharm:floor_grid_base_side"
+      },
+      "true": {}
+    },
+    "right": {
+      "false": {
+        "submodel": {
+          "side": {
+            "model": "povertycharm:floor_grid_base_side",
+            "y": 180
+          }
+        }
+      },
+      "true": {}
+    }
+  }
+}
