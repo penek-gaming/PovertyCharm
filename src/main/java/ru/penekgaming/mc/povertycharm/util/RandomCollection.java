@@ -17,7 +17,7 @@ public class RandomCollection<E> {
     public RandomCollection(Random random) {
         this.random = random;
     }
-    
+
     public RandomCollection<E> addAll(Map<E, Double> map) {
         map.forEach((k, v) -> add(v, k));
         return this;

@@ -2,14 +2,11 @@ package ru.penekgaming.mc.povertycharm;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Tuple;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import ru.penekgaming.mc.povertycharm.util.RandomCollection;
-import scala.Int;
 
-import java.util.*;
+import java.util.HashMap;
 
-import static javax.swing.UIManager.put;
 import static net.minecraftforge.common.config.Config.*;
 
 @net.minecraftforge.common.config.Config(modid = PovertyCharm.MOD_ID)
@@ -21,7 +18,7 @@ public class Config {
         @Name("XP Drop Chance")
         @Comment("If set to 0, items will never drop")
         @RangeDouble(min = 0.0, max = 1.0)
-        public double expDropChance = 1.0;
+        public double expDropChance = 0.5;
 
         @Name("Min XP Drop")
         @RangeInt(min = 0)
@@ -61,26 +58,26 @@ public class Config {
             RandomCollection<HashMap<Item, Integer>> itemRandomCollection = new RandomCollection<>();
 
             itemSetsDropChances.forEach((setId, weight) -> {
-                if(!itemSets.containsKey(setId))
+                if (!itemSets.containsKey(setId))
                     return;
 
                 String setStr = itemSets.get(setId).replace(" ", "");
 
                 String[] itemsStr = setStr.split(";");
-                if(itemsStr.length <= 0)
+                if (itemsStr.length <= 0)
                     return;
 
                 HashMap<Item, Integer> itemSet = null;
 
-                for(String itemStr : itemsStr) {
+                for (String itemStr : itemsStr) {
                     String[] itemNameCount = itemStr.split(",");
 
-                    if(itemNameCount.length <= 0 || itemNameCount[0].isEmpty())
+                    if (itemNameCount.length <= 0 || itemNameCount[0].isEmpty())
                         continue;
 
                     int maxCount = 1;
 
-                    if(itemNameCount.length > 1 && !itemNameCount[1].isEmpty()) {
+                    if (itemNameCount.length > 1 && !itemNameCount[1].isEmpty()) {
                         try {
                             maxCount = Math.max(1, Integer.parseInt(itemNameCount[1]));
                         } catch (Exception ignored) {
@@ -88,18 +85,19 @@ public class Config {
                     }
 
                     Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemNameCount[0]));
-                    if(item == null)
+                    if (item == null)
                         continue;
 
-                    if(itemSet == null)
+                    if (itemSet == null)
                         itemSet = new HashMap<>();
 
                     try {
                         itemSet.put(item, Math.max(0, maxCount));
-                    } catch (Exception ignored) {}
+                    } catch (Exception ignored) {
+                    }
                 }
 
-                if(itemSet == null)
+                if (itemSet == null)
                     return;
 
                 itemRandomCollection.add(Math.max(Double.MIN_VALUE, Math.min(1.0 - Double.MIN_VALUE, weight)), itemSet);

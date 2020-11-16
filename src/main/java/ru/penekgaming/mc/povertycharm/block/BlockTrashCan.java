@@ -17,7 +17,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.Config;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
@@ -46,10 +48,10 @@ public class BlockTrashCan extends PovertyBlock {
         if (state.getValue(FILL) < MAX_FILL)
             return false;
 
-        if(!worldIn.isRemote) {
+        if (!worldIn.isRemote) {
             worldIn.setBlockState(pos, state.withProperty(FILL, 0));
 
-            if(Config.trashCan.expDropChance > 0 && Config.trashCan.maxExpDrop > 0 && RANDOM.nextDouble() <= Config.trashCan.expDropChance)
+            if (Config.trashCan.expDropChance > 0 && Config.trashCan.maxExpDrop > 0 && RANDOM.nextDouble() <= Config.trashCan.expDropChance)
                 dropXpOnBlockBreak(worldIn, pos, Config.trashCan.minExpDrop + RANDOM.nextInt(Config.trashCan.maxExpDrop - Config.trashCan.minExpDrop));
 
             tryDropItem(worldIn, pos);
@@ -59,7 +61,7 @@ public class BlockTrashCan extends PovertyBlock {
     }
 
     private void tryDropItem(World world, BlockPos pos) {
-        if(Config.trashCan.dropChance <= 0 && RANDOM.nextDouble() > Config.trashCan.dropChance)
+        if (Config.trashCan.dropChance <= 0 && RANDOM.nextDouble() > Config.trashCan.dropChance)
             return;
 
         AtomicBoolean dropped = new AtomicBoolean(false);
@@ -68,14 +70,14 @@ public class BlockTrashCan extends PovertyBlock {
         items.forEach(
                 (item, maxCount) -> {
                     int count = RANDOM.nextInt(Math.max(1, maxCount + 1));
-                    if(count > 0) {
+                    if (count > 0) {
                         dropped.set(true);
                         spawnItem(world, pos, item, count);
                     }
                 }
         );
 
-        if(!dropped.get())
+        if (!dropped.get())
             spawnItem(world, pos, (Item) items.keySet().toArray()[RANDOM.nextInt(items.size())], 1);
     }
 
