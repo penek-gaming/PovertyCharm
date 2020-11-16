@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
@@ -80,6 +81,22 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
         ItemStack heldStack = playerIn.getHeldItem(hand);
 
         return recolorBlock(worldIn, pos, facing, EnumDyeColor.byDyeDamage(heldStack.getItem().getDamage(heldStack)));
+    }
+
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+    {
+        if (entityIn.isSneaking())
+            super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+        else
+            entityIn.fall(fallDistance, 0.0F);
+    }
+
+    public void onLanded(World worldIn, Entity entityIn)
+    {
+        if (entityIn.isSneaking())
+            super.onLanded(worldIn, entityIn);
+        else if (entityIn.motionY < 0.0)
+            entityIn.motionY = -entityIn.motionY;
     }
 
     @Override
