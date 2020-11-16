@@ -9,10 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
@@ -22,12 +19,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.penekgaming.mc.povertycharm.block.BlockHandholds;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 @SuppressWarnings("NullableProblems")
-public class ItemHandholds extends ItemBlock {
-    public ItemHandholds(PovertyBlock block) {
+public class ItemPoverty extends ItemBlock {
+    public ItemPoverty(PovertyBlock block) {
+        this(block, Objects.requireNonNull(block.getRegistryName()));
+    }
+
+    public ItemPoverty(PovertyBlock block, @Nonnull ResourceLocation resourceLocation) {
         super(block);
+        setRegistryName(resourceLocation);
     }
 
     @Override

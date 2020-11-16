@@ -1,15 +1,12 @@
 package ru.penekgaming.mc.povertycharm.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -18,55 +15,36 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.PovertyCharm;
+import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
+import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
-public class BlockFloorGrid extends PovertyBlockMeta<EnumFacing> {
+public class BlockDiagonalGrid extends PovertyBlockMeta<EnumFacing> {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final PropertyBool LEFT = PropertyBool.create("left");
-    public static final PropertyBool RIGHT = PropertyBool.create("right");
 
-    private static final AxisAlignedBB BB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1/16.0, 1.0);
+    private static final AxisAlignedBBContainer BBC = AxisAlignedBBContainer.builder()
+            .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.5/16.0))
+            .set(EnumFacing.SOUTH, new AxisAlignedBB(0.0, 0.0, 1 - 0.5/16.0, 1.0, 1.0, 1.0))
+            .set(EnumFacing.EAST, new AxisAlignedBB(1 - 0.5/16.0, 0.0, 0.0, 1.0, 1.0, 1.0))
+            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 0.5/16.0, 1.0, 1.0))
+            .build();
 
-    protected BlockFloorGrid() {
-        super("floor_grid", Material.IRON, FACING, EnumFacing.NORTH);
+    protected BlockDiagonalGrid() {
+        super("diagonal_grid", Material.IRON, FACING, EnumFacing.NORTH);
 
-        setDefaultState(getDefaultState().withProperty(LEFT, false).withProperty(RIGHT, false));
+        item = new ItemPoverty(this);
     }
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        EnumFacing actualFacing = placer.getHorizontalFacing();
-
-        //actualFacing = actualFacing.getHorizontalIndex() < 2 ? actualFacing.getOpposite() : actualFacing;
-
-        return getDefaultState().withProperty(FACING, actualFacing);
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        EnumFacing facing = state.getValue(FACING);
-        EnumFacing fLeft = facing.getOpposite().rotateY();
-        EnumFacing fRight = facing.rotateY();
-
-        Map<EnumFacing, Block> neighbors = getFacingBlocksHorizontal(worldIn, pos).entrySet().stream()
-                .filter(e -> e.getValue() instanceof BlockFloorGrid)
-                .filter(e -> e.getKey().equals(fLeft) || e.getKey().equals(fRight))
-                .filter(e -> worldIn.getBlockState(pos.offset(e.getKey())).getValue(FACING) == facing
-                        || worldIn.getBlockState(pos.offset(e.getKey())).getValue(FACING) == facing.getOpposite())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        return state.withProperty(LEFT, neighbors.containsKey(fLeft)).withProperty(RIGHT, neighbors.containsKey(fRight));
+        return getDefaultState().withProperty(FACING, placer.getAdjustedHorizontalFacing());
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BB;
+        return BBC.get(state.getValue(FACING));
     }
 
     @Override
@@ -91,7 +69,7 @@ public class BlockFloorGrid extends PovertyBlockMeta<EnumFacing> {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, LEFT, RIGHT);
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override
