@@ -28,7 +28,7 @@ public class BlockFloorGrid extends PovertyBlockMeta<EnumFacing> {
     public static final PropertyBool LEFT = PropertyBool.create("left");
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
-    private static final AxisAlignedBB BB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1 / 16.0, 1.0);
+    private static final AxisAlignedBB BB = new AxisAlignedBB(0.0, 1 - 2 / 16.0, 0.0, 1.0, 1.0, 1.0);
 
     protected BlockFloorGrid() {
         super("floor_grid", Material.IRON, FACING, EnumFacing.NORTH);

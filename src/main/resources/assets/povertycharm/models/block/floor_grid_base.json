@@ -10,14 +10,23 @@
       "name": "Cube1",
       "from": [
         0,
-        0,
+        14,
         0
       ],
       "to": [
         16,
-        1,
+        15,
         1
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          22,
+          8
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -79,14 +88,23 @@
       "name": "Cube1",
       "from": [
         0,
-        0,
+        14,
         3
       ],
       "to": [
         16,
-        1,
+        15,
         4
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          22,
+          8
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -148,14 +166,23 @@
       "name": "Cube1",
       "from": [
         0,
-        0,
+        14,
         6
       ],
       "to": [
         16,
-        1,
+        15,
         7
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          22,
+          8
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -217,14 +244,23 @@
       "name": "Cube1",
       "from": [
         0,
-        0,
+        14,
         9
       ],
       "to": [
         16,
-        1,
+        15,
         10
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          22,
+          8
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -286,14 +322,23 @@
       "name": "Cube1",
       "from": [
         0,
-        0,
+        14,
         12
       ],
       "to": [
         16,
-        1,
+        15,
         13
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          22,
+          8
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -355,14 +400,23 @@
       "name": "Cube1",
       "from": [
         0,
-        0,
+        14,
         15
       ],
       "to": [
         16,
-        1,
+        15,
         16
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          22,
+          8
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -419,6 +473,24 @@
           "texture": "#texture"
         }
       }
+    }
+  ],
+  "groups": [
+    {
+      "name": "model",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "children": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     }
   ]
 }
