@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
@@ -25,12 +26,15 @@ import java.util.Objects;
 
 @SuppressWarnings("NullableProblems")
 public class ItemPoverty extends ItemBlock {
+    private final PovertyBlock block;
+
     public ItemPoverty(PovertyBlock block) {
         this(block, Objects.requireNonNull(block.getRegistryName()));
     }
 
     public ItemPoverty(PovertyBlock block, @Nonnull ResourceLocation resourceLocation) {
         super(block);
+        this.block = block;
         setRegistryName(resourceLocation);
     }
 
@@ -38,14 +42,16 @@ public class ItemPoverty extends ItemBlock {
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         IBlockState state = worldIn.getBlockState(pos);
         Block block = state.getBlock();
+        PovertyBlock povertyBlock = block instanceof PovertyBlock ? (PovertyBlock) block : null;
 
-        if (!block.isReplaceable(worldIn, pos) || block instanceof BlockHandholds && state.getValue(BlockHandholds.TURN)) {
+        if (!block.isReplaceable(worldIn, pos)
+                || (povertyBlock != null && povertyBlock.isReplaceable(worldIn, pos, this.block))) {
             pos = pos.offset(facing);
         }
 
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && mayPlace(worldIn, this.block, pos, facing, player)) {
+        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && mayPlace(worldIn, pos, facing, player)) {
             int i = this.getMetadata(itemstack.getMetadata());
             IBlockState placementState = this.block.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand);
 
@@ -70,24 +76,29 @@ public class ItemPoverty extends ItemBlock {
 
         if (block == Blocks.SNOW_LAYER && block.isReplaceable(worldIn, pos)) {
             side = EnumFacing.UP;
-        } else if (!block.isReplaceable(worldIn, pos) || block instanceof BlockHandholds && state.getValue(BlockHandholds.TURN)) {
+        } else if (!block.isReplaceable(worldIn, pos) || block instanceof PovertyBlock && ((PovertyBlock) block).isReplaceable(worldIn, pos, this.block)) {
             pos = pos.offset(side);
         }
 
-        return mayPlace(worldIn, this.block, pos, side, player);
+        return mayPlace(worldIn, pos, side, player);
     }
 
-    private static boolean mayPlace(World world, Block blockIn, BlockPos pos, EnumFacing sidePlacedOn, @Nullable Entity placer) {
+    private boolean mayPlace(World world, BlockPos pos, EnumFacing sidePlacedOn, @Nullable Entity placer) {
         IBlockState state = world.getBlockState(pos);
 
         if (!((placer instanceof EntityPlayer)
-                || !ForgeEventFactory.onBlockPlace(placer, new BlockSnapshot(world, pos, blockIn.getDefaultState()), sidePlacedOn).isCanceled()))
+                || !ForgeEventFactory.onBlockPlace(placer, new BlockSnapshot(world, pos, this.block.getDefaultState()), sidePlacedOn).isCanceled()))
             return false;
 
-        if (state.getMaterial() == Material.CIRCUITS && blockIn == Blocks.ANVIL)
+        AxisAlignedBB collisionBB = block.isIgnorePlayerCollision() ? null : this.block.getDefaultState().getCollisionBoundingBox(world, pos);
+
+        if(collisionBB != null && !world.checkNoEntityCollision(collisionBB.offset(pos)))
+            return false;
+
+        if (state.getMaterial() == Material.CIRCUITS && this.block == Blocks.ANVIL)
             return true;
 
-        return state.getBlock().isReplaceable(world, pos) && blockIn.canPlaceBlockOnSide(world, pos, sidePlacedOn)
-                || state.getBlock() instanceof BlockHandholds && !state.getValue(BlockHandholds.TURN);
+        return state.getBlock().isReplaceable(world, pos) && this.block.canPlaceBlockOnSide(world, pos, sidePlacedOn)
+                || (state.getBlock() instanceof PovertyBlock && ((PovertyBlock) state.getBlock()).isReplaceable(world, pos, this.block));
     }
 }

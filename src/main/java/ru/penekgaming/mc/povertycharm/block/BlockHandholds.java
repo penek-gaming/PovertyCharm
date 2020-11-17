@@ -1,5 +1,6 @@
 package ru.penekgaming.mc.povertycharm.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -131,13 +132,14 @@ public class BlockHandholds extends PovertyBlock {
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, TURN);
+    public boolean isReplaceable(World world, BlockPos pos, Block block) {
+        IBlockState state = world.getBlockState(pos);
+        return block instanceof BlockHandholds && !state.getValue(TURN);
     }
 
     @Override
-    public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return 0;
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, FACING, TURN);
     }
 
     @Override
