@@ -68,6 +68,9 @@ public class BlockTrashCan extends PovertyBlock {
         AtomicBoolean dropped = new AtomicBoolean(false);
         HashMap<Item, Integer> items = Config.TrashCan.getItemRandomCollection().next();
 
+        if(items.size() < 1)
+            return;
+
         items.forEach(
                 (item, maxCount) -> {
                     int count = RANDOM.nextInt(Math.max(1, maxCount + 1));
