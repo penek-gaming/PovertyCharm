@@ -7,6 +7,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
@@ -28,11 +30,12 @@ public class PovertyCharm {
             return new ItemStack(PovertyBlocks.PIPE_VALVE);
         }
     };
+
     @SidedProxy(
             clientSide = "ru.penekgaming.mc.povertycharm.proxy.ClientProxy",
             serverSide = "ru.penekgaming.mc.povertycharm.proxy.ServerProxy"
     )
-    public static CommonProxy PROXY;
+    public static CommonProxy proxy;
 
     @Mod.Instance(MOD_ID)
     public static PovertyCharm INSTANCE;
@@ -43,7 +46,7 @@ public class PovertyCharm {
      */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        PROXY.preInit(event);
+        proxy.preInit(event);
     }
 
     /**
@@ -51,7 +54,7 @@ public class PovertyCharm {
      */
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        PROXY.init(event);
+        proxy.init(event);
     }
 
     /**
@@ -59,6 +62,6 @@ public class PovertyCharm {
      */
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        PROXY.postInit(event);
+        proxy.postInit(event);
     }
 }

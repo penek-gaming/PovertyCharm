@@ -39,6 +39,7 @@ public class PovertyRegistry {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public static void registerColors(ColorHandlerEvent.Block event) {
 
     }
