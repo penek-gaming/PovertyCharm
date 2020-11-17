@@ -11,16 +11,16 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class BlockPipe extends PovertyBlock {
@@ -41,19 +41,48 @@ public class BlockPipe extends PovertyBlock {
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
-        EnumFacing facing = EnumFacing.byIndex(meta);
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        super.randomDisplayTick(stateIn, worldIn, pos, rand);
+        if(stateIn.getValue(PART) != Part.VALVE || rand.nextFloat() > 0.5f)
+            return;
 
-        if (facing.getAxis() == EnumFacing.Axis.Y) {
-            facing = EnumFacing.NORTH;
+        EnumFacing facing = stateIn.getActualState(worldIn, pos).getValue(FACING).getOpposite();
+
+        BlockPos offset = pos.offset(facing);
+        double x = offset.getX();
+        double y = offset.getY() + 0.5;
+        double z = offset.getZ();
+
+        if(facing == EnumFacing.WEST) {
+            x += 0.99;
+            z += 0.5;
+        } else if(facing == EnumFacing.NORTH) {
+            x += 0.5;
+            z += 0.99;
+        } else if(facing == EnumFacing.EAST) {
+            z += 0.5;
+        } else if(facing == EnumFacing.SOUTH) {
+            x += 0.5;
         }
 
-        return getDefaultState().withProperty(FACING, facing);
+        worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER,
+                x + (double)rand.nextFloat() * 0.05,
+                y + (double)rand.nextFloat() * 0.05,
+                z + (double)rand.nextFloat() * 0.05,
+                0.0D,
+                0.0D,
+                0.0D);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex();
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     @Override
