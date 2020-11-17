@@ -44,16 +44,13 @@ public class Config {
         @Name("Item Drop Chance")
         @Comment("If set to 0, items will never drop")
         @RangeDouble(min = 0.0, max = 1.0)
-        public static double dropChance = 0.85;
+        public static double itemDropChance = 0.85;
 
         @Name("Item Sets Chances")
         @Comment({"Set chance of dropping item set",
                 "First value is an ID of set",
                 "Second value is weight (not chance) from 0.0(0)1 to 0.9(9)"})
-        public static HashMap<String, Double> itemSetsDropChances = new HashMap<String, Double>() {{
-            put("dirt", 0.75);
-            put("rich", 0.05);
-        }};
+        public static HashMap<String, Double> itemSetsDropChances = new HashMap<>();
 
         @Name("Item Sets")
         @Comment({"Item sets that may be dropped",
@@ -61,10 +58,7 @@ public class Config {
                 "Second is the list of items that will be dropped",
                 "Format is: \"item_registry_name_1, max_drop_count_1; item_registry_name_2, max_drop_count_2;\"",
                 "If drop count not provided, 1 will be dropped"})
-        public static HashMap<String, String> itemSets = new HashMap<String, String>() {{
-            put("dirt", "minecraft:dirt, 3; minecraft:sand, 3");
-            put("rich", "minecraft:diamond");
-        }};
+        public static HashMap<String, String> itemSets = new HashMap<>();
 
         public static RandomCollection<HashMap<Item, Integer>> getItemRandomCollection() {
             RandomCollection<HashMap<Item, Integer>> itemRandomCollection = new RandomCollection<>();

@@ -22,4 +22,6 @@ public class PovertyBlocks {
     public static final BlockHandholds HANDHOLDS = new BlockHandholds();
     public static final BlockFloorGrid FLOOR_GRID = new BlockFloorGrid();
     public static final BlockDiagonalGrid DIAGONAL_GRID = new BlockDiagonalGrid();
+    public static final BlockRadiator RADIATOR = new BlockRadiator("radiator");
+    public static final BlockRadiatorPipe RADIATOR_PIPE = new BlockRadiatorPipe();
 }

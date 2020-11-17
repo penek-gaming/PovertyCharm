@@ -21,7 +21,6 @@ import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityConcreteDamaged;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
@@ -36,7 +35,7 @@ public class BlockConcreteDamaged extends TileEntityBlock<TileEntityConcreteDama
         super("concrete_damaged", Material.ROCK, TileEntityConcreteDamaged.class);
 
         setDefaultState(getDefaultState().withProperty(PART, Part.DEFAULT).withProperty(FACING, EnumFacing.NORTH));
-        item = new ItemBlockVariative(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
+        item = new ItemBlockVariative(this);
     }
 
     @Override

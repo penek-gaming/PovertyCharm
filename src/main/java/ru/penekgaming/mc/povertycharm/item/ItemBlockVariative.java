@@ -1,12 +1,11 @@
 package ru.penekgaming.mc.povertycharm.item;
 
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 
 @SuppressWarnings({"NullableProblems"})
-public class ItemBlockVariative extends ItemBlock {
+public class ItemBlockVariative extends ItemPoverty {
     public ItemBlockVariative(PovertyBlock block) {
         super(block);
         setHasSubtypes(true);

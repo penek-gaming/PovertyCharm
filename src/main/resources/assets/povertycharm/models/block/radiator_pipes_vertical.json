@@ -1,0 +1,257 @@
+{
+  "credit": "Made with Blockbench",
+  "textures": {
+    "0": "povertycharm:blocks/radiator",
+    "particle": "povertycharm:blocks/radiator"
+  },
+  "elements": [
+    {
+      "from": [
+        3.2,
+        0,
+        1.3
+      ],
+      "to": [
+        4.4,
+        16,
+        2.4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            1.9
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            14,
+            9,
+            15.9
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            3,
+            3
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            4,
+            3
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "from": [
+        11.6,
+        0,
+        1.3
+      ],
+      "to": [
+        12.8,
+        16,
+        2.4
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            1.9
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            14,
+            9,
+            15.9
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            3,
+            3
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            4,
+            3
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        83.5,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3.5,
+        1.5
+      ],
+      "scale": [
+        0.51,
+        0.511,
+        0.511
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        85.75,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3.5,
+        0.5
+      ],
+      "scale": [
+        0.51,
+        0.51,
+        0.51
+      ]
+    },
+    "firstperson_righthand": {
+      "translation": [
+        -1.75,
+        5.25,
+        2.25
+      ],
+      "scale": [
+        0.51,
+        0.51,
+        0.51
+      ]
+    },
+    "firstperson_lefthand": {
+      "translation": [
+        -1.25,
+        5.25,
+        2.25
+      ],
+      "scale": [
+        0.51,
+        0.51,
+        0.51
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        -0.25,
+        -3.5
+      ],
+      "scale": [
+        0.51,
+        0.51,
+        0.51
+      ]
+    },
+    "head": {
+      "translation": [
+        0,
+        0,
+        2
+      ]
+    },
+    "fixed": {
+      "translation": [
+        0,
+        0,
+        -7.25
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "group",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "children": [
+        0,
+        1
+      ]
+    }
+  ]
+}

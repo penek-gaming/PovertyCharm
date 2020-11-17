@@ -2,6 +2,7 @@ package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -61,7 +62,7 @@ public class BlockTrashCan extends PovertyBlock {
     }
 
     private void tryDropItem(World world, BlockPos pos) {
-        if (Config.TrashCan.dropChance <= 0 || RANDOM.nextDouble() > Config.TrashCan.dropChance)
+        if (Config.TrashCan.itemDropChance <= 0 || RANDOM.nextDouble() > Config.TrashCan.itemDropChance)
             return;
 
         AtomicBoolean dropped = new AtomicBoolean(false);
@@ -128,6 +129,11 @@ public class BlockTrashCan extends PovertyBlock {
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
     }
 }
 

@@ -17,7 +17,6 @@ import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ru.penekgaming.mc.povertycharm.block.BlockHandholds;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
 
 import javax.annotation.Nonnull;
@@ -26,7 +25,7 @@ import java.util.Objects;
 
 @SuppressWarnings("NullableProblems")
 public class ItemPoverty extends ItemBlock {
-    private final PovertyBlock block;
+    protected final PovertyBlock block;
 
     public ItemPoverty(PovertyBlock block) {
         this(block, Objects.requireNonNull(block.getRegistryName()));
@@ -90,9 +89,9 @@ public class ItemPoverty extends ItemBlock {
                 || !ForgeEventFactory.onBlockPlace(placer, new BlockSnapshot(world, pos, this.block.getDefaultState()), sidePlacedOn).isCanceled()))
             return false;
 
-        AxisAlignedBB collisionBB = block.isIgnorePlayerCollision() ? null : this.block.getDefaultState().getCollisionBoundingBox(world, pos);
+        AxisAlignedBB collisionBB = block.isNoPlaceCollision() ? null : this.block.getDefaultState().getCollisionBoundingBox(world, pos);
 
-        if(collisionBB != null && !world.checkNoEntityCollision(collisionBB.offset(pos)))
+        if (collisionBB != null && !world.checkNoEntityCollision(collisionBB.offset(pos)))
             return false;
 
         if (state.getMaterial() == Material.CIRCUITS && this.block == Blocks.ANVIL)

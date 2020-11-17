@@ -24,7 +24,6 @@ import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
 public class BlockHandholds extends PovertyBlock {

@@ -46,3 +46,7 @@ tile.povertycharm.concrete_damaged_white_cracked.name=Damaged White Concrete Cra
 tile.povertycharm.concrete_damaged_green.name=Damaged Green Concrete
 tile.povertycharm.concrete_damaged_green_cracked.name=Damaged Green Concrete Cracked
 tile.povertycharm.trash_can.name=Trashcan
+tile.povertycharm.floor_grid.name=Floor Grill
+tile.povertycharm.diagonal_grid.name=Window Grill
+tile.povertycharm.radiator.name=Radiator
+tile.povertycharm.radiator_pipe.name=Radiator Pipes

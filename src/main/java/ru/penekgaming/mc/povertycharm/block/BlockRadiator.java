@@ -19,31 +19,31 @@ import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
 import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
-@SuppressWarnings({"NullableProblems", "deprecation"})
-public class BlockDiagonalGrid extends PovertyBlockMeta<EnumFacing> {
+@SuppressWarnings({"deprecation", "NullableProblems"})
+public class BlockRadiator extends PovertyBlockMeta<EnumFacing> {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    private static final AxisAlignedBBContainer BBC = AxisAlignedBBContainer.builder()
-            .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.5 / 16.0))
-            .set(EnumFacing.SOUTH, new AxisAlignedBB(0.0, 0.0, 1 - 0.5 / 16.0, 1.0, 1.0, 1.0))
-            .set(EnumFacing.EAST, new AxisAlignedBB(1 - 0.5 / 16.0, 0.0, 0.0, 1.0, 1.0, 1.0))
-            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 0.5 / 16.0, 1.0, 1.0))
+    protected static final AxisAlignedBBContainer BBS_MAIN = AxisAlignedBBContainer.builder()
+            .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 1.5 / 16, 0.0, 1.0, 1 - 2.75 / 16, 3.5 / 16))
+            .set(EnumFacing.EAST, new AxisAlignedBB(1 - 3.5 / 16, 1.5 / 16, 0.0, 1.0, 1 - 2.75 / 16, 1.0))
+            .set(EnumFacing.SOUTH, new AxisAlignedBB(0.0, 1.5 / 16, 1 - 3.5 / 16, 1.0, 1 - 2.75 / 16, 1.0))
+            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 1.5 / 16, 0.0, 3.5 / 16, 1 - 2.75 / 16, 1.0))
             .build();
 
-    protected BlockDiagonalGrid() {
-        super("diagonal_grid", Material.IRON, FACING, EnumFacing.NORTH);
-
+    protected BlockRadiator(String name) {
+        super(name, Material.IRON, FACING, EnumFacing.NORTH);
+        setNoPlaceCollision(true);
         item = new ItemPoverty(this);
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        return getDefaultState().withProperty(FACING, placer.getAdjustedHorizontalFacing());
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BBS_MAIN.get(state.getValue(FACING));
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return BBC.get(state.getValue(FACING));
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        return getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
     }
 
     @Override
@@ -77,12 +77,12 @@ public class BlockDiagonalGrid extends PovertyBlockMeta<EnumFacing> {
     }
 
     @Override
-    public boolean isFullBlock(IBlockState state) {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube(IBlockState state) {
+    public boolean isFullBlock(IBlockState state) {
         return false;
     }
 

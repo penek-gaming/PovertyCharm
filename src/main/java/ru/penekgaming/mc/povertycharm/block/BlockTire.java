@@ -28,8 +28,6 @@ import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityTire;
 import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
-import java.util.Objects;
-
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlockVariative {
     public static final PropertyEnum<EnumDyeColor> COLOR = PropertyEnum.create("color", EnumDyeColor.class);
@@ -44,7 +42,7 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
         super(name, material, TileEntityTire.class);
 
         setDefaultState(blockState.getBaseState().withProperty(COLOR, EnumDyeColor.WHITE).withProperty(FACING, EnumFacing.NORTH));
-        item = new ItemBlockVariative(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
+        item = new ItemBlockVariative(this);
     }
 
     @Override
@@ -83,20 +81,18 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
         return recolorBlock(worldIn, pos, facing, EnumDyeColor.byDyeDamage(heldStack.getItem().getDamage(heldStack)));
     }
 
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
-    {
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
         if (entityIn.isSneaking())
             super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
         else
             entityIn.fall(fallDistance, 0.0F);
     }
 
-    public void onLanded(World worldIn, Entity entityIn)
-    {
+    public void onLanded(World worldIn, Entity entityIn) {
         if (entityIn.isSneaking())
             super.onLanded(worldIn, entityIn);
         else if (entityIn.motionY < 0.0)
-            entityIn.motionY = -entityIn.motionY;
+            entityIn.motionY = -entityIn.motionY * 0.95;
     }
 
     @Override

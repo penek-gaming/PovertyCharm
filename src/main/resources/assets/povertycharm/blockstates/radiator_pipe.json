@@ -1,0 +1,46 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "part": {
+      "straight": {
+        "model": "povertycharm:radiator_pipes_straight"
+      },
+      "cross": {
+        "model": "povertycharm:radiator_pipes_cross"
+      },
+      "turn": {
+        "model": "povertycharm:radiator_pipes_turn"
+      },
+      "cross_conn": {
+        "model": "povertycharm:radiator_pipes_turn_conn"
+      },
+      "turn_up": {
+        "model": "povertycharm:radiator_pipes_turn_up"
+      },
+      "turn_conn": {
+        "model": "povertycharm:radiator_pipes_turn_conn"
+      },
+      "vertical": {
+        "model": "povertycharm:radiator_pipes_vertical"
+      }
+    },
+    "facing": {
+      "north": {},
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "rotate": {
+      "true": {
+        "x": 180
+      },
+      "false": {}
+    }
+  }
+}
