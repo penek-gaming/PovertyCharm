@@ -4,10 +4,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -18,6 +20,7 @@ import java.util.Objects;
 
 public class PovertyBlock extends Block {
     public Item item;
+    private boolean ignorePlayerCollision = false;
 
     protected PovertyBlock(String name, Material material) {
         super(material);
@@ -88,5 +91,18 @@ public class PovertyBlock extends Block {
     public static boolean oppositeBockIsEqual(EnumFacing facing, HashMap<EnumFacing, Block> facings, Class<?> clazz) {
         PovertyCharm.LOGGER.warn("[{}:{}] [{}]", facing, facings.get(facing.getOpposite()).getClass(), clazz);
         return facings.size() >= 2 && facings.containsKey(facing.getOpposite()) && facings.get(facing.getOpposite()).getClass().equals(clazz);
+    }
+
+    public boolean isReplaceable(World world, BlockPos pos, Block block)
+    {
+        return isReplaceable(world, pos);
+    }
+
+    public boolean isIgnorePlayerCollision() {
+        return ignorePlayerCollision;
+    }
+
+    public void setIgnorePlayerCollision(boolean ignorePlayerCollision) {
+        this.ignorePlayerCollision = ignorePlayerCollision;
     }
 }
