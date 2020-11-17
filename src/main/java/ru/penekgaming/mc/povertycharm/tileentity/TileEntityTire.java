@@ -1,6 +1,8 @@
 package ru.penekgaming.mc.povertycharm.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import ru.penekgaming.mc.povertycharm.block.BlockTire;
@@ -33,6 +35,20 @@ public class TileEntityTire extends TileEntity {
         this.readFromNBT(tag);
     }
 
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        NBTTagCompound nbtTagCompound = new NBTTagCompound();
+        writeToNBT(nbtTagCompound);
+        return new SPacketUpdateTileEntity(pos, 0, nbtTagCompound);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        readFromNBT(pkt.getNbtCompound());
+    }
+
     public void setFacing(EnumFacing facing) {
         this.facing = facing;
         markDirty();
@@ -41,21 +57,4 @@ public class TileEntityTire extends TileEntity {
     public EnumFacing getFacing() {
         return facing;
     }
-
-    // This code may be used in future so not deleted
-//    @Override
-//    public SPacketUpdateTileEntity getUpdatePacket()
-//    {
-//        PovertyCharm.LOGGER.warn("UpdateEntitiiii NBT {}", facingIndex);
-//        NBTTagCompound nbtTagCompound = new NBTTagCompound();
-//        writeToNBT(nbtTagCompound);
-//        return new SPacketUpdateTileEntity(pos, 0, nbtTagCompound);
-//    }
-//
-//    @Override
-//    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-//    {
-//        readFromNBT(pkt.getNbtCompound());
-//        PovertyCharm.LOGGER.warn("GOT DATA NBT {}", facingIndex);
-//    }
 }

@@ -1,6 +1,8 @@
 package ru.penekgaming.mc.povertycharm.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import ru.penekgaming.mc.povertycharm.block.BlockConcreteDamaged;
@@ -34,6 +36,20 @@ public class TileEntityConcreteDamaged extends TileEntity {
     @Override
     public void handleUpdateTag(NBTTagCompound tag) {
         this.readFromNBT(tag);
+    }
+
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        NBTTagCompound nbtTagCompound = new NBTTagCompound();
+        writeToNBT(nbtTagCompound);
+        return new SPacketUpdateTileEntity(pos, 0, nbtTagCompound);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        readFromNBT(pkt.getNbtCompound());
     }
 
     public TileEntityConcreteDamaged setFacing(EnumFacing facing) {
