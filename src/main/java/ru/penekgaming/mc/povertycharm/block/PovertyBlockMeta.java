@@ -5,11 +5,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
-import java.util.Objects;
+import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public abstract class PovertyBlockMeta<T extends Comparable<T>> extends PovertyBlock {
@@ -17,7 +15,7 @@ public abstract class PovertyBlockMeta<T extends Comparable<T>> extends PovertyB
         super(name, material);
 
         setDefaultState(getBlockState().getBaseState().withProperty(property, defaultValue));
-        item = new ItemBlock(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
+        item = new ItemPoverty(this);
     }
 
     @Override

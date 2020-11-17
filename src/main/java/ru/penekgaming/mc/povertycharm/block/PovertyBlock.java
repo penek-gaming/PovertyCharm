@@ -21,16 +21,11 @@ public class PovertyBlock extends Block {
     private boolean noPlaceCollision = false;
 
     protected PovertyBlock(String name, Material material) {
-        super(material);
-        SetupBlock(name, true);
+        this(name, material, true);
     }
 
     protected PovertyBlock(String name, Material material, boolean autoRegister) {
         super(material);
-        SetupBlock(name, autoRegister);
-    }
-
-    private void SetupBlock(String name, boolean autoRegister) {
         setRegistryName(PovertyCharm.MOD_ID, name);
         setTranslationKey(String.format("%s.%s", PovertyCharm.MOD_ID, name));
         setCreativeTab(PovertyCharm.CREATIVE_TAB);
