@@ -55,11 +55,15 @@ public class BlockConcreteBroken extends PovertyBlock {
         BlockConcrete.Variant variant = BlockConcrete.Variant.GRAY;
         IBlockState facingState = neighborBlocks.get(facing);
 
-        if (facingState != null && facingState.getBlock() instanceof BlockConcrete)
+        if (facingState != null && (facingState.getBlock() instanceof BlockConcrete || facingState.getBlock() instanceof BlockConcreteDamaged))
             variant = neighborBlocks.get(facing).getValue(BlockConcrete.VARIANT);
         else {
             Optional<EnumFacing> optFacing
-                    = neighborBlocks.keySet().stream().filter(f -> neighborBlocks.get(f).getBlock() instanceof BlockConcrete).findFirst();
+                    = neighborBlocks.keySet().stream()
+                    .filter(f ->
+                            neighborBlocks.get(f).getBlock() instanceof BlockConcrete
+                                    || neighborBlocks.get(f).getBlock() instanceof BlockConcreteDamaged)
+                    .findFirst();
 
             if (optFacing.isPresent())
                 variant = neighborBlocks.get(optFacing.get()).getValue(VARIANT);
