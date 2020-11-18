@@ -1,0 +1,86 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "povertycharm:concrete_broken",
+    "uvlock": true
+  },
+  "variants": {
+    "variant": {
+      "default": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_default",
+          "particle": "povertycharm:blocks/tile_default"
+        }
+      },
+      "default_cracked": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_cracked",
+          "particle": "povertycharm:blocks/tile_cracked"
+        }
+      },
+      "white": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_white",
+          "particle": "povertycharm:blocks/tile_white"
+        }
+      },
+      "white_cracked": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_white_cracked",
+          "particle": "povertycharm:blocks/tile_white_cracked"
+        }
+      },
+      "green": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_green",
+          "particle": "povertycharm:blocks/tile_green"
+        }
+      },
+      "green_cracked": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_green_cracked",
+          "particle": "povertycharm:blocks/tile_green_cracked"
+        }
+      },
+      "white_line_red": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_white_line_red",
+          "particle": "povertycharm:blocks/tile_white_line_red"
+        }
+      },
+      "white_line_green": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_white_line_green",
+          "particle": "povertycharm:blocks/tile_white_line_green"
+        }
+      },
+      "white_line_blue": {
+        "textures": {
+          "texture": "povertycharm:blocks/tile_white_line_blue",
+          "particle": "povertycharm:blocks/tile_white_line_blue"
+        }
+      }
+    },
+    "facing": {
+      "up": {},
+      "down": {
+        "x": 180
+      },
+      "north": {
+        "x": 90
+      },
+      "east": {
+        "x": 90,
+        "y": 90
+      },
+      "south": {
+        "x": 90,
+        "y": 180
+      },
+      "west": {
+        "x": 90,
+        "y": 270
+      }
+    }
+  }
+}

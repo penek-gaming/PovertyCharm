@@ -13,6 +13,7 @@ public class PovertyBlocks {
     public static final BlockConcreteDamaged CONCRETE_DAMAGED = new BlockConcreteDamaged();
     public static final BlockBricks BRICKS = new BlockBricks();
     public static final BlockTile TILE = new BlockTile();
+    public static final BlockTileBroken TILE_BROKEN = new BlockTileBroken();
     public static final BlockSmallTile SMALL_TILE = new BlockSmallTile();
     public static final PovertyBlock DEV_BLOCK = new PovertyBlock("pg", Material.WOOD);
     public static final BlockPipe PIPE = new BlockPipe("pipe", BlockPipe.Part.STRAIGHT);

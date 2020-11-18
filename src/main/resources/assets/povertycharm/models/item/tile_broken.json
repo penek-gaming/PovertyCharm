@@ -1,0 +1,6 @@
+{
+  "parent": "povertycharm:block/concrete_broken",
+  "textures": {
+    "texture": "povertycharm:blocks/tile_default"
+  }
+}
