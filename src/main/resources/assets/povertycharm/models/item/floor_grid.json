@@ -1,6 +1,6 @@
 {
   "credit": "Made with Blockbench",
-  "parent": "block/cube_all",
+  "parent": "block/thin_block",
   "textures": {
     "particle": "povertycharm:blocks/rusty_reinforcements",
     "texture": "povertycharm:blocks/rusty_reinforcements"
@@ -589,6 +589,7 @@
       }
     }
   ],
+  "display": {},
   "groups": [
     {
       "name": "group",
