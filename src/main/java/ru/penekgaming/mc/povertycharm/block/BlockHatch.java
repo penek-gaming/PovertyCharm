@@ -1,7 +1,6 @@
 package ru.penekgaming.mc.povertycharm.block;
 
-import net.minecraft.block.BlockAir;
-import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -22,6 +21,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
 import ru.penekgaming.mc.povertycharm.init.PovertySounds;
+import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -33,10 +33,18 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool OPEN = PropertyBool.create("open");
     public static final PropertyBool UPPER = PropertyBool.create("upper");
+    public static final PropertyBool LADDER = PropertyBool.create("ladder");
     public static final PropertyEnum<Cover> COVER = PropertyEnum.create("cover", Cover.class);
 
     public static final AxisAlignedBB BB_LOWER = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 3 / 16.0, 1.0);
     public static final AxisAlignedBB BB_UPPER = new AxisAlignedBB(0.0, 1 - 3 / 16.0, 0.0, 1.0, 1.0, 1.0);
+
+    public static final AxisAlignedBBContainer BB_OPEN = AxisAlignedBBContainer.builder()
+            .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 3 / 16.0))
+            .set(EnumFacing.EAST, new AxisAlignedBB(1 - 3/16.0, 0.0, 0.0, 1.0, 1.0, 1.0))
+            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 1-3/16.0, 1.0, 1.0, 1.0))
+            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 3/16.0, 1.0, 1.0))
+            .build();
 
     public BlockHatch() {
         super("hatch", Material.IRON, FACING, EnumFacing.NORTH);
@@ -44,6 +52,7 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
                 .withProperty(OPEN, false)
                 .withProperty(UPPER, false)
                 .withProperty(COVER, Cover.LOWER_CLOSED)
+                .withProperty(LADDER, false)
         );
     }
 
@@ -55,7 +64,14 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
     @Nullable
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return blockState.getValue(OPEN) ? null : getBoundingBox(blockState, worldIn, pos);
+        return blockState.getValue(OPEN)
+                ? isLadderDown(blockState, worldIn, pos) ? BB_OPEN.get(blockState.getValue(FACING)) : null
+                : getBoundingBox(blockState, worldIn, pos);
+    }
+
+    @Override
+    public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
+        return isLadderDown(state, world, pos);
     }
 
     @Override
@@ -64,7 +80,9 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
 
         worldIn.playSound(null, pos,
                 state.getValue(OPEN) ? PovertySounds.HATCH_OPEN : PovertySounds.HATCH_CLOSE,
-                SoundCategory.BLOCKS, 1.0f, 1.0f);
+                SoundCategory.BLOCKS,
+                0.75f + RANDOM.nextFloat() * 0.25f,
+                1.0f + (RANDOM.nextFloat() - 0.5f) * 0.1f);
 
         return true;
     }
@@ -81,12 +99,24 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
             iblockstate = iblockstate.withProperty(UPPER, facing != EnumFacing.UP);
         }
 
+        iblockstate = ladderDown(iblockstate, world, pos);
+
         return iblockstate;
     }
+
+//    @Override
+//    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+//        if(worldIn.isRemote)
+//            return;
+//
+//        worldIn.setBlockState(pos, ladderDown(state, worldIn, pos));
+//    }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         boolean upper = state.getValue(UPPER);
+
+        state = ladderDown(state, worldIn, pos);
 
         if (!state.getValue(OPEN))
             return state.withProperty(COVER, upper ? Cover.UPPER_CLOSED : Cover.LOWER_CLOSED);
@@ -112,6 +142,17 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
             cover = upper ? Cover.UPPER : Cover.LOWER;
 
         return state.withProperty(COVER, cover);
+    }
+
+    private IBlockState ladderDown(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return state.withProperty(LADDER, isLadderDown(state, world, pos));
+    }
+
+    private boolean isLadderDown(IBlockState state, IBlockAccess world, BlockPos pos) {
+        IBlockState downBS = world.getBlockState(pos.offset(EnumFacing.DOWN));
+
+        return downBS.getBlock() instanceof BlockLadder
+                && downBS.getValue(FACING) == state.getValue(FACING).getOpposite();
     }
 
     @Override
@@ -153,7 +194,7 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, OPEN, UPPER, COVER);
+        return new BlockStateContainer(this, FACING, OPEN, UPPER, COVER, LADDER);
     }
 
     @Override

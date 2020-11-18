@@ -70,6 +70,12 @@
         "submodel": "povertycharm:hatch_upper_cover_open",
         "y": 270
       }
+    },
+    "ladder": {
+      "true": {
+        "submodel": "povertycharm:hatch_upper_ladder"
+      },
+      "false": {}
     }
   }
 }
