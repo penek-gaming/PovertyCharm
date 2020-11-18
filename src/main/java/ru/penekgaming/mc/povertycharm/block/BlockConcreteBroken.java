@@ -6,15 +6,14 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Optional;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
@@ -23,13 +22,20 @@ public class BlockConcreteBroken extends PovertyBlock {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
     protected BlockConcreteBroken() {
-        super("concrete_broken", Material.ROCK);
+        this("concrete_broken", Material.ROCK, true);
+    }
 
-        setDefaultState(getBlockState().getBaseState()
-                .withProperty(VARIANT, BlockConcrete.Variant.GRAY)
-                .withProperty(FACING, EnumFacing.NORTH)
-        );
-        item = new ItemBlock(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
+    protected BlockConcreteBroken(String name, Material material, boolean initDefState) {
+        super(name, material);
+
+        if (initDefState) {
+            setDefaultState(getBlockState().getBaseState()
+                    .withProperty(VARIANT, BlockConcrete.Variant.GRAY)
+                    .withProperty(FACING, EnumFacing.NORTH)
+            );
+
+            item = new ItemPoverty(this);
+        }
     }
 
     @Override

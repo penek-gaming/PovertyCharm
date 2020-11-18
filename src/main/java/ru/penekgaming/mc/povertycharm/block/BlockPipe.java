@@ -44,7 +44,7 @@ public class BlockPipe extends PovertyBlock {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         super.randomDisplayTick(stateIn, worldIn, pos, rand);
-        if(stateIn.getValue(PART) != Part.VALVE || rand.nextFloat() > 0.5f)
+        if (stateIn.getValue(PART) != Part.VALVE || rand.nextFloat() > 0.5f)
             return;
 
         EnumFacing facing = stateIn.getActualState(worldIn, pos).getValue(FACING).getOpposite();
@@ -72,9 +72,9 @@ public class BlockPipe extends PovertyBlock {
         }
 
         worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER,
-                x + (double)rand.nextFloat() * 0.05,
-                y + (double)rand.nextFloat() * 0.05,
-                z + (double)rand.nextFloat() * 0.05,
+                x + (double) rand.nextFloat() * 0.05,
+                y + (double) rand.nextFloat() * 0.05,
+                z + (double) rand.nextFloat() * 0.05,
                 0.0D,
                 0.0D,
                 0.0D);

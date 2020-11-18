@@ -6,8 +6,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import ru.penekgaming.mc.povertycharm.util.RandomCollection;
 
 import java.util.HashMap;
-import java.util.Random;
-import java.util.UUID;
 
 import static net.minecraftforge.common.config.Config.*;
 
