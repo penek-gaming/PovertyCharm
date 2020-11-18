@@ -43,7 +43,7 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
             .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 2.2 / 16.0))
             .set(EnumFacing.EAST, new AxisAlignedBB(1 - 2.2 / 16.0, 0.0, 0.0, 1.0, 1.0, 1.0))
             .set(EnumFacing.SOUTH, new AxisAlignedBB(0.0, 0.0, 1 - 2.2 / 16.0, 1.0, 1.0, 1.0))
-            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 1.0, 2.2 / 16.0, 1.0, 1.0))
+            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 2.2 / 16.0, 1.0, 1.0))
             .build();
 
     public BlockWindow(String name) {
