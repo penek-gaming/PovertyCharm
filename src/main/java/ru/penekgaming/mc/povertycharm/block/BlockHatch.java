@@ -1,6 +1,8 @@
 package ru.penekgaming.mc.povertycharm.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.BlockLadder;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -41,9 +43,9 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
 
     public static final AxisAlignedBBContainer BB_OPEN = AxisAlignedBBContainer.builder()
             .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 3 / 16.0))
-            .set(EnumFacing.EAST, new AxisAlignedBB(1 - 3/16.0, 0.0, 0.0, 1.0, 1.0, 1.0))
-            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 1-3/16.0, 1.0, 1.0, 1.0))
-            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 3/16.0, 1.0, 1.0))
+            .set(EnumFacing.EAST, new AxisAlignedBB(1 - 3 / 16.0, 0.0, 0.0, 1.0, 1.0, 1.0))
+            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 1 - 3 / 16.0, 1.0, 1.0, 1.0))
+            .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 3 / 16.0, 1.0, 1.0))
             .build();
 
     public BlockHatch() {
