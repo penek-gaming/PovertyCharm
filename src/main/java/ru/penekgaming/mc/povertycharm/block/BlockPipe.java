@@ -54,16 +54,21 @@ public class BlockPipe extends PovertyBlock {
         double y = offset.getY() + 0.5;
         double z = offset.getZ();
 
-        if(facing == EnumFacing.WEST) {
-            x += 0.99;
-            z += 0.5;
-        } else if(facing == EnumFacing.NORTH) {
-            x += 0.5;
-            z += 0.99;
-        } else if(facing == EnumFacing.EAST) {
-            z += 0.5;
-        } else if(facing == EnumFacing.SOUTH) {
-            x += 0.5;
+        switch (facing) {
+            case WEST:
+                x += 0.95;
+                z += 0.5;
+                break;
+            case NORTH:
+                x += 0.5;
+                z += 0.95;
+                break;
+            case EAST:
+                z += 0.5;
+                break;
+            case SOUTH:
+                x += 0.5;
+                break;
         }
 
         worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER,

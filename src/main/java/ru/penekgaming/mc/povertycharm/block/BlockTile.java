@@ -25,7 +25,11 @@ public class BlockTile extends PovertyBlockVariative<BlockTile.Variants> impleme
         GREEN(2, "green"),
         GREEN_CRACKED(3, "green_cracked"),
         WHITE(4, "white"),
-        WHITE_CRACKED(5, "white_cracked");
+        WHITE_CRACKED(5, "white_cracked"),
+        WHITE_LINE_RED(6, "white_line_red"),
+        WHITE_LINE_BLUE(7, "white_line_blue"),
+        WHITE_LINE_GREEN(8, "white_line_green")
+        ;
 
         private final int meta;
         private final String name;

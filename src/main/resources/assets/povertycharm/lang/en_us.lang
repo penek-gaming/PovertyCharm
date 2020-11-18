@@ -51,3 +51,6 @@ tile.povertycharm.diagonal_grid.name=Window Grill
 tile.povertycharm.radiator.name=Radiator
 tile.povertycharm.radiator_pipe.name=Radiator Pipes
 tile.povertycharm.pallet.name=Pallet
+tile.povertycharm.tile_white_line_red.name=White Tile with Red line
+tile.povertycharm.tile_white_line_green.name=White Tile with Green line
+tile.povertycharm.tile_white_line_blue.name=White Tile with Blue line

@@ -34,6 +34,21 @@
         "textures": {
           "all": "povertycharm:blocks/tile_green_cracked"
         }
+      },
+      "white_line_red": {
+        "textures": {
+          "all": "povertycharm:blocks/tile_white_line_red"
+        }
+      },
+      "white_line_green": {
+        "textures": {
+          "all": "povertycharm:blocks/tile_white_line_green"
+        }
+      },
+      "white_line_blue": {
+        "textures": {
+          "all": "povertycharm:blocks/tile_white_line_blue"
+        }
       }
     }
   }
