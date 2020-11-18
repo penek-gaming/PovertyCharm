@@ -145,7 +145,8 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
     private boolean isLadderDown(IBlockState state, IBlockAccess world, BlockPos pos) {
         IBlockState downBS = world.getBlockState(pos.offset(EnumFacing.DOWN));
 
-        return downBS.getBlock().isLadder(downBS, world, pos, null)
+        return state.getValue(UPPER)
+                && downBS.getBlock().isLadder(downBS, world, pos, null)
                 && downBS.getValue(FACING) == state.getValue(FACING).getOpposite();
     }
 
