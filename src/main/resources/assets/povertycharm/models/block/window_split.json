@@ -1,0 +1,24 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"0": "povertycharm:blocks/window_plastic",
+		"particle": "povertycharm:blocks/window_plastic"
+	},
+	"elements": [
+		{
+			"name": "window_split",
+			"from": [2.95, 7.5, 1],
+			"to": [13, 9, 1.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.15, 15, 9]},
+			"faces": {
+				"north": {"uv": [2, 0, 5, 16], "rotation": 90, "texture": "#0"},
+				"east": {"uv": [0, 0, 1.75, 2], "texture": "#missing"},
+				"south": {"uv": [3, 0, 6, 16], "rotation": 90, "texture": "#0"},
+				"west": {"uv": [0, 0, 1.75, 2], "texture": "#missing"},
+				"up": {"uv": [1, 0, 4, 16], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0, 0, 3, 16], "rotation": 90, "texture": "#0"}
+			}
+		}
+	]
+}
