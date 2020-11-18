@@ -30,7 +30,7 @@ public class BlockFloorGrid extends PovertyBlockMeta<EnumFacing> {
 
     private static final AxisAlignedBB BB = new AxisAlignedBB(0.0, 1 - 2 / 16.0, 0.0, 1.0, 1.0, 1.0);
 
-    protected BlockFloorGrid() {
+    public BlockFloorGrid() {
         super("floor_grid", Material.IRON, FACING, EnumFacing.NORTH);
 
         setDefaultState(getDefaultState().withProperty(LEFT, false).withProperty(RIGHT, false));

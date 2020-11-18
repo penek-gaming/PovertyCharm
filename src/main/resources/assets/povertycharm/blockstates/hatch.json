@@ -1,0 +1,75 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "povertycharm:hatch_lower_frame"
+  },
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "open": {
+      "true": {},
+      "false": {}
+    },
+    "upper": {
+      "true": {
+        "model": "povertycharm:hatch_upper_frame"
+      },
+      "false": {}
+    },
+    "cover": {
+      "lower_closed": {
+        "submodel": "povertycharm:hatch_lower_cover"
+      },
+      "lower": {
+        "submodel": "povertycharm:hatch_lower_cover_open_n"
+      },
+      "lower_north": {
+        "submodel": "povertycharm:hatch_lower_cover_open"
+      },
+      "lower_east": {
+        "submodel": "povertycharm:hatch_lower_cover_open",
+        "y": 90
+      },
+      "lower_south": {
+        "submodel": "povertycharm:hatch_lower_cover_open",
+        "y": 180
+      },
+      "lower_west": {
+        "submodel": "povertycharm:hatch_lower_cover_open",
+        "y": 270
+      },
+      "upper_closed": {
+        "submodel": "povertycharm:hatch_upper_cover"
+      },
+      "upper": {
+        "submodel": "povertycharm:hatch_upper_cover_open_n"
+      },
+      "upper_north": {
+        "submodel": "povertycharm:hatch_upper_cover_open"
+      },
+      "upper_east": {
+        "submodel": "povertycharm:hatch_upper_cover_open",
+        "y": 90
+      },
+      "upper_south": {
+        "submodel": "povertycharm:hatch_upper_cover_open",
+        "y": 180
+      },
+      "upper_west": {
+        "submodel": "povertycharm:hatch_upper_cover_open",
+        "y": 270
+      }
+    }
+  }
+}

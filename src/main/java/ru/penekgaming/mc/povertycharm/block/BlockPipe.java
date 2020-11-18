@@ -28,7 +28,7 @@ public class BlockPipe extends PovertyBlock {
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, 4.5 / 16d, 0, 1D, 10.5 / 16d, 1);
     private static final PropertyEnum<Part> PART = PropertyEnum.create("part", BlockPipe.Part.class);
 
-    protected BlockPipe(String name, Part defPart) {
+    public BlockPipe(String name, Part defPart) {
         super(name, Material.IRON);
 
         setDefaultState(

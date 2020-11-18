@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
+import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
 import ru.penekgaming.mc.povertycharm.proxy.CommonProxy;
 
 @Mod(

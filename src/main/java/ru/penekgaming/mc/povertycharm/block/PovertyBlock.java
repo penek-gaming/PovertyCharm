@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
+import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class PovertyBlock extends Block {
     public Item item;
     private boolean noPlaceCollision = false;
 
-    protected PovertyBlock(String name, Material material) {
+    public PovertyBlock(String name, Material material) {
         this(name, material, true);
     }
 

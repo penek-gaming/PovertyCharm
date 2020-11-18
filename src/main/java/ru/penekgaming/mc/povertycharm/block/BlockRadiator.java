@@ -30,7 +30,7 @@ public class BlockRadiator extends PovertyBlockMeta<EnumFacing> {
             .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 1.5 / 16, 0.0, 3.5 / 16, 1 - 2.75 / 16, 1.0))
             .build();
 
-    protected BlockRadiator(String name) {
+    public BlockRadiator(String name) {
         super(name, Material.IRON, FACING, EnumFacing.NORTH);
         setNoPlaceCollision(true);
         item = new ItemPoverty(this);

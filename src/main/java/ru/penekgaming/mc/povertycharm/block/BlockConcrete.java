@@ -11,7 +11,7 @@ public class BlockConcrete extends PovertyBlockVariative<BlockConcrete.Variant> 
     public static final PropertyEnum<Variant> VARIANT
             = PropertyEnum.create("variant", Variant.class);
 
-    protected BlockConcrete(String name) {
+    public BlockConcrete(String name) {
         super(name, Material.ROCK, VARIANT);
     }
 

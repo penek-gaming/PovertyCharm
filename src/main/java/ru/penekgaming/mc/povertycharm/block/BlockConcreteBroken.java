@@ -21,7 +21,7 @@ public class BlockConcreteBroken extends PovertyBlock {
     public static final PropertyEnum<BlockConcrete.Variant> VARIANT = PropertyEnum.create("variant", BlockConcrete.Variant.class);
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    protected BlockConcreteBroken() {
+    public BlockConcreteBroken() {
         this("concrete_broken", Material.ROCK, true);
     }
 

@@ -22,7 +22,7 @@ public class BlockPallet extends PovertyBlockMeta<EnumFacing> {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final AxisAlignedBB BB = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 2.0 / 16.0, 1.0);
 
-    protected BlockPallet() {
+    public BlockPallet() {
         super("pallet", Material.WOOD, FACING, EnumFacing.NORTH);
     }
 

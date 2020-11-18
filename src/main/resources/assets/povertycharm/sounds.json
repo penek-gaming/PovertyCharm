@@ -1,0 +1,16 @@
+{
+  "hatch_open": {
+    "sounds": [
+      {
+        "name": "povertycharm:hatch_open"
+      }
+    ]
+  },
+  "hatch_close": {
+    "sounds": [
+      {
+        "name": "povertycharm:hatch_close"
+      }
+    ]
+  }
+}

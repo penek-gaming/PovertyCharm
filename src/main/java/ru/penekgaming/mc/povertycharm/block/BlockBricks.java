@@ -10,7 +10,7 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 public class BlockBricks extends PovertyBlockVariative<BlockBricks.Variants> implements IBlockVariative {
     private static final PropertyEnum<Variants> VARIANT = PropertyEnum.create("variant", Variants.class);
 
-    protected BlockBricks() {
+    public BlockBricks() {
         super("bricks", Material.ROCK, VARIANT);
     }
 

@@ -10,7 +10,7 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 public class BlockTile extends PovertyBlockVariative<BlockTile.Variants> implements IBlockVariative {
     private static final PropertyEnum<Variants> VARIANT = PropertyEnum.create("variant", Variants.class);
 
-    protected BlockTile() {
+    public BlockTile() {
         super("tile", Material.CLAY, VARIANT);
     }
 

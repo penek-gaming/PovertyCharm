@@ -1,6 +1,7 @@
-package ru.penekgaming.mc.povertycharm.block;
+package ru.penekgaming.mc.povertycharm.init;
 
 import net.minecraft.block.material.Material;
+import ru.penekgaming.mc.povertycharm.block.*;
 
 import java.util.HashMap;
 
@@ -26,4 +27,5 @@ public class PovertyBlocks {
     public static final BlockRadiator RADIATOR = new BlockRadiator("radiator");
     public static final BlockRadiatorPipe RADIATOR_PIPE = new BlockRadiatorPipe();
     public static final BlockPallet PALLET = new BlockPallet();
+    public static final BlockHatch HATCH = new BlockHatch();
 }

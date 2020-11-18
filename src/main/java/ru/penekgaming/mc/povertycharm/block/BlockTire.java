@@ -38,7 +38,7 @@ public class BlockTire extends TileEntityBlock<TileEntityTire> implements IBlock
             .set(EnumFacing.EAST, new AxisAlignedBB(5.0 / 16.0, 0, 0.0, 1 - 5.0 / 16.0, 7.5 / 16.0, 1.0))
             .build();
 
-    protected BlockTire(String name, Material material) {
+    public BlockTire(String name, Material material) {
         super(name, material, TileEntityTire.class);
 
         setDefaultState(blockState.getBaseState().withProperty(COLOR, EnumDyeColor.WHITE).withProperty(FACING, EnumFacing.NORTH));

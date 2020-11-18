@@ -31,7 +31,7 @@ public class BlockTrashCan extends PovertyBlock {
     public static final PropertyInteger FILL = PropertyInteger.create("fill", 0, MAX_FILL);
     public static final AxisAlignedBB BB = new AxisAlignedBB(2 / 16.0, 0.0, 2 / 16.0, 1 - 2 / 16.0, 15 / 16.0, 1 - 2 / 16.0);
 
-    protected BlockTrashCan() {
+    public BlockTrashCan() {
         super("trash_can", Material.IRON);
         setTickRandomly(true);
 

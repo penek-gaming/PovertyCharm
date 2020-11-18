@@ -32,7 +32,7 @@ public class BlockRadiatorPipe extends BlockRadiator {
             .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 1.5 / 16, 1 - 3.5 / 16, 3.5 / 16, 1 - 2.75 / 16, 1.0))
             .build();
 
-    protected BlockRadiatorPipe() {
+    public BlockRadiatorPipe() {
         super("radiator_pipe");
         setDefaultState(getDefaultState().withProperty(PART, Part.STRAIGHT).withProperty(ROTATE, false));
     }

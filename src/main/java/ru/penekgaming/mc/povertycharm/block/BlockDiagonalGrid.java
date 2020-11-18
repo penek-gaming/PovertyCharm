@@ -30,7 +30,7 @@ public class BlockDiagonalGrid extends PovertyBlockMeta<EnumFacing> {
             .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 0.5 / 16.0, 1.0, 1.0))
             .build();
 
-    protected BlockDiagonalGrid() {
+    public BlockDiagonalGrid() {
         super("diagonal_grid", Material.IRON, FACING, EnumFacing.NORTH);
 
         item = new ItemPoverty(this);

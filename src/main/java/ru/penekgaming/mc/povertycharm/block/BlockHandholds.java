@@ -53,7 +53,7 @@ public class BlockHandholds extends PovertyBlock {
                     )
             ).build();
 
-    protected BlockHandholds() {
+    public BlockHandholds() {
         super("handholds", Material.IRON);
 
         setDefaultState(getBlockState().getBaseState()

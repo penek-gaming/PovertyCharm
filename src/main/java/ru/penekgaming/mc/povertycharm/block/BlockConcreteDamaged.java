@@ -31,7 +31,7 @@ public class BlockConcreteDamaged extends TileEntityBlock<TileEntityConcreteDama
 
     private static final Random RANDOM = new Random();
 
-    protected BlockConcreteDamaged() {
+    public BlockConcreteDamaged() {
         super("concrete_damaged", Material.ROCK, TileEntityConcreteDamaged.class);
 
         setDefaultState(getDefaultState().withProperty(PART, Part.DEFAULT).withProperty(FACING, EnumFacing.NORTH));

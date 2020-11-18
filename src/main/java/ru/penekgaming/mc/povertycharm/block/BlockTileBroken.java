@@ -16,7 +16,7 @@ public class BlockTileBroken extends BlockConcreteBroken {
     public static final PropertyEnum<BlockTile.Variants> VARIANT = PropertyEnum.create("variant", BlockTile.Variants.class);
     //public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    protected BlockTileBroken() {
+    public BlockTileBroken() {
         super("tile_broken", Material.CLAY, false);
 
         setDefaultState(getBlockState().getBaseState()

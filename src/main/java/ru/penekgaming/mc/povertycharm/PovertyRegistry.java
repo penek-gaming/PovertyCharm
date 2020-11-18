@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -15,8 +16,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
-import ru.penekgaming.mc.povertycharm.block.PovertyBlocks;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
+import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
+import ru.penekgaming.mc.povertycharm.init.PovertySounds;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 
 import java.util.Objects;
@@ -42,6 +44,14 @@ public class PovertyRegistry {
     @SideOnly(Side.CLIENT)
     public static void registerColors(ColorHandlerEvent.Block event) {
 
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void addSounds(RegistryEvent.Register<SoundEvent> event) {
+        PovertyCharm.LOGGER.info("Registering sounds");
+        event.getRegistry().registerAll(PovertySounds.SOUNDS.values().toArray(new SoundEvent[0]));
+        PovertyCharm.LOGGER.info("{} sounds should be registered automatically", PovertySounds.SOUNDS.size());
     }
 
     @SubscribeEvent
