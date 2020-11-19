@@ -7,7 +7,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public abstract class PovertyBlockMeta<T extends Comparable<T>> extends PovertyBlock {
