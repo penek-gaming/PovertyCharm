@@ -31,4 +31,5 @@ public class PovertyBlocks {
     public static final BlockWindow WINDOW_VERTICAL = new BlockWindow("window_vertical", false, true);
     public static final BlockWindow WINDOW_VERTICAL_SPLIT = new BlockWindow("window_vertical_split", true, true);
     public static final BlockWindow WINDOW = new BlockWindow("window", false, false);
+    public static final BlockRibbedPanel RIBBED_PANEL = new BlockRibbedPanel();
 }

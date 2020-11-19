@@ -15,7 +15,6 @@ public abstract class PovertyBlockMeta<T extends Comparable<T>> extends PovertyB
         super(name, material);
 
         setDefaultState(getBlockState().getBaseState().withProperty(property, defaultValue));
-        item = new ItemPoverty(this);
     }
 
     @Override
