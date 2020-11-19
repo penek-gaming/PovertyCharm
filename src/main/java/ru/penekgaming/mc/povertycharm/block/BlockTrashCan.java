@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.Config;
+import ru.penekgaming.mc.povertycharm.util.RandomCollection;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -66,10 +67,12 @@ public class BlockTrashCan extends PovertyBlock {
             return;
 
         AtomicBoolean dropped = new AtomicBoolean(false);
-        HashMap<Item, Integer> items = Config.TrashCan.getItemRandomCollection().next();
 
-        if (items.size() < 1)
+        RandomCollection<HashMap<Item, Integer>> randomItems = Config.TrashCan.getItemRandomCollection();
+        if(randomItems.size() > 1)
             return;
+
+        HashMap<Item, Integer> items = randomItems.next();
 
         items.forEach(
                 (item, maxCount) -> {
