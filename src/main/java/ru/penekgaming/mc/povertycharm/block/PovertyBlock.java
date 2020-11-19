@@ -108,7 +108,7 @@ public class PovertyBlock extends Block {
         return useCustomStateMapper;
     }
 
-    protected void addIgnoredProperties(IProperty<?> ...props) {
+    protected void addIgnoredProperties(IProperty<?>... props) {
         Collections.addAll(ignoredProperties, props);
     }
 

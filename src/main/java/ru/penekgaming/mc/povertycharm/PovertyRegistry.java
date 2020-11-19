@@ -3,7 +3,6 @@ package ru.penekgaming.mc.povertycharm;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ColorHandlerEvent;
@@ -67,7 +66,7 @@ public class PovertyRegistry {
     public static void registerModels(ModelRegistryEvent event) {
         PovertyCharm.LOGGER.info("Registering models");
         for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
-            if(block.usesCustomStateMapper())
+            if (block.usesCustomStateMapper())
                 ModelLoader.setCustomStateMapper(block, new PovertyStateMap());
 
             if (!(block instanceof IBlockVariative))

@@ -6,7 +6,6 @@
   "variants": {
     "facing": {
       "north": {
-
       },
       "east": {
         "y": 90

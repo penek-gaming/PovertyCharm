@@ -1,20 +1,52 @@
 {
-	"credit": "Made with Blockbench",
-	"ambientocclusion": false,
-	"textures": {
-		"1": "blocks/glass_silver",
-		"particle": "povertycharm:blocks/window_plastic"
-	},
-	"elements": [
-		{
-			"name": "window_glass",
-			"from": [0, 0, 1.1],
-			"to": [16, 16, 1.45],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8.6]},
-			"faces": {
-				"north": {"uv": [1, 1, 15, 15], "texture": "#1"},
-				"south": {"uv": [1, 1, 15, 15], "texture": "#1"}
-			}
-		}
-	]
+  "credit": "Made with Blockbench",
+  "ambientocclusion": false,
+  "textures": {
+    "1": "povertycharm:blocks/glass",
+    "particle": "povertycharm:blocks/window_plastic"
+  },
+  "elements": [
+    {
+      "name": "window_glass",
+      "from": [
+        0,
+        0,
+        1.1
+      ],
+      "to": [
+        16,
+        16,
+        1.45
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          8.6
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ],
+          "texture": "#1"
+        }
+      }
+    }
+  ]
 }

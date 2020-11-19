@@ -1,17 +1,12 @@
 package ru.penekgaming.mc.povertycharm.block;
 
-import jdk.nashorn.internal.objects.annotations.Property;
-import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ItemModelGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -76,14 +71,13 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer()
-    {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        if(placer.getHorizontalFacing() != facing.getOpposite()) {
+        if (placer.getHorizontalFacing() != facing.getOpposite()) {
             switch (placer.getHorizontalFacing()) {
                 case NORTH:
                 case SOUTH:
@@ -115,7 +109,7 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
         boolean up = neighbors.containsKey(EnumFacing.UP);
         boolean down = neighbors.containsKey(EnumFacing.DOWN);
 
-        if(!vertical) {
+        if (!vertical) {
             boolean left = neighbors.containsKey(facing.getOpposite().rotateY());
             boolean right = neighbors.containsKey(facing.rotateY());
 
@@ -134,7 +128,7 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
 
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for(Variant v : Variant.values()) {
+        for (Variant v : Variant.values()) {
             items.add(new ItemStack(this, 1, 4 * v.getMetadata()));
         }
     }
@@ -193,8 +187,7 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
     }
 
     public enum Variant implements IBlockVariants {
-        PLASTIC(0, "plastic")
-        ;
+        PLASTIC(0, "plastic");
 
         private final int meta;
         private final String name;
