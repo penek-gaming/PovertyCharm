@@ -3,6 +3,7 @@ package ru.penekgaming.mc.povertycharm;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ColorHandlerEvent;
@@ -20,6 +21,7 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
 import ru.penekgaming.mc.povertycharm.init.PovertySounds;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
+import ru.penekgaming.mc.povertycharm.util.PovertyStateMap;
 
 import java.util.Objects;
 
@@ -37,6 +39,7 @@ public class PovertyRegistry {
                         Objects.requireNonNull(block.getRegistryName())
                 );
         }
+
         PovertyCharm.LOGGER.info("{} blocks should be registered automatically", PovertyBlocks.BLOCKS.size());
     }
 
@@ -64,6 +67,9 @@ public class PovertyRegistry {
     public static void registerModels(ModelRegistryEvent event) {
         PovertyCharm.LOGGER.info("Registering models");
         for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
+            if(block.usesCustomStateMapper())
+                ModelLoader.setCustomStateMapper(block, new PovertyStateMap());
+
             if (!(block instanceof IBlockVariative))
                 continue;
 

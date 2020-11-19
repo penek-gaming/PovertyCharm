@@ -65,6 +65,12 @@
           ]
         }
       }
+    },
+    "split": {
+      "true": {
+        "submodel": "povertycharm:window_split"
+      },
+      "false": {}
     }
   }
 }

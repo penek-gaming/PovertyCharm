@@ -14,12 +14,13 @@ import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
 import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
 
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 public class PovertyBlock extends Block {
     public Item item;
     private boolean noPlaceCollision = false;
+    protected boolean useCustomStateMapper = false;
+    private final List<IProperty<?>> ignoredProperties = new ArrayList<>();
 
     public PovertyBlock(String name, Material material) {
         this(name, material, true);
@@ -97,5 +98,21 @@ public class PovertyBlock extends Block {
 
     public void setNoPlaceCollision(boolean noPlaceCollision) {
         this.noPlaceCollision = noPlaceCollision;
+    }
+
+    public String getStatePath() {
+        return Objects.requireNonNull(getRegistryName()).getPath();
+    }
+
+    public boolean usesCustomStateMapper() {
+        return useCustomStateMapper;
+    }
+
+    protected void addIgnoredProperties(IProperty<?> ...props) {
+        Collections.addAll(ignoredProperties, props);
+    }
+
+    public List<IProperty<?>> getIgnoredProperties() {
+        return ignoredProperties;
     }
 }

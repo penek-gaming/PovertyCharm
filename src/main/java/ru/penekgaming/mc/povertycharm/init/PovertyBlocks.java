@@ -28,5 +28,7 @@ public class PovertyBlocks {
     public static final BlockRadiatorPipe RADIATOR_PIPE = new BlockRadiatorPipe();
     public static final BlockPallet PALLET = new BlockPallet();
     public static final BlockHatch HATCH = new BlockHatch();
-    public static final BlockWindow WINDOW = new BlockWindow("window");
+    public static final BlockWindow WINDOW_VERTICAL = new BlockWindow("window_vertical", false, true);
+    public static final BlockWindow WINDOW_VERTICAL_SPLIT = new BlockWindow("window_vertical_split", true, true);
+    public static final BlockWindow WINDOW = new BlockWindow("window", false, false);
 }

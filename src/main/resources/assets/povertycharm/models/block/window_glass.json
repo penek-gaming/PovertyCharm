@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "blocks/glass",
+		"1": "blocks/glass_silver",
 		"particle": "povertycharm:blocks/window_plastic"
 	},
 	"elements": [

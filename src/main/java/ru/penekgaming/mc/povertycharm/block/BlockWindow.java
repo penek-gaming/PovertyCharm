@@ -3,6 +3,7 @@ package ru.penekgaming.mc.povertycharm.block;
 import jdk.nashorn.internal.objects.annotations.Property;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.BlockStainedGlassPane;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -10,6 +11,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ItemModelGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -31,13 +33,17 @@ import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@SuppressWarnings({"NullableProblems", "deprecation"})
 public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockVariative {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
+    public static final PropertyBool SPLIT = PropertyBool.create("split");
     public static final PropertyBool UP = PropertyBool.create("up");
     public static final PropertyBool DOWN = PropertyBool.create("down");
     public static final PropertyBool LEFT = PropertyBool.create("left");
     public static final PropertyBool RIGHT = PropertyBool.create("right");
+
+    public final boolean vertical;
 
     public static final AxisAlignedBBContainer BBS = AxisAlignedBBContainer.builder()
             .set(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 2.2 / 16.0))
@@ -46,7 +52,7 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
             .set(EnumFacing.WEST, new AxisAlignedBB(0.0, 0.0, 0.0, 2.2 / 16.0, 1.0, 1.0))
             .build();
 
-    public BlockWindow(String name) {
+    public BlockWindow(String name, boolean split, boolean vertical) {
         super(name, Material.GLASS, FACING, EnumFacing.NORTH);
         setDefaultState(getDefaultState()
                 .withProperty(VARIANT, Variant.PLASTIC)
@@ -54,9 +60,14 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
                 .withProperty(DOWN, false)
                 .withProperty(LEFT, false)
                 .withProperty(RIGHT, false)
+                .withProperty(SPLIT, split)
         );
 
+        this.vertical = vertical;
+
+        setNoPlaceCollision(true);
         item = new ItemBlockVariative(this);
+        useCustomStateMapper = true;
     }
 
     @Override
@@ -67,33 +78,53 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getRenderLayer()
     {
-        return BlockRenderLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        return getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
+        if(placer.getHorizontalFacing() != facing.getOpposite()) {
+            switch (placer.getHorizontalFacing()) {
+                case NORTH:
+                case SOUTH:
+                    facing = hitZ > 0.5 ? EnumFacing.SOUTH : EnumFacing.NORTH;
+                    break;
+
+                case EAST:
+                case WEST:
+                    facing = hitX > 0.5 ? EnumFacing.EAST : EnumFacing.WEST;
+                    break;
+            }
+        } else {
+            facing = facing.getOpposite();
+        }
+
+        return getDefaultState().withProperty(FACING, facing);
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        Map<EnumFacing, IBlockState> neighbors = getFacingBlocks(worldIn, pos).entrySet().stream()
-                .filter(e -> e.getValue().getBlock().getClass() == this.getClass())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
         EnumFacing facing = state.getValue(FACING);
+
+        Map<EnumFacing, IBlockState> neighbors = getFacingBlocks(worldIn, pos).entrySet().stream()
+                .filter(e -> e.getValue().getBlock() instanceof BlockWindow)
+                .filter(e -> e.getValue().getValue(FACING) == facing)
+                .filter(e -> ((BlockWindow) e.getValue().getBlock()).vertical == vertical)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         boolean up = neighbors.containsKey(EnumFacing.UP);
         boolean down = neighbors.containsKey(EnumFacing.DOWN);
-        boolean left = neighbors.containsKey(facing.rotateY().getOpposite());
-        boolean right = neighbors.containsKey(facing.rotateY());
+
+        if(!vertical) {
+            boolean left = neighbors.containsKey(facing.getOpposite().rotateY());
+            boolean right = neighbors.containsKey(facing.rotateY());
+
+            state = state.withProperty(LEFT, left).withProperty(RIGHT, right);
+        }
 
         return state
                 .withProperty(UP, up)
-                .withProperty(DOWN, down)
-                //.withProperty(LEFT, left)
-                //.withProperty(RIGHT, right)
-                ;
+                .withProperty(DOWN, down);
     }
 
     @Override
@@ -128,7 +159,7 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, VARIANT, UP, DOWN, LEFT, RIGHT);
+        return new BlockStateContainer(this, FACING, VARIANT, UP, DOWN, LEFT, RIGHT, SPLIT);
     }
 
     @Override
@@ -154,6 +185,11 @@ public class BlockWindow extends PovertyBlockMeta<EnumFacing> implements IBlockV
     @Override
     public boolean isFullBlock(IBlockState state) {
         return false;
+    }
+
+    @Override
+    public String getStatePath() {
+        return "window";
     }
 
     public enum Variant implements IBlockVariants {
