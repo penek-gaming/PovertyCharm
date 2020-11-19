@@ -56,3 +56,6 @@ tile.povertycharm.tile_white_line_green.name=Декоративная зелён
 tile.povertycharm.tile_white_line_blue.name=Декоративная синяя плитка
 tile.povertycharm.tile_broken.name=Разрушенная плитка
 tile.povertycharm.hatch.name=Канализационный люк
+tile.povertycharm.window_plastic.name=Пластиковое окно
+tile.povertycharm.window_vertical_plastic.name=Вертикальное пластиковое окно
+tile.povertycharm.window_vertical_split_plastic.name=Пластиковая форточка

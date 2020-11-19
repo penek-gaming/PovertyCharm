@@ -56,3 +56,6 @@ tile.povertycharm.tile_white_line_green.name=White Tile with Green line
 tile.povertycharm.tile_white_line_blue.name=White Tile with Blue line
 tile.povertycharm.tile_broken.name=Broken Tile
 tile.povertycharm.hatch.name=Sewer Hatch
+tile.povertycharm.window_plastic.name=Plastic Window
+tile.povertycharm.window_vertical_plastic.name=Plastic Vertical Window
+tile.povertycharm.window_vertical_split_plastic.name=Plastic Splitted Vertical Window
