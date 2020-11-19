@@ -13,6 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
 import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
+import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -30,7 +31,7 @@ public class PovertyBlock extends Block {
         setRegistryName(PovertyCharm.MOD_ID, name);
         setTranslationKey(String.format("%s.%s", PovertyCharm.MOD_ID, name));
         setCreativeTab(PovertyCharm.CREATIVE_TAB);
-        item = new ItemBlock(this).setRegistryName(Objects.requireNonNull(getRegistryName()));
+        item = new ItemPoverty(this);
 
         if (autoRegister)
             PovertyBlocks.BLOCKS.put(name, this);

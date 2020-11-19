@@ -29,4 +29,5 @@ public class PovertyBlocks {
     public static final BlockPallet PALLET = new BlockPallet();
     public static final BlockHatch HATCH = new BlockHatch();
     public static final BlockWindow WINDOW = new BlockWindow("window");
+    public static final BlockRibbedPanel RIBBED_PANEL = new BlockRibbedPanel();
 }
