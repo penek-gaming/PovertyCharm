@@ -1,7 +1,6 @@
 package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -64,20 +63,20 @@ public class BlockWires extends BlockRotatable {
 
         IBlockState down = worldIn.getBlockState(pos.offset(facing.getOpposite()));
 
-        if(down.getBlock() instanceof BlockWires && !(neighbors.containsKey(facing.rotateY()) && neighbors.containsKey(facing.rotateY().getOpposite()))) {
-            if(down.getValue(FACING) == facing.rotateY())
+        if (down.getBlock() instanceof BlockWires && !(neighbors.containsKey(facing.rotateY()) && neighbors.containsKey(facing.rotateY().getOpposite()))) {
+            if (down.getValue(FACING) == facing.rotateY())
                 state = state.withProperty(PART, Part.TURN_INNER);
-            else if(down.getValue(FACING) == facing.getOpposite().rotateY())
+            else if (down.getValue(FACING) == facing.getOpposite().rotateY())
                 state = state.withProperty(PART, Part.TURN_INNER).withProperty(FACING, facing.getOpposite().rotateY());
-        } else if(worldIn.getBlockState(pos.offset(facing.rotateY()).offset(facing)).getBlock() instanceof BlockWires) {
+        } else if (worldIn.getBlockState(pos.offset(facing.rotateY()).offset(facing)).getBlock() instanceof BlockWires) {
             state = state.withProperty(TURN_OUTER, TurnOuter.DEFAULT);
         }
 
-        if(worldIn.getBlockState(pos.offset(facing.rotateY()).offset(facing.getOpposite())).getBlock() instanceof BlockWires) {
+        if (worldIn.getBlockState(pos.offset(facing.rotateY()).offset(facing.getOpposite())).getBlock() instanceof BlockWires) {
             state = state.withProperty(PART, Part.TURN_INNER).withProperty(TURN_OUTER, TurnOuter.ROT_Y);
-        } else if(worldIn.getBlockState(pos.offset(facing.rotateY().getOpposite()).offset(facing.getOpposite())).getBlock() instanceof BlockWires) {
+        } else if (worldIn.getBlockState(pos.offset(facing.rotateY().getOpposite()).offset(facing.getOpposite())).getBlock() instanceof BlockWires) {
             state = state.withProperty(PART, Part.TURN_INNER).withProperty(FACING, facing.getOpposite().rotateY());
-            if(worldIn.getBlockState(pos.offset(facing).offset(facing.rotateY())).getBlock() instanceof BlockWires)
+            if (worldIn.getBlockState(pos.offset(facing).offset(facing.rotateY())).getBlock() instanceof BlockWires)
                 state = state.withProperty(TURN_OUTER, TurnOuter.ROT_Y);
         }
 
@@ -101,7 +100,7 @@ public class BlockWires extends BlockRotatable {
         state = state.getActualState(worldIn, pos);
         addCollisionBoxToList(pos, entityBox, collidingBoxes, BBS.get(state.getValue(FACING)));
 
-        if(state.getValue(PART) == Part.TURN_INNER)
+        if (state.getValue(PART) == Part.TURN_INNER)
             addCollisionBoxToList(pos, entityBox, collidingBoxes, BBS.get(state.getValue(FACING).rotateY()));
     }
 
@@ -145,8 +144,7 @@ public class BlockWires extends BlockRotatable {
 
     public enum Part implements IBlockVariants {
         STRAIGHT(0, "straight"),
-        TURN_INNER(1, "turn_inner")
-        ;
+        TURN_INNER(1, "turn_inner");
 
         private final int meta;
         private final String name;
@@ -175,8 +173,7 @@ public class BlockWires extends BlockRotatable {
     public enum TurnOuter implements IBlockVariants {
         NONE(0, "none"),
         DEFAULT(1, "default"),
-        ROT_Y(2, "rot_y")
-        ;
+        ROT_Y(2, "rot_y");
 
         private final int meta;
         private final String name;

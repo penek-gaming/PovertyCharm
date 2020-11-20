@@ -4,7 +4,6 @@ import net.minecraft.block.material.Material;
 import ru.penekgaming.mc.povertycharm.block.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class PovertyBlocks {
