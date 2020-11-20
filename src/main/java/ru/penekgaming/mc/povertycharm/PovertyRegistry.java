@@ -29,7 +29,7 @@ public class PovertyRegistry {
     @SubscribeEvent
     public static void addBlocks(RegistryEvent.Register<Block> event) {
         PovertyCharm.LOGGER.info("Registering blocks");
-        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
+        for (PovertyBlock block : PovertyBlocks.BLOCKS) {
             event.getRegistry().register(block);
             ForgeRegistries.ITEMS.register(block.item);
             if (block instanceof TileEntityBlock)
@@ -65,7 +65,7 @@ public class PovertyRegistry {
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
         PovertyCharm.LOGGER.info("Registering models");
-        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
+        for (PovertyBlock block : PovertyBlocks.BLOCKS) {
             if (block.usesCustomStateMapper())
                 ModelLoader.setCustomStateMapper(block, new PovertyStateMap());
 
@@ -91,7 +91,7 @@ public class PovertyRegistry {
     public static void registerRenderers() {
         PovertyCharm.LOGGER.info("Registering item block renderers");
 
-        for (PovertyBlock block : PovertyBlocks.BLOCKS.values()) {
+        for (PovertyBlock block : PovertyBlocks.BLOCKS) {
             if (block instanceof IBlockVariative) {
                 registerVariativeBlockRenderers(block);
             } else {

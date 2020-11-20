@@ -34,7 +34,7 @@ public class PovertyBlock extends Block {
         item = new ItemPoverty(this);
 
         if (autoRegister)
-            PovertyBlocks.BLOCKS.put(name, this);
+            PovertyBlocks.BLOCKS.add(this);
     }
 
     @Override

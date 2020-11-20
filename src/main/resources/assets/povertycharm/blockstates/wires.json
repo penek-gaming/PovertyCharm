@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "part": {
+      "straight": {
+        "model": "povertycharm:wires"
+      },
+      "turn_inner": {
+        "model": "povertycharm:wires_turn_inner"
+      }
+    },
+    "turn_outer": {
+      "none": {},
+      "default": {
+        "submodel": "povertycharm:wires_turn_outer"
+      },
+      "rot_y": {
+        "submodel": "povertycharm:wires_turn_outer",
+        "y": 90
+      }
+    }
+  }
+}
