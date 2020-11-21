@@ -44,7 +44,7 @@ public class ItemPoverty extends ItemBlock {
         PovertyBlock povertyBlock = block instanceof PovertyBlock ? (PovertyBlock) block : null;
 
         if (!block.isReplaceable(worldIn, pos)
-                || (povertyBlock != null && povertyBlock.isReplaceable(worldIn, pos, this.block))) {
+                && !(povertyBlock != null && povertyBlock.isReplaceable(worldIn, pos, this.block))) {
             pos = pos.offset(facing);
         }
 
@@ -75,7 +75,7 @@ public class ItemPoverty extends ItemBlock {
 
         if (block == Blocks.SNOW_LAYER && block.isReplaceable(worldIn, pos)) {
             side = EnumFacing.UP;
-        } else if (!block.isReplaceable(worldIn, pos) || block instanceof PovertyBlock && ((PovertyBlock) block).isReplaceable(worldIn, pos, this.block)) {
+        } else if (!block.isReplaceable(worldIn, pos) && !(block instanceof PovertyBlock && ((PovertyBlock) block).isReplaceable(worldIn, pos, this.block))) {
             pos = pos.offset(side);
         }
 
