@@ -1,0 +1,119 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "povertycharm:concrete_slab"
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "add_slabs": {
+      "0": {},
+      "1": {
+        "submodel": {
+          "1": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.1875, 0
+              ]
+            }
+          }
+        }
+      },
+      "2": {
+        "submodel": {
+          "1": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.1875, 0
+              ]
+            }
+          },
+          "2": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.375, 0
+              ]
+            }
+          }
+        }
+      },
+      "3": {
+        "submodel": {
+          "1": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.1875, 0
+              ]
+            }
+          },
+          "2": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.375, 0
+              ]
+            }
+          },
+          "3": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.5625, 0
+              ]
+            }
+          }
+        }
+      },
+      "4": {
+        "submodel": {
+          "1": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.1875, 0
+              ]
+            }
+          },
+          "2": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.375, 0
+              ]
+            }
+          },
+          "3": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.5625, 0
+              ]
+            }
+          },
+          "4": {
+            "model": "povertycharm:concrete_slab",
+            "transform": {
+              "translation": [
+                0, 0.75, 0
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
-public class PovertyStateMap extends StateMapperBase {
+public class PovertyStateMapper extends StateMapperBase {
     @Override
     @Nonnull
     protected ModelResourceLocation getModelResourceLocation(IBlockState state) {

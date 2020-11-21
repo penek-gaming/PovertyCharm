@@ -20,7 +20,7 @@ import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
 import ru.penekgaming.mc.povertycharm.init.PovertySounds;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
-import ru.penekgaming.mc.povertycharm.util.PovertyStateMap;
+import ru.penekgaming.mc.povertycharm.util.PovertyStateMapper;
 
 import java.util.Objects;
 
@@ -67,7 +67,7 @@ public class PovertyRegistry {
         PovertyCharm.LOGGER.info("Registering models");
         for (PovertyBlock block : PovertyBlocks.BLOCKS) {
             if (block.usesCustomStateMapper())
-                ModelLoader.setCustomStateMapper(block, new PovertyStateMap());
+                ModelLoader.setCustomStateMapper(block, new PovertyStateMapper());
 
             if (!(block instanceof IBlockVariative))
                 continue;

@@ -34,6 +34,7 @@ public class PovertyBlocks {
     public static final BlockWindow WINDOW;
     public static final BlockRibbedPanel RIBBED_PANEL;
     public static final BlockWires WIRES;
+    public static final BlockConcreteSlab CONCRETE_SLAB;
 
     static {
         ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
@@ -41,6 +42,7 @@ public class PovertyBlocks {
         CONCRETE = new BlockConcrete("concrete");
         CONCRETE_BROKEN = new BlockConcreteBroken();
         CONCRETE_DAMAGED = new BlockConcreteDamaged();
+        CONCRETE_SLAB = new BlockConcreteSlab();
 
         TILE = new BlockTile();
         TILE_BROKEN = new BlockTileBroken();
