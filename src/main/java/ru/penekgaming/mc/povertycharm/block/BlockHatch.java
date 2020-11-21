@@ -79,7 +79,7 @@ public class BlockHatch extends PovertyBlockMeta<EnumFacing> {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         worldIn.setBlockState(pos, state.cycleProperty(OPEN), 2);
 
-        worldIn.playSound(null, pos,
+        worldIn.playSound(playerIn, pos,
                 state.getValue(OPEN) ? PovertySounds.HATCH_OPEN : PovertySounds.HATCH_CLOSE,
                 SoundCategory.BLOCKS,
                 0.75f + RANDOM.nextFloat() * 0.25f,
