@@ -1,9 +1,7 @@
 package ru.penekgaming.mc.povertycharm.block;
 
-import akka.japi.pf.FI;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -14,7 +12,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
 public class BlockConcreteSlab extends BlockRotatable {
@@ -44,7 +41,7 @@ public class BlockConcreteSlab extends BlockRotatable {
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         IBlockState state = world.getBlockState(pos);
 
-        if(state.getBlock() instanceof BlockConcreteSlab)
+        if (state.getBlock() instanceof BlockConcreteSlab)
             return state.cycleProperty(ADD_SLABS);
 
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
