@@ -43,7 +43,7 @@ public class ItemPoverty extends ItemBlock {
         Block block = state.getBlock();
         PovertyBlock povertyBlock = block instanceof PovertyBlock ? (PovertyBlock) block : null;
 
-        if (!block.isReplaceable(worldIn, pos)
+        if (player.isSneaking() || !block.isReplaceable(worldIn, pos)
                 && !(povertyBlock != null && povertyBlock.isReplaceable(worldIn, pos, this.block))) {
             pos = pos.offset(facing);
         }
@@ -75,7 +75,7 @@ public class ItemPoverty extends ItemBlock {
 
         if (block == Blocks.SNOW_LAYER && block.isReplaceable(worldIn, pos)) {
             side = EnumFacing.UP;
-        } else if (!block.isReplaceable(worldIn, pos) && !(block instanceof PovertyBlock && ((PovertyBlock) block).isReplaceable(worldIn, pos, this.block))) {
+        } else if (player.isSneaking() || !block.isReplaceable(worldIn, pos) && !(block instanceof PovertyBlock && ((PovertyBlock) block).isReplaceable(worldIn, pos, this.block))) {
             pos = pos.offset(side);
         }
 
