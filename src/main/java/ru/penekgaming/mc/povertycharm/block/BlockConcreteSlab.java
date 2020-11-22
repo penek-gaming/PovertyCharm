@@ -19,7 +19,7 @@ public class BlockConcreteSlab extends BlockRotatable {
     public static final PropertyInteger ADD_SLABS = PropertyInteger.create("add_slabs", 0, MAX_SLABS);
 
     public static final AxisAlignedBB[] BBS = {
-            new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 3 / 16.0, 1.0),
+            new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 4 / 16.0, 1.0),
             new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 6 / 16.0, 1.0),
             new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 9 / 16.0, 1.0),
             new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 12 / 16.0, 1.0),
