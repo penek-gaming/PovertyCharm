@@ -35,6 +35,7 @@ public class PovertyBlocks {
     public static final BlockRibbedPanel RIBBED_PANEL;
     public static final BlockWires WIRES;
     public static final BlockConcreteSlab CONCRETE_SLAB;
+    public static final BlockRibbedPanel RIBBED_PANEL_HORIZONTAL;
 
     static {
         ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
@@ -65,7 +66,8 @@ public class PovertyBlocks {
 
         HATCH = new BlockHatch();
         PALLET = new BlockPallet();
-        RIBBED_PANEL = new BlockRibbedPanel();
+        RIBBED_PANEL = new BlockRibbedPanel(false);
+        RIBBED_PANEL_HORIZONTAL = new BlockRibbedPanel(true);
         DEV_BLOCK = new PovertyBlock("pg", Material.WOOD);
         TRASH_CAN = new BlockTrashCan();
         TIRE = new BlockTire("tire", Material.CLOTH);
