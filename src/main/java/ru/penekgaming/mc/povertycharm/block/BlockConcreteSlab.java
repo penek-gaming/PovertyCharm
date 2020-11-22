@@ -18,7 +18,8 @@ import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
 public class BlockConcreteSlab extends BlockRotatable {
-    public static final PropertyInteger ADD_SLABS = PropertyInteger.create("add_slabs", 0, 4);
+    public static final int MAX_SLABS = 4;
+    public static final PropertyInteger ADD_SLABS = PropertyInteger.create("add_slabs", 0, MAX_SLABS);
 
     public static final AxisAlignedBB[] BBS = {
             new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 3 / 16.0, 1.0),
@@ -69,7 +70,7 @@ public class BlockConcreteSlab extends BlockRotatable {
     public boolean isReplaceable(World world, BlockPos pos, Block block) {
         IBlockState state = world.getBlockState(pos);
 
-        return block instanceof BlockConcreteSlab && state.getValue(ADD_SLABS) < 4;
+        return block instanceof BlockConcreteSlab && state.getValue(ADD_SLABS) < MAX_SLABS;
     }
 
     @Override
