@@ -49,7 +49,6 @@ public class PovertyRegistry {
     }
 
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)
     public static void addSounds(RegistryEvent.Register<SoundEvent> event) {
         PovertyCharm.LOGGER.info("Registering sounds");
         event.getRegistry().registerAll(PovertySounds.SOUNDS.values().toArray(new SoundEvent[0]));

@@ -20,7 +20,7 @@ import ru.penekgaming.mc.povertycharm.proxy.CommonProxy;
 public class PovertyCharm {
     public static final String MOD_ID = "povertycharm";
     public static final String MOD_NAME = "PovertyCharm";
-    public static final String VERSION = "1.0-SNAPSHOT";
+    public static final String VERSION = "2020.11";
     public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID + ".main") {
         @Override
