@@ -18,6 +18,20 @@
       "west": {
         "y": 270
       }
+    },
+    "state": {
+      "closed": {},
+      "pending": {},
+      "opened": {
+        "textures": {
+          "3": "povertycharm:blocks/intercom_led_open"
+        }
+      },
+      "denied": {
+        "textures": {
+          "3": "povertycharm:blocks/intercom_led_error"
+        }
+      }
     }
   }
 }

@@ -42,7 +42,7 @@ public class BlockRibbedPanel extends PovertyBlockMeta<EnumFacing> {
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        if(placer.isSneaking())
+        if (placer.isSneaking())
             return getDefaultState().withProperty(FACING, facing.getOpposite());
 
         if (placer.getHorizontalFacing() != facing.getOpposite()) {

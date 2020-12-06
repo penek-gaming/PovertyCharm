@@ -9,12 +9,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
-import ru.penekgaming.mc.povertycharm.message.handler.MessageHandlerIntercom;
-import ru.penekgaming.mc.povertycharm.message.model.MessageIntercom;
 import ru.penekgaming.mc.povertycharm.proxy.CommonProxy;
 
 @Mod(

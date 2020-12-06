@@ -4,17 +4,13 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-import java.nio.charset.StandardCharsets;
-
-public class MessageIntercom implements IMessage {
-    private String code;
+public class MessageBeep implements IMessage {
     private int x, y, z;
 
-    public MessageIntercom() {
+    public MessageBeep() {
     }
 
-    public MessageIntercom(String code, BlockPos pos) {
-        this.code = code;
+    public MessageBeep(BlockPos pos) {
         this.x = pos.getX();
         this.y = pos.getY();
         this.z = pos.getZ();
@@ -22,7 +18,6 @@ public class MessageIntercom implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        code = buf.readCharSequence(4, StandardCharsets.US_ASCII).toString();
         x = buf.readInt();
         y = buf.readInt();
         z = buf.readInt();
@@ -30,14 +25,9 @@ public class MessageIntercom implements IMessage {
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeCharSequence(code.subSequence(0, 4), StandardCharsets.US_ASCII);
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
-    }
-
-    public String getCode() {
-        return code;
     }
 
     public BlockPos getBlockPos() {

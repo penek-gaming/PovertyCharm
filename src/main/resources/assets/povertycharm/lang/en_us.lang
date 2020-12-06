@@ -63,4 +63,4 @@ tile.povertycharm.ribbed_panel.name=Ribbed Panel
 tile.povertycharm.wires.name=Wires
 tile.povertycharm.concrete_slab.name=Concrete Slab
 tile.povertycharm.ribbed_panel_horizontal.name=Horizontal Ribbed Panel
-povertycharm.gui.intercom-label=Кодовый замок "Буйвол"
+tile.povertycharm.intercom_home.name=House Intercom

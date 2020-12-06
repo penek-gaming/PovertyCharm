@@ -1,28 +1,20 @@
 package ru.penekgaming.mc.povertycharm.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSound;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.audio.SoundRegistry;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
-import ru.penekgaming.mc.povertycharm.init.PovertySounds;
+import ru.penekgaming.mc.povertycharm.message.model.MessageBeep;
 import ru.penekgaming.mc.povertycharm.message.model.MessageIntercom;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityIntercom;
 
-import java.awt.*;
 import java.io.IOException;
-import java.security.Key;
 
 
 public class GuiIntercom extends GuiScreen {
@@ -45,7 +37,7 @@ public class GuiIntercom extends GuiScreen {
         calcOffset();
         buttonList.clear();
 
-        for(int i = 0, id = 0, number = 0; i < 4; i++)
+        for (int i = 0, id = 0, number = 0; i < 4; i++)
             for (int j = 0; j < 3; j++, id++) {
                 IntercomButton intercomButton = new IntercomButton(id, xOffset + 132 + 22 * j, yOffset + 40 + 18 * i);
 
@@ -86,14 +78,15 @@ public class GuiIntercom extends GuiScreen {
         int screenOffsetX = xOffset + 49;
         int screenOffsetY = yOffset + 41;
 
-        for(char c : code.toCharArray()) {
+        for (char c : code.toCharArray()) {
             try {
                 int letterNum = Character.getNumericValue(c);
 
                 drawTexturedModalRect(screenOffsetX, screenOffsetY, 10 * letterNum, I_HEIGHT, 10, 14);
 
                 screenOffsetX += 12;
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
 
         }
     }
@@ -102,20 +95,43 @@ public class GuiIntercom extends GuiScreen {
     public void handleKeyboardInput() throws IOException {
         super.handleKeyboardInput();
 
-        if(Keyboard.getEventKey() == Keyboard.KEY_ESCAPE){
-            code = code.length() == 4 ? code : "ESCD";
-            sendCode();
+        if (!Keyboard.getEventKeyState())
+            return;
 
+        char character = Keyboard.getEventCharacter();
+
+        if (Character.isDigit(character)) {
+            pressButton(Character.getNumericValue(character), 0);
             return;
         }
 
-        if(!Keyboard.getEventKeyState())
-            return;
+        switch (Keyboard.getEventKey()) {
+            case Keyboard.KEY_ESCAPE:
+                code = code.length() == 4 ? code : "ESCD";
 
-        if(Keyboard.KEY_1 <= Keyboard.getEventKey() && Keyboard.getEventKey() <= Keyboard.KEY_0) {
-            pressButton(Keyboard.getEventKey() - 1, 0);
+            case Keyboard.KEY_NUMPADENTER:
+            case Keyboard.KEY_SPACE:
+            case Keyboard.KEY_RETURN:
+            case Keyboard.KEY_B:
+                if (!code.equals("ESCD"))
+                    playBeep();
+
+                sendCode();
+                mc.player.closeScreen();
+                return;
+
+            case Keyboard.KEY_DELETE:
+            case Keyboard.KEY_C:
+                code = "";
+                playBeep();
+                return;
+
+            case Keyboard.KEY_BACK:
+                if (code.length() > 0) {
+                    code = code.substring(0, code.length() - 1);
+                }
+                playBeep();
         }
-
     }
 
 
@@ -124,16 +140,16 @@ public class GuiIntercom extends GuiScreen {
     }
 
     @Override
-    protected void actionPerformed(GuiButton button) throws IOException {
+    protected void actionPerformed(GuiButton button) {
         IntercomButton intercomButton = (IntercomButton) button;
 
         pressButton(intercomButton.number, button.id);
     }
 
     private void pressButton(int num, int id) {
-        mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(PovertySounds.INTERCOM_BEEP, 1.0f));
+        playBeep();
 
-        if(num != -1) {
+        if (num != -1) {
             enterNumber(num);
             return;
         }
@@ -151,11 +167,15 @@ public class GuiIntercom extends GuiScreen {
     }
 
     private void enterNumber(int num) {
-        if(code.length() >= 4) {
+        if (code.length() >= 4) {
             code = code.substring(1);
         }
 
         code += String.valueOf(num);
+    }
+
+    private void playBeep() {
+        PovertyCharm.NETWORK_WRAPPER.sendToServer(new MessageBeep(pos));
     }
 
     @Override
@@ -163,6 +183,7 @@ public class GuiIntercom extends GuiScreen {
         return false;
     }
 
+    @SuppressWarnings("NullableProblems")
     @SideOnly(Side.CLIENT)
     private static class IntercomButton extends GuiButton {
         private int number = -1;

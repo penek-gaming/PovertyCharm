@@ -2,7 +2,6 @@ package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -23,16 +23,36 @@ import ru.penekgaming.mc.povertycharm.init.PovertySounds;
 import ru.penekgaming.mc.povertycharm.item.ItemBlockVariative;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityIntercom;
-import ru.penekgaming.mc.povertycharm.util.PovertySound;
+import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
+import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
+@SuppressWarnings({"deprecation", "NullableProblems"})
 public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implements IBlockVariative {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
     public static final PropertyEnum<State> STATE = PropertyEnum.create("state", State.class);
     public static final int OPEN_TICKS = 60;
+
+    public static final HashMap<Variant, AxisAlignedBBContainer> BBS = new HashMap<Variant, AxisAlignedBBContainer>() {{
+        put(Variant.HOME,
+                AxisAlignedBBContainer.builder()
+                        .set(EnumFacing.NORTH, new AxisAlignedBB(
+                                4 / 16.0, 7 / 16.0, 0.0,
+                                1 - 4 / 16.0, 1 - 5 / 16.0, 1 / 16.0))
+                        .set(EnumFacing.EAST, new AxisAlignedBB(
+                                1 - 1 / 16.0, 7 / 16.0, 4 / 16.0,
+                                1.0, 1 - 5 / 16.0, 1 - 4 / 16.0))
+                        .set(EnumFacing.SOUTH, new AxisAlignedBB(
+                                4 / 16.0, 7 / 16.0, 1 - 1 / 16.0,
+                                1 - 4 / 16.0, 1 - 5 / 16.0, 1.0))
+                        .set(EnumFacing.WEST, new AxisAlignedBB(
+                                0.0, 7 / 16.0, 4 / 16.0,
+                                1 / 16.0, 1 - 5 / 16.0, 1 - 4 / 16.0))
+                        .build());
+    }};
 
     public BlockIntercom() {
         super("intercom", Material.IRON, TileEntityIntercom.class);
@@ -47,13 +67,18 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
     }
 
     @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BBS.get(state.getValue(VARIANT)).get(state.getValue(FACING));
+    }
+
+    @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         return getStateFromMeta(meta).withProperty(FACING, placer.getHorizontalFacing()).withProperty(STATE, State.DENIED);
     }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        if(worldIn.isRemote)
+        if (worldIn.isRemote)
             return;
 
         TileEntityIntercom entityIntercom = getTileEntity(worldIn, pos);
@@ -66,36 +91,28 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
 
     @Override
     public TileEntityIntercom createTileEntity(World world, IBlockState blockState) {
-        TileEntityIntercom entityIntercom = new TileEntityIntercom();
-        PovertyCharm.LOGGER.warn(entityIntercom);
-
-        return entityIntercom;
+        return new TileEntityIntercom();
     }
-
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        //open(worldIn, pos, state);
-
-        if(worldIn.getBlockState(pos).getValue(STATE) != State.CLOSED)
+        if (worldIn.getBlockState(pos).getValue(STATE) != State.CLOSED)
             return true;
 
-        if(getTileEntity(worldIn, pos).isPublic()) {
+        if (getTileEntity(worldIn, pos).isPublic()) {
             open(worldIn, pos, state);
             return true;
         }
 
-        if(!worldIn.isRemote)
+        if (!worldIn.isRemote)
             PovertyCharm.PROXY.showGui(pos);
-
-        //openByKey(worldIn, pos, state);
-
+        
         return true;
 
     }
 
     public void openByKey(World world, BlockPos pos, IBlockState state) {
-        if(!world.isRemote)
+        if (!world.isRemote)
             world.playSound(null, pos, PovertySounds.INTERCOM_ACCEPT, SoundCategory.BLOCKS, 1.0f, 1.0f);
 
         world.setBlockState(pos, state.withProperty(STATE, State.PENDING), 3);
@@ -105,8 +122,10 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
     public void openByCode(World world, BlockPos pos, IBlockState state, String code) {
         TileEntityIntercom entityIntercom = getTileEntity(world, pos);
 
-        if(!entityIntercom.getCode().equals(code) && !entityIntercom.isPublic()){
+        if (!entityIntercom.getCode().equals(code) && !entityIntercom.isPublic()) {
             world.playSound(null, pos, PovertySounds.INTERCOM_REJECT, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            world.setBlockState(pos, state.withProperty(STATE, State.DENIED), 3);
+            world.scheduleUpdate(pos, this, 40);
             return;
         }
 
@@ -119,7 +138,7 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
         notifyNeighbors(world, pos, state.getValue(FACING));
         world.scheduleUpdate(pos, this, OPEN_TICKS);
 
-        if(!world.isRemote)
+        if (!world.isRemote)
             world.playSound(null, pos, PovertySounds.INTERCOM_OPEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 
@@ -129,19 +148,16 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
         world.markBlockRangeForRenderUpdate(pos, pos);
     }
 
-    public void notifyNeighbors(World worldIn, BlockPos pos, EnumFacing facing)
-    {
+    public void notifyNeighbors(World worldIn, BlockPos pos, EnumFacing facing) {
         worldIn.notifyNeighborsOfStateChange(pos, this, false);
         worldIn.notifyNeighborsOfStateChange(pos.offset(facing), this, false);
     }
 
-    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
+    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         return blockState.getValue(STATE) == State.OPENED ? 15 : 0;
     }
 
-    public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
+    public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         if (blockState.getValue(STATE) == State.OPENED) {
             return blockState.getValue(FACING) == side.getOpposite() ? 15 : 0;
         } else {
@@ -149,13 +165,19 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
         }
     }
 
-    public boolean canProvidePower(IBlockState state)
-    {
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        if (state.getValue(STATE) == State.OPENED)
+            notifyNeighbors(worldIn, pos, state.getValue(FACING));
+
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    public boolean canProvidePower(IBlockState state) {
         return true;
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (worldIn.isRemote)
             return;
 
@@ -250,11 +272,10 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
     }
 
     public enum State implements IBlockVariants {
-        CLOSED(0, "close"),
+        CLOSED(0, "closed"),
         PENDING(1, "pending"),
-        OPENED(2, "open"),
-        DENIED(3, "denied")
-        ;
+        OPENED(2, "opened"),
+        DENIED(3, "denied");
 
         private final int meta;
         private final String name;
