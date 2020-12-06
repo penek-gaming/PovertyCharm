@@ -12,5 +12,40 @@
         "name": "povertycharm:hatch_close"
       }
     ]
+  },
+  "intercom_accept": {
+    "sounds": [
+      {
+        "name": "povertycharm:intercom_accept"
+      }
+    ]
+  },
+  "intercom_beep": {
+    "sounds": [
+      {
+        "name": "povertycharm:intercom_beep"
+      }
+    ]
+  },
+  "intercom_open": {
+    "sounds": [
+      {
+        "name": "povertycharm:intercom_open"
+      }
+    ]
+  },
+  "intercom_reject": {
+    "sounds": [
+      {
+        "name": "povertycharm:intercom_reject"
+      }
+    ]
+  },
+  "intercom_ring": {
+    "sounds": [
+      {
+        "name": "povertycharm:intercom_ring"
+      }
+    ]
   }
 }

@@ -10,4 +10,9 @@ public class PovertySounds {
 
     public static final SoundEvent HATCH_CLOSE = new PovertySound("hatch_close");
     public static final SoundEvent HATCH_OPEN = new PovertySound("hatch_open");
+    public static final SoundEvent INTERCOM_ACCEPT = new PovertySound("intercom_accept");
+    public static final SoundEvent INTERCOM_BEEP = new PovertySound("intercom_beep");
+    public static final SoundEvent INTERCOM_OPEN = new PovertySound("intercom_open");
+    public static final SoundEvent INTERCOM_REJECT = new PovertySound("intercom_reject");
+    public static final SoundEvent INTERCOM_RING = new PovertySound("intercom_ring");
 }

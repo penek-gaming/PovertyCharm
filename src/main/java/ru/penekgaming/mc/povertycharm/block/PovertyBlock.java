@@ -1,6 +1,7 @@
 package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockButton;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;

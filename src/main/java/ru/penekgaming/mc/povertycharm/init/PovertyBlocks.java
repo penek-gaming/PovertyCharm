@@ -36,6 +36,7 @@ public class PovertyBlocks {
     public static final BlockWires WIRES;
     public static final BlockConcreteSlab CONCRETE_SLAB;
     public static final BlockRibbedPanel RIBBED_PANEL_HORIZONTAL;
+    public static final BlockIntercom INTERCOM;
 
     static {
         ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
@@ -72,5 +73,6 @@ public class PovertyBlocks {
         TRASH_CAN = new BlockTrashCan();
         TIRE = new BlockTire("tire", Material.CLOTH);
         WIRES = new BlockWires();
+        INTERCOM = new BlockIntercom();
     }
 }

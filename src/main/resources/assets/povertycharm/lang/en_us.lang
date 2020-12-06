@@ -62,3 +62,5 @@ tile.povertycharm.window_vertical_split_plastic.name=Plastic Splitted Vertical W
 tile.povertycharm.ribbed_panel.name=Ribbed Panel
 tile.povertycharm.wires.name=Wires
 tile.povertycharm.concrete_slab.name=Concrete Slab
+tile.povertycharm.ribbed_panel_horizontal.name=Horizontal Ribbed Panel
+povertycharm.gui.intercom-label=Кодовый замок "Буйвол"
