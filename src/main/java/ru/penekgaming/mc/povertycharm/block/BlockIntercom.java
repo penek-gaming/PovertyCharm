@@ -6,11 +6,13 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -25,6 +27,7 @@ import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityIntercom;
 import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
@@ -71,6 +74,12 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
         return BBS.get(state.getValue(VARIANT)).get(state.getValue(FACING));
     }
 
+    @Nullable
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return NULL_AABB;
+    }
+
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         return getStateFromMeta(meta).withProperty(FACING, placer.getHorizontalFacing()).withProperty(STATE, State.DENIED);
@@ -78,9 +87,6 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        if (worldIn.isRemote)
-            return;
-
         TileEntityIntercom entityIntercom = getTileEntity(worldIn, pos);
 
         entityIntercom.setOwner(placer.getUniqueID());
@@ -91,7 +97,11 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
 
     @Override
     public TileEntityIntercom createTileEntity(World world, IBlockState blockState) {
-        return new TileEntityIntercom();
+        PovertyCharm.LOGGER.warn("createTileEntity");
+        TileEntityIntercom entityIntercom = new TileEntityIntercom();
+        entityIntercom.setCode(TileEntityIntercom.DEFAULT_CODE);
+
+        return entityIntercom;
     }
 
     @Override
@@ -99,14 +109,15 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
         if (worldIn.getBlockState(pos).getValue(STATE) != State.CLOSED)
             return true;
 
-        if (getTileEntity(worldIn, pos).isPublic()) {
+        TileEntityIntercom tileEntity = getTileEntity(worldIn, pos);
+
+        if (tileEntity.isPublic()) {
             open(worldIn, pos, state);
             return true;
         }
 
-        if (!worldIn.isRemote)
-            PovertyCharm.PROXY.showGui(pos);
-        
+        PovertyCharm.PROXY.showGui(pos);
+
         return true;
 
     }
@@ -133,16 +144,21 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
     }
 
     public void open(World world, BlockPos pos, IBlockState state) {
+        if(world.isRemote)
+            return;
+
         world.setBlockState(pos, state.withProperty(STATE, State.OPENED), 3);
         world.markBlockRangeForRenderUpdate(pos, pos);
         notifyNeighbors(world, pos, state.getValue(FACING));
         world.scheduleUpdate(pos, this, OPEN_TICKS);
 
-        if (!world.isRemote)
-            world.playSound(null, pos, PovertySounds.INTERCOM_OPEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        world.playSound(null, pos, PovertySounds.INTERCOM_OPEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 
     public void close(World world, BlockPos pos, IBlockState state) {
+        if(world.isRemote)
+            return;
+
         world.setBlockState(pos, state.withProperty(STATE, State.CLOSED));
         this.notifyNeighbors(world, pos, state.getValue(FACING));
         world.markBlockRangeForRenderUpdate(pos, pos);
@@ -178,8 +194,8 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (worldIn.isRemote)
-            return;
+//        if (worldIn.isRemote)
+//            return;
 
         switch (state.getValue(STATE)) {
             case PENDING:
@@ -212,6 +228,18 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
         int iVariant = state.getValue(VARIANT).getMetadata();
 
         return iFacing | (4 * iVariant);
+    }
+
+    @Override
+    public int damageDropped(IBlockState state) {
+        return state.getValue(VARIANT).getMetadata();
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+        for (Variant v : VARIANT.getAllowedValues()) {
+            items.add(new ItemStack(this, 1, v.getMetadata()));
+        }
     }
 
     @Override

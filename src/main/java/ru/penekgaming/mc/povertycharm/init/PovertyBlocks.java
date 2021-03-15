@@ -37,6 +37,7 @@ public class PovertyBlocks {
     public static final BlockConcreteSlab CONCRETE_SLAB;
     public static final BlockRibbedPanel RIBBED_PANEL_HORIZONTAL;
     public static final BlockIntercom INTERCOM;
+    public static final BlockComputer COMPUTER;
 
     static {
         ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
@@ -74,5 +75,6 @@ public class PovertyBlocks {
         TIRE = new BlockTire("tire", Material.CLOTH);
         WIRES = new BlockWires();
         INTERCOM = new BlockIntercom();
+        COMPUTER = new BlockComputer();
     }
 }

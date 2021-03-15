@@ -3,6 +3,7 @@ package ru.penekgaming.mc.povertycharm.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -35,6 +36,19 @@ public class PovertyBlock extends Block {
 
         if (autoRegister)
             PovertyBlocks.BLOCKS.add(this);
+    }
+
+    public boolean canStayOn(IBlockAccess world, BlockPos sourcePos, EnumFacing sourceFacing, BlockFaceShape targetShape) {
+        return canStayOn(world, sourcePos, sourceFacing, new BlockFaceShape[]{targetShape});
+    }
+
+    public boolean canStayOn(IBlockAccess world, BlockPos sourcePos, EnumFacing sourceFacing, BlockFaceShape[] targetShapes) {
+        BlockPos targetPos = sourcePos.offset(sourceFacing);
+        IBlockState targetState = world.getBlockState(targetPos);
+        BlockFaceShape targetShape =
+                targetState.getBlock().getBlockFaceShape(world, targetState, targetPos, sourceFacing.getOpposite());
+
+        return Arrays.asList(targetShapes).contains(targetShape);
     }
 
     @Override
@@ -84,7 +98,7 @@ public class PovertyBlock extends Block {
     }
 
     public static boolean oppositeBockIsEqual(EnumFacing facing, HashMap<EnumFacing, Block> facings, Class<?> clazz) {
-        PovertyCharm.LOGGER.warn("[{}:{}] [{}]", facing, facings.get(facing.getOpposite()).getClass(), clazz);
+        //PovertyCharm.LOGGER.warn("[{}:{}] [{}]", facing, facings.get(facing.getOpposite()).getClass(), clazz);
         return facings.size() >= 2 && facings.containsKey(facing.getOpposite()) && facings.get(facing.getOpposite()).getClass().equals(clazz);
     }
 

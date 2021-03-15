@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "povertycharm:computer",
+    "textures": {
+      "0": "povertycharm:blocks/evm_xp"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "variant": {
+      "xp": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_xp"
+        }
+      },
+      "cs": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_cs"
+        }
+      },
+      "dota": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_dota"
+        }
+      },
+      "linux": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_linux"
+        }
+      },
+      "bsod": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_bluescreen"
+        }
+      }
+    }
+  }
+}

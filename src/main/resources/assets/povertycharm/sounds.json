@@ -47,5 +47,69 @@
         "name": "povertycharm:intercom_ring"
       }
     ]
+  },
+  "comp_ambient": {
+    "sounds": [
+      {
+        "name": "povertycharm:comp_ambient1",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:comp_ambient2",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:comp_ambient3",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:comp_ambient4",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:comp_ambient5",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:comp_ambient6",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:comp_ambient7",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:comp_ambient8",
+        "weight": 10
+      },
+      {
+        "name": "povertycharm:dialup",
+        "weight": 5,
+        "stream": true
+      }
+    ]
+  },
+  "comp_cs16": {
+    "sounds": [
+      {
+        "name": "povertycharm:comp_cs16",
+        "stream": true,
+        "volume": 0.45
+      }
+    ]
+  },
+  "comp_dota": {
+    "sounds": [
+      {
+        "name": "povertycharm:comp_dota"
+      }
+    ]
+  },
+  "comp_bsod": {
+    "sounds": [
+      {
+        "name": "povertycharm:comp_bsod"
+      }
+    ]
   }
 }

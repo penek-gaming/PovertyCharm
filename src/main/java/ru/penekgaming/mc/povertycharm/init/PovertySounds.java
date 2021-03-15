@@ -15,4 +15,8 @@ public class PovertySounds {
     public static final SoundEvent INTERCOM_OPEN = new PovertySound("intercom_open");
     public static final SoundEvent INTERCOM_REJECT = new PovertySound("intercom_reject");
     public static final SoundEvent INTERCOM_RING = new PovertySound("intercom_ring");
+    public static final SoundEvent COMP_AMBIENT = new PovertySound("comp_ambient");
+    public static final SoundEvent COMP_CS16 = new PovertySound("comp_cs16");
+    public static final SoundEvent COMP_DOTA = new PovertySound("comp_dota");
+    public static final SoundEvent COMP_BSOD = new PovertySound("comp_bsod");
 }

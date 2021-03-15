@@ -127,6 +127,7 @@ public class GuiIntercom extends GuiScreen {
                 return;
 
             case Keyboard.KEY_BACK:
+            case Keyboard.KEY_NUMPADCOMMA:
                 if (code.length() > 0) {
                     code = code.substring(0, code.length() - 1);
                 }
