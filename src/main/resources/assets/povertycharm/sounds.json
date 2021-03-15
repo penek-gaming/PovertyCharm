@@ -83,6 +83,10 @@
         "weight": 10
       },
       {
+        "name": "povertycharm:comp_ambient9",
+        "weight": 10
+      },
+      {
         "name": "povertycharm:dialup",
         "weight": 5,
         "stream": true
