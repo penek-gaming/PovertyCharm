@@ -78,7 +78,7 @@ public class TileEntityIntercom extends TileEntity {
     public NBTTagCompound getUpdateTag() {
         NBTTagCompound compound = new NBTTagCompound();
 
-        PovertyCharm.LOGGER.warn("getUpdateTag");
+        //PovertyCharm.LOGGER.warn("getUpdateTag");
 
         compound.setString("code", code.equals(DEFAULT_CODE) ? DEFAULT_CODE : "PSWD");
 
