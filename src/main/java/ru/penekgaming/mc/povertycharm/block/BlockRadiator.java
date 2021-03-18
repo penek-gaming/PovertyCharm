@@ -16,7 +16,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
+import ru.penekgaming.mc.povertycharm.item.ItemPovertyBlock;
 import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
@@ -33,7 +33,7 @@ public class BlockRadiator extends PovertyBlockMeta<EnumFacing> {
     public BlockRadiator(String name) {
         super(name, Material.IRON, FACING, EnumFacing.NORTH);
         setNoPlaceCollision(true);
-        item = new ItemPoverty(this);
+        item = new ItemPovertyBlock(this);
     }
 
     @Override

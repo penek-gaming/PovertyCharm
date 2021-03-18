@@ -19,4 +19,7 @@ public class PovertySounds {
     public static final SoundEvent COMP_CS16 = new PovertySound("comp_cs16");
     public static final SoundEvent COMP_DOTA = new PovertySound("comp_dota");
     public static final SoundEvent COMP_BSOD = new PovertySound("comp_bsod");
+    public static final SoundEvent COMP_HEROES = new PovertySound("comp_heroes");
+    public static final SoundEvent COMP_LINEAGE = new PovertySound("comp_lineage");
+    public static final SoundEvent COMP_SR = new PovertySound("comp_spacerangers");
 }

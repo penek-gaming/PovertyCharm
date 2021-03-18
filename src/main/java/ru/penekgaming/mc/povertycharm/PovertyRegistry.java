@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.penekgaming.mc.povertycharm.block.PovertyBlock;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
+import ru.penekgaming.mc.povertycharm.init.PovertyItems;
 import ru.penekgaming.mc.povertycharm.init.PovertySounds;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 import ru.penekgaming.mc.povertycharm.util.PovertyStateMapper;
@@ -57,7 +58,13 @@ public class PovertyRegistry {
 
     @SubscribeEvent
     public static void addItems(RegistryEvent.Register<Item> event) {
+        PovertyCharm.LOGGER.info("Registering items");
 
+        for (Item item : PovertyItems.ITEM_LIST) {
+            event.getRegistry().register(item);
+        }
+
+        PovertyCharm.LOGGER.info("{} items should be registered automatically", PovertyItems.ITEM_LIST.size());
     }
 
     @SubscribeEvent
@@ -96,6 +103,12 @@ public class PovertyRegistry {
             } else {
                 registerBlockRenderer(block);
             }
+        }
+
+        for (Item item : PovertyItems.ITEM_LIST) {
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                    .register(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
+
         }
     }
 

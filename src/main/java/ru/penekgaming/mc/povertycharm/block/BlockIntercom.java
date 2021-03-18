@@ -144,7 +144,7 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
     }
 
     public void open(World world, BlockPos pos, IBlockState state) {
-        if(world.isRemote)
+        if (world.isRemote)
             return;
 
         world.setBlockState(pos, state.withProperty(STATE, State.OPENED), 3);
@@ -156,7 +156,7 @@ public class BlockIntercom extends TileEntityBlock<TileEntityIntercom> implement
     }
 
     public void close(World world, BlockPos pos, IBlockState state) {
-        if(world.isRemote)
+        if (world.isRemote)
             return;
 
         world.setBlockState(pos, state.withProperty(STATE, State.CLOSED));

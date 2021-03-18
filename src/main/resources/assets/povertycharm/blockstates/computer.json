@@ -44,6 +44,21 @@
         "textures": {
           "0": "povertycharm:blocks/evm_bluescreen"
         }
+      },
+      "lineage": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_lineage2"
+        }
+      },
+      "heroes": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_heroes"
+        }
+      },
+      "sr": {
+        "textures": {
+          "0": "povertycharm:blocks/evm_spacerangers"
+        }
       }
     }
   }

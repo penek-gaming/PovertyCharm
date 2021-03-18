@@ -115,5 +115,42 @@
         "name": "povertycharm:comp_bsod"
       }
     ]
+  },
+  "comp_heroes": {
+    "sounds": [
+      {
+        "name": "povertycharm:comp_heroes",
+        "stream": true,
+        "volume": 0.65
+      }
+    ]
+  },
+  "comp_lineage": {
+    "sounds": [
+      {
+        "name": "povertycharm:comp_lineage1",
+        "stream": true,
+        "volume": 0.65
+      },
+      {
+        "name": "povertycharm:comp_lineage2",
+        "stream": true,
+        "volume": 0.65
+      }
+    ],
+    "comp_spacerangers": {
+      "sounds": [
+        {
+          "name": "povertycharm:comp_spacerangers1",
+          "stream": true,
+          "volume": 0.65
+        },
+        {
+          "name": "povertycharm:comp_spacerangers2",
+          "stream": true,
+          "volume": 0.65
+        }
+      ]
+    }
   }
 }

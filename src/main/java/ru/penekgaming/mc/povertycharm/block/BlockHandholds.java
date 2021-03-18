@@ -18,7 +18,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
+import ru.penekgaming.mc.povertycharm.item.ItemPovertyBlock;
 import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
 import javax.annotation.Nullable;
@@ -60,7 +60,7 @@ public class BlockHandholds extends PovertyBlock {
                 .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(TURN, false));
 
-        item = new ItemPoverty(this);
+        item = new ItemPovertyBlock(this);
     }
 
     @Override

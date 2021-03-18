@@ -1,0 +1,6 @@
+{
+  "parent": "povertycharm:block/hookah",
+  "textures": {
+    "2": "povertycharm:blocks/hookah_green"
+  }
+}

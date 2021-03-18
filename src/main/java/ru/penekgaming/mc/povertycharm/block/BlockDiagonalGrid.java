@@ -16,7 +16,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
+import ru.penekgaming.mc.povertycharm.item.ItemPovertyBlock;
 import ru.penekgaming.mc.povertycharm.util.AxisAlignedBBContainer;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
@@ -33,7 +33,7 @@ public class BlockDiagonalGrid extends PovertyBlockMeta<EnumFacing> {
     public BlockDiagonalGrid() {
         super("diagonal_grid", Material.IRON, FACING, EnumFacing.NORTH);
 
-        item = new ItemPoverty(this);
+        item = new ItemPovertyBlock(this);
     }
 
     @Override

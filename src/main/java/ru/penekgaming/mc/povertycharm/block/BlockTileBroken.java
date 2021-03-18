@@ -7,7 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
+import ru.penekgaming.mc.povertycharm.item.ItemPovertyBlock;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -23,7 +23,7 @@ public class BlockTileBroken extends BlockConcreteBroken {
                 .withProperty(VARIANT, BlockTile.Variants.DEFAULT)
                 .withProperty(FACING, EnumFacing.NORTH)
         );
-        item = new ItemPoverty(this);
+        item = new ItemPovertyBlock(this);
     }
 
     @Override

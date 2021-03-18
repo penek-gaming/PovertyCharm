@@ -14,7 +14,33 @@ import static net.minecraftforge.common.config.Config.*;
         name = PovertyCharm.MOD_ID + "/general"
 )
 public class Config {
-    public static boolean testing;
+    @net.minecraftforge.common.config.Config(
+            modid = PovertyCharm.MOD_ID,
+            category = "hookah",
+            name = PovertyCharm.MOD_ID + "/hookah"
+    )
+    public static class Hookah {
+        @Name("Charges")
+        @Comment("How much time players can use hookah")
+        @RangeInt(min = 1)
+        public static int charges = 10;
+
+        @Name("Charge Loss Ticks")
+        @Comment({"How much ticks should be passed before 1 charge will be lost",
+                "0 to disable"})
+        @RangeInt(min = 0)
+        public static int chargeLoseTicks = 2400;
+
+        @Name("Nausea ticks per potion")
+        @Comment("How much ticks should nausea last for every potion + its amplifier")
+        @RangeInt(min = 0)
+        public static int nauseaTicksPerPotion = 44;
+
+        @Name("Minimal nausea ticks per potion")
+        @Comment("How much ticks should nausea last for every potion + its amplifier")
+        @RangeInt(min = 0)
+        public static int nauseaTicksPerPotionMin = 170;
+    }
 
     @net.minecraftforge.common.config.Config(
             modid = PovertyCharm.MOD_ID,

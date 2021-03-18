@@ -1,0 +1,58 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "povertycharm:hookah"
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "variant": {
+      "red": {},
+      "green": {
+        "textures": {
+          "2": "povertycharm:blocks/hookah_green"
+        }
+      },
+      "blue": {
+        "textures": {
+          "2": "povertycharm:blocks/hookah_blue"
+        }
+      }
+    },
+    "coals": {
+      "0": {},
+      "1": {
+        "submodel": "povertycharm:hookah_coals_1"
+      },
+      "2": {
+        "submodel": "povertycharm:hookah_coals_2"
+      },
+      "3": {
+        "submodel": "povertycharm:hookah_coals_3"
+      }
+    },
+    "active": {
+      "true": {
+        "submodel": {
+          "coals_top": {
+            "model": "povertycharm:hookah_coals_3",
+            "textures": {
+              "3": "povertycharm:blocks/hookah_coal"
+            }
+          }
+        }
+      },
+      "false": {}
+    }
+  }
+}

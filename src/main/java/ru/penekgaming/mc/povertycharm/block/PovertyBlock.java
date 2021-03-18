@@ -13,7 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ru.penekgaming.mc.povertycharm.PovertyCharm;
 import ru.penekgaming.mc.povertycharm.init.PovertyBlocks;
-import ru.penekgaming.mc.povertycharm.item.ItemPoverty;
+import ru.penekgaming.mc.povertycharm.item.ItemPovertyBlock;
 
 import java.util.*;
 
@@ -23,16 +23,21 @@ public class PovertyBlock extends Block {
     protected boolean useCustomStateMapper = false;
     private final List<IProperty<?>> ignoredProperties = new ArrayList<>();
 
-    public PovertyBlock(String name, Material material) {
-        this(name, material, true);
+    public PovertyBlock(String name, Material material, float hardness) {
+        this(name, material, true, hardness);
     }
 
-    protected PovertyBlock(String name, Material material, boolean autoRegister) {
+    public PovertyBlock(String name, Material material) {
+        this(name, material, true, 0.5f);
+    }
+
+    protected PovertyBlock(String name, Material material, boolean autoRegister, float hardness) {
         super(material);
         setRegistryName(PovertyCharm.MOD_ID, name);
         setTranslationKey(String.format("%s.%s", PovertyCharm.MOD_ID, name));
         setCreativeTab(PovertyCharm.CREATIVE_TAB);
-        item = new ItemPoverty(this);
+        item = new ItemPovertyBlock(this);
+        setHardness(hardness);
 
         if (autoRegister)
             PovertyBlocks.BLOCKS.add(this);

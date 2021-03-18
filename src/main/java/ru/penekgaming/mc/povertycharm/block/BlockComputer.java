@@ -1,9 +1,7 @@
 package ru.penekgaming.mc.povertycharm.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.BlockSign;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -13,7 +11,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -24,9 +21,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import ru.penekgaming.mc.povertycharm.PovertyCharm;
 import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariants;
-import ru.penekgaming.mc.povertycharm.block.variant.IBlockVariative;
 import ru.penekgaming.mc.povertycharm.init.PovertySounds;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityBlock;
 import ru.penekgaming.mc.povertycharm.tileentity.TileEntityComputer;
@@ -209,7 +204,10 @@ public class BlockComputer extends TileEntityBlock<TileEntityComputer> {
         XP(1, "xp"),
         DOTA(2, "dota", PovertySounds.COMP_DOTA),
         CS(3, "cs", PovertySounds.COMP_CS16),
-        LINUX(4, "linux");
+        LINUX(4, "linux"),
+        HEROES(5, "heroes", PovertySounds.COMP_HEROES),
+        LINEAGE(6, "lineage", PovertySounds.COMP_LINEAGE),
+        SR(7, "sr", PovertySounds.COMP_SR);
 
         private final int meta;
         private final String name;

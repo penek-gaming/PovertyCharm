@@ -4,9 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import ru.penekgaming.mc.povertycharm.block.BlockComputer;
-import ru.penekgaming.mc.povertycharm.block.BlockTire;
 
 public class TileEntityComputer extends TileEntity {
     private BlockComputer.Variant variant;

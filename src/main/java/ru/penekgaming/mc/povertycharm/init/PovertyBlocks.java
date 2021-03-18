@@ -38,6 +38,7 @@ public class PovertyBlocks {
     public static final BlockRibbedPanel RIBBED_PANEL_HORIZONTAL;
     public static final BlockIntercom INTERCOM;
     public static final BlockComputer COMPUTER;
+    public static final BlockHookah HOOKAH;
 
     static {
         ASPHALT = new PovertyBlock("asphalt", Material.ROCK);
@@ -76,5 +77,6 @@ public class PovertyBlocks {
         WIRES = new BlockWires();
         INTERCOM = new BlockIntercom();
         COMPUTER = new BlockComputer();
+        HOOKAH = new BlockHookah();
     }
 }
