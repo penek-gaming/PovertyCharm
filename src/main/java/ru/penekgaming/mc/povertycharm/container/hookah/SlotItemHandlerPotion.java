@@ -35,9 +35,4 @@ public class SlotItemHandlerPotion extends SlotItemHandler {
     public static boolean validateStack(@Nonnull ItemStack stack) {
         return (stack.getItem() instanceof ItemPotion) && PotionUtils.getEffectsFromStack(stack).size() > 0;
     }
-
-    @Override
-    public void onSlotChanged() {
-        hookah.markDirty();
-    }
 }

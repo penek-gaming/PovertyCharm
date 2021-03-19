@@ -35,9 +35,4 @@ public class SlotItemHandlerCoal extends SlotItemHandler {
     public static boolean validateStack(@Nonnull ItemStack stack) {
         return Objects.equals(stack.getItem().getRegistryName(), Blocks.COAL_BLOCK.getRegistryName());
     }
-
-    @Override
-    public void onSlotChanged() {
-        hookah.markDirty();
-    }
 }

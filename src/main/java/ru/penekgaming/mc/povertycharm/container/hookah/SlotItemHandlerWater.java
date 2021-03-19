@@ -50,9 +50,4 @@ public class SlotItemHandlerWater extends SlotItemHandler {
 
         return false;
     }
-
-    @Override
-    public void onSlotChanged() {
-        hookah.markDirty();
-    }
 }

@@ -43,6 +43,12 @@ public class ContainerHookah extends Container {
     }
 
     @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+        hookah.markDirty();
+    }
+
+    @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
     }
